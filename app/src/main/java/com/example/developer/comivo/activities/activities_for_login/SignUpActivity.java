@@ -29,9 +29,7 @@ import com.example.developer.comivo.activities.activities_for_messages.MessageAc
 
 
 public class SignUpActivity extends AppCompatActivity {
-
-    public final static String EXTRA_MESSAGE = "true";
-
+    
     public TextView member, privacy;
     public Button btnSignUp;
 
