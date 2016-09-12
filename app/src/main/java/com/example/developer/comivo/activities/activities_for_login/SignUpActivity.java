@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +30,7 @@ import com.example.developer.comivo.activities.activities_for_messages.MessageAc
 
 
 public class SignUpActivity extends AppCompatActivity {
-    
+
     public TextView member, privacy;
     public Button btnSignUp;
 
@@ -63,7 +64,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (buyerAcc.isChecked()){
                     sellerAcc.setChecked(false);
                     buyerAcc.setChecked(true);
+                    Log.d("LOG",""+ buyerAcc.isChecked());
 
+                    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("USER_TYPE",1);
+                    editor.apply();
                 }
             }
         });
@@ -75,9 +81,10 @@ public class SignUpActivity extends AppCompatActivity {
                     buyerAcc.setChecked(false);
                     sellerAcc.setChecked(true);
 
-                    Intent intent = new Intent(SignUpActivity.this, MessageActivity.class);
-                    intent.putExtra("check", true);
-
+                    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("USER_TYPE",2);
+                    editor.apply();
                 }
             }
         });

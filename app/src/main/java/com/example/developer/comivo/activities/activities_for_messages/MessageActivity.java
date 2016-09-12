@@ -146,17 +146,21 @@ public class MessageActivity extends AppCompatActivity {
                 account_iv.setImageResource(R.drawable.accounts_pressed_icon);
 
 
-                final Boolean yourBool = getIntent().getBooleanExtra("check", false);
 
-                if (yourBool){
-                    Intent intent = new Intent(MessageActivity.this, BuyersAccActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(MessageActivity.this, SellersAccActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                int type = sharedPreferences.getInt("USER_TYPE",1);
+                switch (type){
+                    case 1:
+                        Intent intent = new Intent(MessageActivity.this, BuyersAccActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
+                        startActivity(intent2);
+                        break;
                 }
+
 
             }
         });
