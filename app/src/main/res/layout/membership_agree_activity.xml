@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/my_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/webView2"
+        android:layout_below="@+id/my_tool_bar"
+        android:layout_above="@+id/buttons_layout" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttons_layout"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@drawable/light">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/deny"
+            android:id="@+id/btnDeny"
+            android:background="@drawable/deny"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="20dp"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="@string/priv"
+            android:id="@+id/btnAgree"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/blue"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="20dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+
+</RelativeLayout>

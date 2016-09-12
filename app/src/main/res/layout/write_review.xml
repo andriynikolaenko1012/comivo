@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/my_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView5" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/america"
+                    android:id="@+id/textView254"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/imageView100"
+                        android:src="@drawable/ic_location_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/america_address"
+                        android:id="@+id/textView256"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar2"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:theme="@style/RatingBar"
+                        android:scaleX="1"
+                        android:scaleY="1"
+                        android:numStars="5"
+                        android:rating="4" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="10 Reviews"
+                        android:id="@+id/textView255"
+                        android:textColor="@color/colorMain" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="    Select Rating"
+                    android:id="@+id/textView317"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:background="@color/color_grey" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackground">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Quality:"
+                            android:id="@+id/textView321"
+                            android:gravity="right"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="5dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Communication:"
+                            android:id="@+id/textView324"
+                            android:gravity="right"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Customer Service:"
+                            android:id="@+id/textView325"
+                            android:gravity="right"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On time delivery:"
+                            android:id="@+id/textView326"
+                            android:gravity="right"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Payment term:"
+                            android:id="@+id/textView334"
+                            android:gravity="right"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp">
+
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ratingBar5"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:theme="@style/RatingBar"
+                            android:scaleX="1"
+                            android:scaleY="1"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="20dp" />
+
+                        <RatingBar
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ratingBar6"
+                            android:theme="@style/RatingBar"
+                            android:scaleX="1"
+                            android:scaleY="1"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp" />
+
+                        <RatingBar
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ratingBar9"
+                            android:theme="@style/RatingBar"
+                            android:scaleX="1"
+                            android:scaleY="1"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp" />
+
+                        <RatingBar
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ratingBar7"
+                            android:theme="@style/RatingBar"
+                            android:scaleX="1"
+                            android:scaleY="1"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp" />
+
+                        <RatingBar
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ratingBar8"
+                            android:theme="@style/RatingBar"
+                            android:scaleX="1"
+                            android:scaleY="1"
+                            android:numStars="5"
+                            android:rating="0"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="   Chemicals"
+                    android:id="@+id/textView322"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/color_grey" />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/editText40"
+                android:hint="   Benzoic Acid"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/backgroud_border"
+                android:layout_marginTop="5dp" />
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:id="@+id/editText39"
+                    android:hint="   Add product name or CAS"
+                    android:background="@drawable/backgroud_border"
+                    android:layout_toLeftOf="@+id/imageView121"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView121"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/add_icon"
+                    android:layout_marginRight="10dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="    Your Comments"
+                android:id="@+id/textView323"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:background="@color/color_grey"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/backgroud_border">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText41"
+                    android:hint="Post your messame here"
+                    android:background="@null"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

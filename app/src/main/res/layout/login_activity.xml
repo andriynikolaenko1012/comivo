@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:gravity="center"
+        android:id="@+id/logo_layout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:background="@drawable/logo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_layout"
+        android:layout_below="@+id/logo_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/email"
+            android:paddingLeft="10dp"
+            android:hint="@string/email"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:background="@drawable/background_lists"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/passw"
+            android:paddingLeft="10dp"
+            android:hint="@string/pass"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:background="@drawable/background_lists"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkbox_layout"
+        android:layout_below="@+id/edit_layout"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/keep_me_logged"
+            android:id="@+id/keep_me_logged_in"
+            android:textSize="10sp"
+            android:checked="false"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_passw"
+            android:id="@+id/forgot_passw_tv"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:layout_alignTop="@+id/checkbox_layout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkbox_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/buttons_layout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:id="@+id/btn_sign_up"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:background="@drawable/background_buttons"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in"
+            android:id="@+id/btn_log_in"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:textAllCaps="true"
+            android:background="@drawable/background_buttons"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttons_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:background="@drawable/background_buttons"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white"
+            android:visibility="invisible" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/failed_log_in"
+            android:id="@+id/btn_failed"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:background="@drawable/background_buttons"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

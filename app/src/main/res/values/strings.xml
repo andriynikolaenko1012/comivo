@@ -1,0 +1,234 @@
+<resources>
+    <string name="app_name">Comivo</string>
+    
+    <!--Login Screen-->
+    <string name="keep_me_logged">Keep me logged in </string>
+    <string name="forgot_passw"><u>Forgot Password</u></string>
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="failed_log_in">Failed log in</string>
+    <string name="error_msg">We don\'t recognize your Online ID and / or Password. Please, try again or please use the \"<u>Forgot Password</u>\" link.</string>
+    
+    <string name="forgot_password">Forgot Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="back_to_login">Back to login</string>
+
+    <string name="free_sign_up">Free Sign Up</string>
+    <string name="first_name">First Name*</string>
+    <string name="last_name">Last Name*</string>
+    <string name="confirm_email">Confirm Email*</string>
+    <string name="email">Email*</string>
+    <string name="pass">Password*</string>
+    <string name="confirm_pass">Confirm Password*</string>
+    <string name="company">Company*</string>
+    <string name="acc_type">Account Type*</string>
+    <string name="buyer">BUYER</string>
+    <string name="seller">SELLER</string>
+    <string name="other">OTHER</string>
+    <string name="business_type">Business Type*</string>
+    <string name="i_agree">I agree to abide by Comivo LLC\'S.</string>
+    <string name="membership">Membership Agreement</string>
+    <string name="and">and</string>
+    <string name="privacy">Privacy Policy.</string>
+    <string name="invalid">Password is invalid.</string>
+    <string name="incorrect">Passwords do not match.</string>
+
+    <string-array name="type_of_business">
+        <item>Agency</item>
+        <item>Distributor</item>
+        <item>Producer</item>
+        <item>Other</item>
+        <item>Trader</item>
+    </string-array>
+
+    <string name="enter_passcode">Enter Passcode</string>
+    <string name="enter_your_passcode">Enter your passcode</string>
+    <string name="confirm_code">Confirm code</string>
+
+    <string name="reset_pass">Reset Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="conf_pass">Confirm Password</string>
+    <string name="change_pass">Change Password</string>
+
+    <string name="comivo">Comivo</string>
+    <string name="thank">Thank You</string>
+    <string name="thank_you">Thank you for signing up with COMIVO</string>
+    <string name="check_email">Please, check your email in the next few minutes \n for a confirmation code.</string>
+    <string name="follow">Follow the instructions to confirm your accaunt.</string>
+    <string name="thank_you_from">Thank you from the COMIVO Team!</string>
+    <string name="done">Done</string>
+
+    <string name="deny">Deny</string>
+    <string name="priv">Agree and check privacy policy</string>
+    
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="agr">Agree</string>
+    <string name="tittle">Toolbar Tittle</string>
+    <string name="searchable">Searchable</string>
+    <string name="menu_search">Search</string>
+    <string name="left_button">Left Button</string>
+
+    <!--Messages Screen-->
+    <string name="message">Message</string>
+    <string name="reviews">Reviews</string>
+    <string name="community">Community</string>
+    <string name="account">Account</string>
+
+    <string name="companies">Companies</string>
+    <string name="timeline">Timeline</string>
+    <string name="post">Post</string>
+    <string name="answer">Answer</string>
+    <string name="question">Question</string>
+    <string name="chemical">Chemical</string>
+    <string name="comments">Comments</string>
+    <string name="share">Share</string>
+    <string name="like">Like</string>
+    <string name="inquiries">Inquiries</string>
+    <string name="opportunities">Opportunities</string>
+    <string name="orders">Orders</string>
+    <string name="products_for_sale">Products for sale</string>
+    <string name="send_offer">Send offer</string>
+    <string name="update_quote">Update quote</string>
+
+    <!--Settings Screen-->
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="social_media">Social Media</string>
+    <string name="notification_buyers">Notifications for Buyers</string>
+    <string name="sellers">for Sellers</string>
+    <string name="privacy_term">Privacy / Terms of use</string>
+    <string name="feedback">Feedback</string>
+    <string name="q_a">Q &amp; A</string>
+    <string name="about">About COMIVO</string>
+    <string name="password">Password</string>
+    <string name="logout">Logout</string>
+    <string name="my_contact">My Contact</string>
+    <string name="experience">Experience</string>
+    <string name="education">Education</string>
+    <string name="language">Language</string>
+    <string name="facebook">Facebook</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="twitter">Twitter</string>
+    <string name="google">Google+</string>
+    <string name="instagram">Instagram</string>
+    <string name="pinterest">Pinterest</string>
+    <string name="tumblr">Tumblr</string>
+    <string name="wechat">Wechat</string>
+    <string name="press_to_connect">Press to connect with social media platform*</string>
+    <string name="notif_buy">Notifications - buyers</string>
+    <string name="quotes">quotes</string>
+    <string name="upd_quotes">When you receive new or update quotes</string>
+    <string name="messages">Message</string>
+    <string name="upd_msg">When you receive new or update message</string>
+    <string name="follows">Follow</string>
+    <string name="topic">Topic, question, writer or chemical you follow</string>
+    <string name="location">Location</string>
+    <string name="sound">Sound</string>
+    <string name="any_notif">When you receive any notification</string>
+    <string name="newsletter">Newsletter</string>
+    <string name="notif_sell">Notifications - sellers</string>
+    <string name="inquir">When you receive new or update inquiry</string>
+    <string name="priv_pol">Privacy Policy/Terms ou use</string>
+    <string name="what_feedback">What feedback do you have for us?</string>
+    <string name="not_include">Don\'t include personal or identifying info in your message</string>
+    <string name="general_info">General info about COMIVO</string>
+    <string name="quest_buy">Questions for buyers</string>
+    <string name="quest_sell">Questions for sellers</string>
+    <string name="career">Career opportunities</string>
+    <string name="company_name">Company Name:</string>
+    <string name="site">Website:</string>
+    <string name="about_us">About Us:</string>
+    <string name="current_pass">Current Password</string>
+    <string name="confirm_new_pass">Confirm New Password</string>
+    <string name="submit">Submit</string>
+    <string name="take_photo">Take a Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="delete">Delete Photo</string>
+    <string name="name">Name:</string>
+    <string name="primacy_email">Primacy Email:</string>
+    <string name="alternative_email">Alternative Email"</string>
+    <string name="tel">Tel:</string>
+    <string name="cell">Cell:</string>
+    <string name="address">Address:</string>
+    <string name="edit_contact">My Contact - edit</string>
+    <string name="website">Website:</string>
+    <string name="city">City:</string>
+    <string name="zip">Zip Code::</string>
+    <string name="state">State/Province:</string>
+    <string name="country">Country</string>
+
+    <string-array name="countries">
+        <item>Albania</item>
+        <item>USA</item>
+        <item>England</item>
+    </string-array>
+
+    <string name="position">Position</string>
+    <string name="period">Period</string>
+    <string name="add_exp">Add Experience</string>
+    <string name="company2">Company:</string>
+    <string name="position2">Position:</string>
+    <string name="period2">Period:</string>
+    <string name="degree">Degree</string>
+    <string name="school">School</string>
+    <string name="filed_of_study">Filed of study</string>
+    <string name="company3">Company</string>
+    <string name="add_educ">Add Education</string>
+    <string name="school2">School:</string>
+    <string name="degree2">Degree:</string>
+    <string name="field_of_study">Field of Study:</string>
+    <string name="language2">Language:</string>
+    <string name="level">Level:</string>
+    <string name="add_language">Add Language</string>
+    <string name="privacy_and_term">Privacy</string>
+    <string name="about_company">About Company</string>
+    <string name="tap_to_add_logo">Tap to add Company logo</string>
+    <string name="company_photo">Company Photo:</string>
+    <string name="chat_with_comivo">Chat with COMIVO</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="user_name">User Name</string>
+    <string name="options_in">Options in development</string>
+    <string name="quote_benzoic">Quote - benzoic acid</string>
+    <string name="order_benzoic">Order - benzoic acid</string>
+    <string name="ignore">Ignore</string>
+    <string name="request_update">Request quote update</string>
+    <string name="make_order">Make order</string>
+    <string name="pending">Pending</string>
+    <string name="signed">Signed</string>
+    <string name="processing">Processing</string>
+    <string name="closed">Closed</string>
+    <string name="supplier_bank_information">Supplier bank information</string>
+    <string name="america">American Chemical LLC</string>
+    <string name="sunivo">Sunivo Chemical LLC</string>
+    <string name="logway">Logway International Corporation Limited</string>
+    <string name="zhejiang">Zhejiang Puchang Fine Dine Chemical</string>
+    <string name="america_address">225 S Lake Ave, Pasadena</string>
+    <string name="sunivo_address">3050 Post Oaks Blvd, Houston</string>
+    <string name="logway_address">7900 West Huntington Drive, Los Angeles</string>
+    <string name="zhejiang_address">Room 509, 3890 Hangchun Road, Hangzhou</string>
+    <string name="verified">Verified</string>
+    <string name="work_here">Work here?</string>
+    <string name="favorites">Favorites</string>
+    <string name="steel_grow">The chemical market steel growing up</string>
+
+    <string name="add_product">Add product</string>
+    <string name="please_add">Please add product name and cas number</string>
+    <string name="products_name">Products name</string>
+    <string name="cas">CAS</string>
+    <string name="enter_cas1">Enter cas1</string>
+    <string name="enter_cas2">Enter cas2</string>
+    <string name="enter_cas3">Enter cas3</string>
+    <string name="add">Add</string>
+    <string name="e_g">e.g. 100% T/T</string>
+    <string name="write_review">Write Review</string>
+    <string name="claim">Claim your business</string>
+
+    <string name="prod_for_sale">Products for sale</string>
+    <string name="some_text">Some text...</string>
+
+    <string-array name="type_of_price">
+        <item>Price from high to low</item>
+        <item>Price from low to high</item>
+    </string-array>
+
+</resources>

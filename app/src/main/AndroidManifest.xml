@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.developer.comivo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_comivo_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyTheme">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.ForgotPasswordActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.LoginActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.PasscodeActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.ResetPasswordActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.SignUpActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.MembershipActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.PrivacyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_login.ThanksSandingActivity">
+
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+        </activity>
+
+        <!--<activity
+            android:name=".activities.activities_for_messages.MessageActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+-->
+        <activity
+            android:name=".activities.activities_for_settings.SettingsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.MyProfileActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.PasswordChangeActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.MyContactActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EditMyContactActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EducationActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EditEducationActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.ExperienceActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EditExperienceActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.LanguageActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EditLanguageActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.SocialActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.NotificationBuyersActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.NotificationSellersActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.PrivacyTermActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.FeedbackActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.QAActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.AboutCompanyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.EditAboutCompanyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_settings.ChangePassActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.ChatWithCOMIVOActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.BroadcastActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageDirectlyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageOrderActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageOfferActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageOfferDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageRemindingActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageOrderDetailActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_messages.MessageActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.ReviewsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.CommunityActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_buyers_acc.BuyersAccActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.VerifiedCompanyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.ForCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.ForPostReplieActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.NotVerifiedCompanyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.WriteReviewActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.ClaimActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ShareActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.TimelinePostDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.TimelineCommentsReplyActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.TimelineCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.PostWriteActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.PostDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.PostCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.AnswerCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.AnswerDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.AnswerPostActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalSelectedActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalPostActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalAnswerActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalAnswerCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalAnswerDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalQuestionActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.ChemicalQuestionsCommentsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.QuestionWriteAnswerActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_buyers_acc.QuoteActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_buyers_acc.QuoteDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_buyers_acc.OrderSignedSellerActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_buyers_acc.InquiriesEditActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.SellersAccActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.OpportunityUpdateQuoteActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.OpportunityDetailsActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.OrderProcessingActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.AddProductActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.ProductAddedActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_sellers_acc.ProductEditActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
+    </application>
+
+</manifest>
