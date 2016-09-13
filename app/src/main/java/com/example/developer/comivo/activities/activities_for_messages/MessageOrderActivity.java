@@ -29,33 +29,7 @@ public class MessageOrderActivity extends AppCompatActivity {
         initViews();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        SearchManager searchManager = (SearchManager) MessageOrderActivity.this.getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(MessageOrderActivity.this.getComponentName()));
-        }
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return super.onOptionsItemSelected(item);
-    }
 
     private void initViews(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
@@ -86,6 +60,8 @@ public class MessageOrderActivity extends AppCompatActivity {
         final ImageView imageView94 = (ImageView) findViewById(R.id.imageView94);
 
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
+        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
+        rightButton.setImageResource(R.drawable.ic_search_button);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

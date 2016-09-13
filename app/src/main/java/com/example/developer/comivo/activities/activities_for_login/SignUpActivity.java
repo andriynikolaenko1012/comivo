@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,40 +58,90 @@ public class SignUpActivity extends AppCompatActivity {
         tittle.setText(R.string.app_name);
 
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
+        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
+        rightButton.setImageResource(R.drawable.ic_search_button);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        buyerAcc.setOnClickListener(new View.OnClickListener() {
+
+        EditText pass = (EditText) findViewById(R.id.pass);
+        pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = LayoutInflater.from(SignUpActivity.this);
+                View layout = inflater.inflate(R.layout.password_warning_dialog, null);
+                final AlertDialog MyDialog;
+                AlertDialog.Builder MyBuilder = new AlertDialog.Builder(SignUpActivity.this);
+                MyBuilder.setView(layout);
+                MyDialog = MyBuilder.create();
+                MyDialog.getWindow().setLayout(400, 300);
+                MyDialog.show();
+            }
+        });
+        /*sellerAcc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                buyerAcc.setChecked(false);
+                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("USER_TYPE",1);
+                editor.apply();
+                int type = sharedPreferences.getInt("USER_TYPE",-1);
+                Log.d("acc","++++++++++++++++++++++++++++1234"+type);
+            }
+        });
+
+        buyerAcc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sellerAcc.setChecked(false);
+                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("USER_TYPE",2);
+                editor.apply();
+                int type = sharedPreferences.getInt("USER_TYPE",-1);
+                Log.d("acc","++++++++++++++++++++++++++++4321"+type);
+            }
+        });*/
+
+
+        /*buyerAcc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sellerAcc.setChecked(true);
+            }
+        });*/
+
+
+
+        /*buyerAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (buyerAcc.isChecked()){
                     sellerAcc.setChecked(false);
                     buyerAcc.setChecked(true);
-                    Log.d("LOG",""+ buyerAcc.isChecked());
-
-                    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putInt("USER_TYPE",1);
-                    editor.apply();
-                }
-            }
-        });
-
-        sellerAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sellerAcc.isChecked()){
+                } else {
                     buyerAcc.setChecked(false);
                     sellerAcc.setChecked(true);
-
-                    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putInt("USER_TYPE",2);
-                    editor.apply();
                 }
             }
         });
 
+        if (buyerAcc.isChecked()){
+            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("USER_TYPE",1);
+            editor.commit();
+            int type = sharedPreferences.getInt("USER_TYPE",-1);
+            Log.d("acc","++++++++++++++++++++++++++++1234"+type);
+        } else {
+            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("USER_TYPE",2);
+            editor.commit();
+            int type = sharedPreferences.getInt("USER_TYPE",-1);
+            Log.d("acc","++++++++++++++++++++++++++++1234"+type);
+        }*/
 
         checkPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,8 +159,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        /*Intent my_intent = new Intent();
-        my_intent.putExtra("checkbox_state",true);*/
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,30 +221,53 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+    public String validateNewPass(String pass1, String pass2){
+        StringBuilder retVal = new StringBuilder();
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        if(pass1.length() < 1 || pass2.length() < 1 )retVal.append("Empty fields <br>");
 
-        SearchManager searchManager = (SearchManager) SignUpActivity.this.getSystemService(Context.SEARCH_SERVICE);
+        if (pass1 != null && pass2 != null) {
 
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
+            if (pass1.equals(pass2)) {
+
+                pass1 = pass2;
+                boolean hasUppercase = !pass1.equals(pass1.toLowerCase());
+                boolean hasLowercase = !pass1.equals(pass1.toUpperCase());
+                boolean hasNumber = pass1.matches(".*\\d.*");
+                boolean noSpecialChar = pass1.matches("[a-zA-Z0-9 ]*");
+
+                if (pass1.length() < 11) {
+                    retVal.append("Password is too short. Needs to have 11 characters <br>");
+                }
+
+                if (!hasUppercase) {
+                    retVal.append("Password needs an upper case <br>");
+                }
+
+                if (!hasLowercase) {
+                    retVal.append("Password needs a lowercase <br>");
+                }
+
+                if (!hasNumber) {
+                    retVal.append("Password needs a number <br>");
+                }
+
+                if(noSpecialChar){
+                    retVal.append("Password needs a special character i.e. !,@,#, etc.  <br>");
+                }
+            }else{
+                retVal.append("Passwords don't match<br>");
+            }
+        }else{
+            retVal.append("Passwords Null <br>");
         }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(SignUpActivity.this.getComponentName()));
+        if(retVal.length() == 0){
+            retVal.append("Success");
         }
-        return super.onCreateOptionsMenu(menu);
+
+        return retVal.toString();
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return super.onOptionsItemSelected(item);
-    }
 
 }

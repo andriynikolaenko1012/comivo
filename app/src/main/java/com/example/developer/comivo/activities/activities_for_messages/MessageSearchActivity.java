@@ -1,9 +1,10 @@
-package com.example.developer.comivo.activities.activities_for_reviews;
+package com.example.developer.comivo.activities.activities_for_messages;
 
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,49 +20,64 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_buyers_acc.BuyersAccActivity;
+import com.example.developer.comivo.activities.activities_for_community.CommunityActivity;
+import com.example.developer.comivo.activities.activities_for_reviews.ReviewsActivity;
+import com.example.developer.comivo.activities.activities_for_sellers_acc.SellersAccActivity;
+import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
 
 
-public class ClaimActivity extends AppCompatActivity {
+public class MessageSearchActivity extends AppCompatActivity {
 
-    public LinearLayout l2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        setContentView(R.layout.claim_layout);
-        initViews();
+        setContentView(R.layout.message_search_activity);
+        initToolbar();
+
     }
 
-
-
-    private void initViews(){
+    private void initToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
-        TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        tittle.setText(R.string.claim);
-        ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
+
+        final TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        tittle.setText(R.string.message);
+
+        final ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
+        leftButton.setImageResource(R.drawable.ic_header_menu_icon);
+
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
-        leftButton.setImageResource(R.drawable.ic_icon_arrow);
+
+        final RelativeLayout tool_bar_searching = (RelativeLayout) findViewById(R.id.tool_bar_searching);
+
+        TextView tool_bar_cancel = (TextView) findViewById(R.id.tool_bar_cancel);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        tool_bar_searching.setVisibility(View.VISIBLE);
+        leftButton.setVisibility(View.GONE);
+        tittle.setVisibility(View.GONE);
 
+        rightButton.setVisibility(View.GONE);
 
-        leftButton.setOnClickListener(new View.OnClickListener() {
+        tool_bar_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ClaimActivity.this, NotVerifiedCompanyActivity.class);
+                Intent intent = new Intent(MessageSearchActivity.this, MessageActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
-
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View v = getCurrentFocus();

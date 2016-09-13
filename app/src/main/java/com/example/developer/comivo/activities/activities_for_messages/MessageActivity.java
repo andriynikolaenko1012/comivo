@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,17 +42,26 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(R.layout.message_activity);
 
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 
         tittle.setText(R.string.message);
 
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
-
         leftButton.setImageResource(R.drawable.ic_header_menu_icon);
+
+        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
+        rightButton.setImageResource(R.drawable.ic_search_button);
+
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MessageActivity.this, MessageSearchActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -145,21 +155,25 @@ public class MessageActivity extends AppCompatActivity {
                 community_iv.setImageResource(R.drawable.community_icon);
                 account_iv.setImageResource(R.drawable.accounts_pressed_icon);
 
+                Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
+                startActivity(intent2);
+                startActivity(intent2);
 
-
-
-                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-                int type = sharedPreferences.getInt("USER_TYPE",1);
+               /* SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                int type = sharedPreferences.getInt("USER_TYPE",-1);
+                Log.d("acc","++++++++++++++++++++++++++++1111"+sharedPreferences);
                 switch (type){
                     case 1:
                         Intent intent = new Intent(MessageActivity.this, BuyersAccActivity.class);
                         startActivity(intent);
+                        Log.d("acc","++++++++++++++++++++++++++++"+type);
                         break;
                     case 2:
                         Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
                         startActivity(intent2);
+                        Log.d("acc","++++++++++++++++++++++++++++"+sharedPreferences);
                         break;
-                }
+                }*/
 
 
             }
@@ -273,32 +287,4 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-
-        SearchManager searchManager = (SearchManager) MessageActivity.this.getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(MessageActivity.this.getComponentName()));
-        }
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return super.onOptionsItemSelected(item);
-    }
 }

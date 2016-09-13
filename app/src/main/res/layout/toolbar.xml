@@ -21,4 +21,44 @@
         android:layout_gravity="center"
         android:id="@+id/toolbar_title" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:id="@+id/right_button"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tool_bar_searching"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tool_bar_search"
+            android:layout_toLeftOf="@+id/tool_bar_cancel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/cyan_white_backgroud_border"
+            android:hint="   Search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/tool_bar_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+    </RelativeLayout>
+
+
 </android.support.v7.widget.Toolbar>

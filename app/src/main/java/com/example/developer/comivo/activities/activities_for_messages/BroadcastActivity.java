@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,33 +27,7 @@ public class BroadcastActivity extends AppCompatActivity{
         setContentView(R.layout.broadcast_activity);
         initViews();
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        SearchManager searchManager = (SearchManager) BroadcastActivity.this.getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(BroadcastActivity.this.getComponentName()));
-        }
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return super.onOptionsItemSelected(item);
-    }
 
     private void initViews(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
@@ -61,6 +36,8 @@ public class BroadcastActivity extends AppCompatActivity{
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
         ImageView sendMess = (ImageView) findViewById(R.id.send_mess);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
+        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
+        rightButton.setImageResource(R.drawable.ic_search_button);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
