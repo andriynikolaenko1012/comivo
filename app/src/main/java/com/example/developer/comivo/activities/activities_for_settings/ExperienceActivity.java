@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,7 +71,15 @@ public class ExperienceActivity extends AppCompatActivity {
         deleteExp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ExperienceActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
+
+                LayoutInflater inflater = LayoutInflater.from(ExperienceActivity.this);
+                View layout = inflater.inflate(R.layout.delete_educ_dialog, null);
+                AlertDialog MyDialog;
+                AlertDialog.Builder MyBuilder = new AlertDialog.Builder(ExperienceActivity.this);
+                MyBuilder.setView(layout);
+                MyDialog = MyBuilder.create();
+                MyDialog.getWindow().setLayout(400, 300);
+                MyDialog.show();
             }
         });
     }

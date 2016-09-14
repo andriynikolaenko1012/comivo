@@ -2314,7 +2314,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ask of Search"
-                    android:id="@+id/search_text"
+                    android:id="@+id/search_text_post_question"
                     android:background="@color/white_color"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"

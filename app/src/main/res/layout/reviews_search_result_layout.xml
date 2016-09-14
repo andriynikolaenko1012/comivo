@@ -39,12 +39,14 @@
                     android:id="@+id/textView466"
                     android:textSize="10sp"
                     android:textColor="@color/white_color"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginRight="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ADD COMPANY HERE!"
+                    android:text="@string/add_company_name"
+                    android:textAllCaps="true"
                     android:id="@+id/textView467"
                     android:textSize="10sp"
                     android:textColor="@color/white_color"
@@ -57,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/verified_layout"
+                android:id="@+id/verified_layout2"
                 android:clickable="true">
 
                 <LinearLayout
@@ -172,14 +174,16 @@
                     android:id="@+id/textView461"
                     android:textSize="10sp"
                     android:textColor="@color/white_color"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginRight="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ADD COMPANY HERE!"
+                    android:text="@string/add_company_name"
                     android:id="@+id/textView465"
                     android:textSize="10sp"
+                    android:textAllCaps="true"
                     android:textColor="@color/white_color"
                     android:textStyle="bold" />
             </LinearLayout>

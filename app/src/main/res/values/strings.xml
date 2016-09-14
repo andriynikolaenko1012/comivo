@@ -45,6 +45,8 @@
     <string name="enter_your_passcode">Enter your passcode</string>
     <string name="confirm_code">Confirm code</string>
 
+    <string name="add_company_name"><u>Add company here!</u></string>
+
     <string name="reset_pass">Reset Password</string>
     <string name="new_pass">New Password</string>
     <string name="conf_pass">Confirm Password</string>

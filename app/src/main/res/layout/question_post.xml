@@ -24,7 +24,8 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/layout_for_buttons"
         android:background="@drawable/backgroud_border"
-        android:baselineAligned="false">>
+        android:baselineAligned="false">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

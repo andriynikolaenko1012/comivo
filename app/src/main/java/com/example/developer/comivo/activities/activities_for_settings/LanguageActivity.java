@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,7 +71,15 @@ public class LanguageActivity extends AppCompatActivity{
         deleteLan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LanguageActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
+
+                LayoutInflater inflater = LayoutInflater.from(LanguageActivity.this);
+                View layout = inflater.inflate(R.layout.delete_lang_dialog, null);
+                AlertDialog MyDialog;
+                AlertDialog.Builder MyBuilder = new AlertDialog.Builder(LanguageActivity.this);
+                MyBuilder.setView(layout);
+                MyDialog = MyBuilder.create();
+                MyDialog.getWindow().setLayout(400, 300);
+                MyDialog.show();
             }
         });
     }

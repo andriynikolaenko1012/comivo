@@ -25,6 +25,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,9 @@ import com.example.developer.comivo.activities.activities_for_messages.MessageAc
 
 public class SignUpActivity extends AppCompatActivity {
 
-    public TextView member, privacy;
+    public TextView member, privacy, pas_invalid, pass_not_match;
+    public EditText confirm_pass;
+    public LinearLayout pass_border, confirm_pass_border;
     public Button btnSignUp;
 
     @Override
@@ -64,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        EditText pass = (EditText) findViewById(R.id.pass);
+        final EditText pass = (EditText) findViewById(R.id.pass);
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,6 +187,25 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        confirm_pass = (EditText) findViewById(R.id.confirm_pass);
+        pas_invalid = (TextView) findViewById(R.id.pass_invalid);
+        pass_not_match = (TextView) findViewById(R.id.pass_not_match);
+        pass_border = (LinearLayout) findViewById(R.id.pass_border);
+        confirm_pass_border = (LinearLayout) findViewById(R.id.confirm_pass_border);
+
+
+
+        confirm_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pass.setVisibility(View.GONE);
+                confirm_pass.setVisibility(View.GONE);
+                pas_invalid.setVisibility(View.VISIBLE);
+                pass_not_match.setVisibility(View.VISIBLE);
+                pass_border.setVisibility(View.VISIBLE);
+                confirm_pass_border.setVisibility(View.VISIBLE);
+            }
+        });
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override

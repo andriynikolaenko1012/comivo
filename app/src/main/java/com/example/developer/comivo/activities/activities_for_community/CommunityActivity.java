@@ -60,7 +60,7 @@ public class CommunityActivity extends AppCompatActivity {
     public TextView tv_text_post, text_steel_4, some_text_4, tv_answer_4, textView291, textView292, textView293,
             textView294, textView296, textView297;
 
-    public EditText search_text;
+    public EditText search_text_post_question;
 
     public RelativeLayout selected_relative;
 
@@ -119,7 +119,7 @@ public class CommunityActivity extends AppCompatActivity {
 
         layout_comments_4 = (LinearLayout) findViewById(R.id.layout_comments_4);
 
-        search_text = (EditText) findViewById(R.id.search_text);
+        search_text_post_question = (EditText) findViewById(R.id.search_text_post_question);
         answer_layout = (LinearLayout) findViewById(R.id.answer_layout);
         comments_layout_5 = (LinearLayout) findViewById(R.id.comments_layout_5);
 
@@ -449,7 +449,7 @@ public class CommunityActivity extends AppCompatActivity {
             }
         });
 
-        search_text.setOnClickListener(new View.OnClickListener() {
+        search_text_post_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunityActivity.this, QuestionPostActivity.class);

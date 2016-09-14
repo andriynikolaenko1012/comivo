@@ -472,6 +472,19 @@
         </activity>
 
         <activity
+            android:name=".activities.activities_for_community.QuestionCommentsActivity">
+            <!--<meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>-->
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_community.QuestionPostActivity">
+            <!--<meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>-->
+        </activity>
+
+
+        <activity
             android:name=".activities.activities_for_sellers_acc.ProductAddedActivity">
             <!--<meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
@@ -479,6 +492,12 @@
 
         <activity
             android:name=".activities.activities_for_sellers_acc.ProductEditActivity">
+            <!--<meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>-->
+        </activity>
+
+        <activity
+            android:name=".activities.activities_for_reviews.ReviewAddNewCompanyActivity">
             <!--<meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
         </activity>

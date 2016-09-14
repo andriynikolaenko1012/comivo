@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please, fill the form to claim tour business!"
+                android:text="Please, fill the form to claim your business!"
                 android:id="@+id/textView349"
                 android:layout_margin="10dp"
                 android:textStyle="bold"
