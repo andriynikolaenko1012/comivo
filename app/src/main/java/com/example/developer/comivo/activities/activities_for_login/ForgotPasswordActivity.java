@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.developer.comivo.R;
 
@@ -44,14 +45,15 @@ public class ForgotPasswordActivity extends Activity {
 
                 LayoutInflater inflater = LayoutInflater.from(ForgotPasswordActivity.this);
                 View layout = inflater.inflate(R.layout.password_notification_dialog, null);
-                AlertDialog MyDialog;
+                final AlertDialog MyDialog;
 
                 AlertDialog.Builder MyBuilder = new AlertDialog.Builder(ForgotPasswordActivity.this);
-                MyBuilder.setTitle("sample@sample.com");
                 MyBuilder.setView(layout);
 
-                Button btnOk = (Button) layout.findViewById(R.id.btnOk);
-                Button btnCancel = (Button) layout.findViewById(R.id.btnCancel);
+                TextView btnOk = (TextView) layout.findViewById(R.id.btnOk);
+                TextView btnCancel = (TextView) layout.findViewById(R.id.btnCancel);
+
+                MyDialog = MyBuilder.create();
 
                 btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -65,12 +67,10 @@ public class ForgotPasswordActivity extends Activity {
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish();
+                        MyDialog.cancel();
                     }
                 });
 
-                MyDialog = MyBuilder.create();
-                MyDialog.getWindow().setLayout(400, 300);
 
                 MyDialog.show();
 

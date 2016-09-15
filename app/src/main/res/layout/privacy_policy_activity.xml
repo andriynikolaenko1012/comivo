@@ -11,17 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
-    <WebView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/webView3"
+        android:layout_height="match_parent"
         android:layout_below="@+id/my_tool_bar"
-        android:layout_above="@+id/buttons_layout" />
+        android:layout_above="@+id/sag24"
+        android:background="@color/color_white_grey">
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/webView2"
+            android:layout_below="@+id/my_tool_bar"
+            android:layout_above="@+id/buttons_layout"
+            android:background="@color/white_color" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorSecondary"
+        android:id="@+id/sag24"
+        android:layout_above="@+id/buttons_layout">
+    </View>
+
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/buttons_layout"
         android:layout_alignParentBottom="true"
         android:gravity="center"
@@ -29,17 +47,17 @@
 
         <Button
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="@string/deny"
             android:id="@+id/btn_Deny"
-            android:background="@drawable/deny"
+            android:background="@color/color_for_memberships_button"
             android:textSize="12sp"
             android:textColor="@android:color/white"
             android:layout_marginLeft="20dp" />
 
         <Button
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:text="@string/agr"
             android:id="@+id/btn_Agree"
             android:layout_marginLeft="20dp"

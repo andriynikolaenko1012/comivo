@@ -20,12 +20,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,21 +53,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initViews(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
-        TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
+
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
-        final CheckBox buyerAcc = (CheckBox) findViewById(R.id.buyer_acc);
-        final CheckBox sellerAcc = (CheckBox) findViewById(R.id.seller_acc);
+
         final CheckBox checkPrivacy = (CheckBox) findViewById(R.id.checked_privacy);
-        tittle.setText(R.string.app_name);
-
-        leftButton.setImageResource(R.drawable.ic_icon_arrow);
-        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
-        rightButton.setImageResource(R.drawable.ic_search_button);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
 
         final EditText pass = (EditText) findViewById(R.id.pass);
         pass.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +72,14 @@ public class SignUpActivity extends AppCompatActivity {
                 MyDialog.show();
             }
         });
+
+        Spinner spinner= (Spinner) findViewById(R.id.spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type_of_business, R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
         /*sellerAcc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -207,14 +206,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     @Override

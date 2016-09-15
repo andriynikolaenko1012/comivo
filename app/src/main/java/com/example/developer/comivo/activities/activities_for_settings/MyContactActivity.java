@@ -42,7 +42,8 @@ public class MyContactActivity extends AppCompatActivity {
 
         tittle.setText(R.string.my_contact);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

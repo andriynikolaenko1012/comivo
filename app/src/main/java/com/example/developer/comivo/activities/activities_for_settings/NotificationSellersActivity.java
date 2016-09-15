@@ -35,7 +35,8 @@ public class NotificationSellersActivity extends AppCompatActivity {
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
         tittle.setText(R.string.notif_sell);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

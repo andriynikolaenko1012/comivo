@@ -42,7 +42,8 @@ public class ExperienceActivity extends AppCompatActivity {
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

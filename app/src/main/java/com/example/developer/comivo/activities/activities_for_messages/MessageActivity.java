@@ -53,6 +53,9 @@ public class MessageActivity extends AppCompatActivity {
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
 
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
+
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

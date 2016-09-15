@@ -34,11 +34,12 @@ public class FeedbackActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
-        Button btnSend = (Button) findViewById(R.id.btn_send);
+        TextView btnSend = (TextView) findViewById(R.id.btn_send);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

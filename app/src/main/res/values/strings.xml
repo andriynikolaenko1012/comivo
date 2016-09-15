@@ -21,7 +21,7 @@
     <string name="pass">Password*</string>
     <string name="confirm_pass">Confirm Password*</string>
     <string name="company">Company*</string>
-    <string name="acc_type">Account Type*</string>
+    <string name="acc_type">Account Type*:</string>
     <string name="buyer">BUYER</string>
     <string name="seller">SELLER</string>
     <string name="other">OTHER</string>
@@ -34,6 +34,7 @@
     <string name="incorrect">Passwords do not match.</string>
 
     <string-array name="type_of_business">
+        <item>Business Type*</item>
         <item>Agency</item>
         <item>Distributor</item>
         <item>Producer</item>

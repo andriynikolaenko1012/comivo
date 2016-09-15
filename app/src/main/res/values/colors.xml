@@ -12,4 +12,10 @@
     <color name="green_color">#2dcc70</color>
     <color name="white_color">#ffffff</color>
     <color name="color_grey">#1f000000</color>
+
+    <color name="color_blue">#1280c4</color>
+    <color name="color_white_grey">#f2f2f2</color>
+    <color name="color_text_views_background">#1772a9</color>
+    <color name="color_buttons_for_login_page">#0c3955</color>
+    <color name="color_for_memberships_button">#777777</color>
 </resources>

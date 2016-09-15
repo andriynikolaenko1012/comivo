@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white_color">
 
     <include
         layout="@layout/toolbar"
@@ -25,16 +26,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/facebook_layout"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView25"
                 android:src="@drawable/ic_facebook_icon"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,11 +59,13 @@
             android:id="@+id/linkedin_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView26"
                 android:src="@drawable/ic_linkedin_icon"
                 android:layout_marginLeft="10dp"
@@ -75,7 +81,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,11 +92,13 @@
             android:id="@+id/twitter_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView27"
                 android:src="@drawable/ic_twitter_icon"
                 android:layout_marginLeft="10dp"
@@ -105,7 +114,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,11 +125,13 @@
             android:id="@+id/google_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView28"
                 android:src="@drawable/ic_google_icon"
                 android:layout_marginLeft="10dp"
@@ -135,7 +147,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,11 +158,13 @@
             android:id="@+id/instagram_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView29"
                 android:src="@drawable/ic_instagram_icon"
                 android:layout_marginLeft="10dp"
@@ -165,7 +180,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -175,11 +191,13 @@
             android:id="@+id/pinterest_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView30"
                 android:src="@drawable/ic_pinterest_icon"
                 android:layout_marginLeft="10dp"
@@ -195,7 +213,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -205,11 +224,13 @@
             android:id="@+id/tumblr_layout"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView31"
                 android:src="@drawable/ic_tumblr_icon"
                 android:layout_marginLeft="10dp"
@@ -225,7 +246,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -234,11 +256,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/wechat_layout"
             android:layout_marginTop="5dp"
-            android:background="@drawable/backgroud_border">
+            android:background="@drawable/light_backgroud_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView32"
                 android:src="@drawable/ic_wechat_icon"
                 android:layout_marginLeft="10dp"
@@ -254,7 +278,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -272,6 +297,7 @@
             android:layout_height="wrap_content"
             android:text="@string/press_to_connect"
             android:id="@+id/textView67"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
     </LinearLayout>
 </RelativeLayout>

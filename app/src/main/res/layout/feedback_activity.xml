@@ -14,27 +14,40 @@
         android:layout_height="wrap_content"
         android:text="@string/what_feedback"
         android:id="@+id/textView68"
-        android:layout_margin="5dp" />
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_margin="5dp"
-        android:background="@drawable/cyan_backgroud_border">
+        android:background="@drawable/cyan_white_backgroud_border">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/editText28"/>
-    </FrameLayout>
+            android:id="@+id/editText28"
+            android:text="Don&apos;t include personal or identifying info in your message"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="10sp" />
+    </LinearLayout>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="Send"
         android:id="@+id/btn_send"
-        android:layout_gravity="center_horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textAllCaps="true"
         android:background="@color/colorBackground"
         android:textColor="@android:color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center" />
 </LinearLayout>

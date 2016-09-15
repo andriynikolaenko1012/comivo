@@ -33,13 +33,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/current_pass"
                 android:id="@+id/textView69"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/textView70"
-                android:background="@drawable/cyan_backgroud_border"
+                android:background="@drawable/cyan_white_backgroud_border"
                 android:layout_marginBottom="20dp" />
 
             <TextView
@@ -47,13 +49,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/new_pass"
                 android:id="@+id/textView74"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/textView73"
-                android:background="@drawable/cyan_backgroud_border"
+                android:background="@drawable/cyan_white_backgroud_border"
                 android:layout_marginBottom="20dp" />
 
             <TextView
@@ -61,24 +65,31 @@
                 android:layout_height="wrap_content"
                 android:text="@string/conf_pass"
                 android:id="@+id/textView72"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/textView71"
-                android:background="@drawable/cyan_backgroud_border"
+                android:background="@drawable/cyan_white_backgroud_border"
                 android:layout_marginBottom="40dp" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="@string/submit"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textAllCaps="true"
                 android:id="@+id/btn_submit"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:background="@color/colorBackground" />
+                android:background="@color/colorBackground"
+                android:gravity="center"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

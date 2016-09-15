@@ -16,6 +16,7 @@
 
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
+        <item name="android:textColorHint">@color/white_color</item>
         <!--<item name="colorPrimary">#2196F3</item>
         <item name="colorPrimaryDark">#1976D2</item>-->
     </style>

@@ -42,7 +42,8 @@ public class LanguageActivity extends AppCompatActivity{
 
         tittle.setText(R.string.language);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

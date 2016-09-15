@@ -33,12 +33,13 @@ public class ChangePassActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
-        Button btnSubmit = (Button) findViewById(R.id.btn_submit);
+        TextView btnSubmit = (TextView) findViewById(R.id.btn_submit);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
         ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
         tittle.setText(R.string.reset_password);
-
+        toolbar.getParent();
+        toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

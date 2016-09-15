@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white_color">
 
     <include
         layout="@layout/toolbar"
@@ -17,11 +18,11 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border"
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border"
             android:layout_marginBottom="5dp">
 
             <TextView
@@ -34,7 +35,29 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"
+                android:id="@+id/cv1"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/textView75"
+                android:layout_toLeftOf="@+id/imageView145"
+                android:layout_toStartOf="@+id/imageView145">
+            </View>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView145"
+                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,15 +65,17 @@
                 android:text="@string/upd_quotes"
                 android:id="@+id/textView76"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:layout_below="@+id/cv1" />
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border"
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border"
             android:layout_marginBottom="5dp">
 
             <TextView
@@ -63,7 +88,29 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"
+                android:id="@+id/cv2"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/textView77"
+                android:layout_toLeftOf="@+id/imageView144"
+                android:layout_toStartOf="@+id/imageView144">
+            </View>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView144"
+                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,15 +118,17 @@
                 android:text="@string/upd_msg"
                 android:id="@+id/textView78"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:layout_below="@+id/cv2" />
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border"
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border"
             android:layout_marginBottom="5dp">
 
             <TextView
@@ -92,7 +141,29 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"
+                android:id="@+id/cv3"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/textView79"
+                android:layout_toLeftOf="@+id/imageView143"
+                android:layout_toStartOf="@+id/imageView143">
+            </View>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView143"
+                android:src="@drawable/ic_check_icon"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,40 +171,55 @@
                 android:text="@string/follow"
                 android:id="@+id/textView80"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:layout_below="@+id/cv3" />
+        </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border"
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border"
             android:layout_marginBottom="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/location"
                 android:id="@+id/textView81"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView142"
+                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView82"
                 android:layout_marginLeft="10dp" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border"
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border"
             android:layout_marginBottom="5dp">
 
             <TextView
@@ -146,7 +232,29 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"
+                android:id="@+id/cv4"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/textView83"
+                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toStartOf="@+id/imageView6">
+            </View>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView6"
+                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,19 +262,31 @@
                 android:text="@string/any_notif"
                 android:id="@+id/textView84"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:layout_below="@+id/cv4" />
+        </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroud_border">
+            android:layout_height="70dp"
+            android:background="@drawable/light_backgroud_border">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView151"
+                android:src="@drawable/ic_check_icon"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/newsletter"
                 android:id="@+id/textView85"
                 android:textAllCaps="true"
@@ -174,9 +294,11 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
+                android:gravity="center" />
 
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

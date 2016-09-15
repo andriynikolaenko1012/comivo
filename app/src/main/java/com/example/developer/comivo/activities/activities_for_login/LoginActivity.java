@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
@@ -26,7 +27,6 @@ public class LoginActivity extends Activity{
     public TextView forgot_passw_tv;
     public Button log_in, sign_in, failed_log_in;
     private CheckBox keepLoggedIn;
-    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +77,11 @@ public class LoginActivity extends Activity{
                 View layout = inflater.inflate(R.layout.login_warning_dialog, null);
                 final AlertDialog MyDialog;
                 AlertDialog.Builder MyBuilder = new AlertDialog.Builder(LoginActivity.this);
-                MyBuilder.setView(layout);
                 TextView tv = (TextView) layout.findViewById(R.id.tv_forgot_pssw);
+                ImageView close_icon = (ImageView) layout.findViewById(R.id.close_icon);
+                MyBuilder.setView(layout);
+                MyDialog = MyBuilder.create();
+
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -88,13 +91,11 @@ public class LoginActivity extends Activity{
                     }
                 });
 
-                MyDialog = MyBuilder.create();
-                MyDialog.getWindow().setLayout(400, 300);
-                Button cancel = (Button) layout.findViewById(R.id.btnCancel);
-                cancel.setOnClickListener(new View.OnClickListener() {
+                close_icon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         MyDialog.cancel();
+
                     }
                 });
 
@@ -102,15 +103,6 @@ public class LoginActivity extends Activity{
             }
         });
 
-
-        /*log_in.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, MessagesActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
