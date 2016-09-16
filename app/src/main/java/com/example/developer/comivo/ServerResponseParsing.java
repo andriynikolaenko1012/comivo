@@ -19,7 +19,7 @@ public class ServerResponseParsing {
     private String lastName;
     private String profileImage;
     private String profileCoverImage;
-    private String accountTipe;
+    private String accountType;
     private String newUser;
     private String companyName;
     private String tokenId;
@@ -35,6 +35,14 @@ public class ServerResponseParsing {
 
     private ArrayList<String> idList;
     private ArrayList<String> valueList;
+
+    public ArrayList<String> getIdList() {
+        return idList;
+    }
+
+    public ArrayList<String> getValueList() {
+        return valueList;
+    }
 
     private ServerResponseParsing() {
     }
@@ -57,11 +65,13 @@ public class ServerResponseParsing {
         }
     }
 
-    public void parseBusinessType(String response) {
+    /*public void parseBusinessType(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            status = jsonObject.getString("Status");
-            JSONArray jsonArray = jsonObject.optJSONArray("Data");
+            if (!jsonObject.isNull(STATUS_KEY)) {
+                status = jsonObject.getString("Status");
+            }
+            JSONArray jsonArray = jsonObject.getJSONArray("Data");
             idList = new ArrayList<>(jsonArray.length());
             valueList = new ArrayList<>(jsonArray.length());
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -69,25 +79,42 @@ public class ServerResponseParsing {
                 idList.add(innerObject.getString("Id"));
                 valueList.add(innerObject.getString("Value"));
             }
-            message = jsonObject.getString("Message");
+
+            if (!jsonObject.isNull(MESSAGE_KEY)) {
+                message = jsonObject.getString("Message");
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("aaa", e.getMessage(), e);
         }
-    }
+    }*/
 
+    public static final String STATUS_KEY = "Status";
+    public static final String DATA_KEY = "Data";
+    public static final String MESSAGE_KEY = "Message";
     public void parseMembershipAndPrivacy(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
-            status = jsonObject.getString("Status");
-            JSONObject jsonObject1 = jsonObject.optJSONObject("Data");
+
+            if (!jsonObject.isNull(STATUS_KEY)) {
+                status = jsonObject.getString("Status");
+            }
+            JSONObject jsonObject1 = jsonObject.getJSONObject("Data");
+
             cmsPageTypeId = jsonObject1.getString("CMSPageTypeId");
             title = jsonObject1.getString("Title");
             content = jsonObject1.getString("Content");
             isActive = jsonObject1.getString("IsActive");
             type = jsonObject1.getString("Type");
-            message = jsonObject.getString("Message");
+
+            if (!jsonObject.isNull(MESSAGE_KEY)) {
+                message = jsonObject.getString("Message");
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("aaa", e.getMessage(), e);
         }
     }
 
@@ -97,19 +124,23 @@ public class ServerResponseParsing {
     public void parseLoginValidate(String response){
         try{
             JSONObject jsonObject = new JSONObject(response);
-            status = jsonObject.getString("Status");
-            JSONObject jsonObject1 = jsonObject.optJSONObject("Data");
+            if (!jsonObject.isNull(STATUS_KEY)) {
+                status = jsonObject.getString("Status");
+            }
+            JSONObject jsonObject1 = jsonObject.getJSONObject("Data");
             firstName = jsonObject1.getString("FirstName");
             lastName = jsonObject1.getString("LastName");
             profileImage = jsonObject1.getString("ProfileImage");
             profileCoverImage = jsonObject1.getString("ProfileCoverImage");
-            accountTipe = jsonObject1.getString("AccountType");
+            accountType = jsonObject1.getString("AccountType");
             newUser = jsonObject1.getString("NewUser");
             companyName = jsonObject1.getString("CompanyName");
             tokenId = jsonObject1.getString("TokenId");
             token = jsonObject1.getString("Token");
             email =jsonObject1.getString("Email");
-            message = jsonObject1.getString("Message");
+            if (!jsonObject.isNull(MESSAGE_KEY)) {
+                message = jsonObject.getString("Message");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,8 +163,8 @@ public class ServerResponseParsing {
         return profileCoverImage;
     }
 
-    public String getAccountTipe() {
-        return accountTipe;
+    public String getAccountType() {
+        return accountType;
     }
 
     public String getNewUser() {

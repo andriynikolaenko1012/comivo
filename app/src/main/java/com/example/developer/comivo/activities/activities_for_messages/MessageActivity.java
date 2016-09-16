@@ -1,12 +1,14 @@
 package com.example.developer.comivo.activities.activities_for_messages;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,12 +17,20 @@ import android.widget.TextView;
 import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.activities.activities_for_buyers_acc.BuyersAccActivity;
 import com.example.developer.comivo.activities.activities_for_community.CommunityActivity;
 import com.example.developer.comivo.activities.activities_for_reviews.ReviewsActivity;
 import com.example.developer.comivo.activities.activities_for_sellers_acc.SellersAccActivity;
 import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -68,27 +78,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        BackendManager backendManager = BackendManager.getInstance();
-        backendManager.getBusinessType().enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-                serverResponseParsing.parseBusinessType(response.body().string());
-
-                Log.d("LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                        " data " + serverResponseParsing.getData() +
-                        " message" + serverResponseParsing.getMessage());
-            }
-        });
-
-
-
+        new AccountValidation().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         message_tv = (TextView) findViewById(R.id.message_tv);
@@ -183,6 +173,11 @@ public class MessageActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
                 startActivity(intent2);
                 startActivity(intent2);
+
+
+
+
+
 
 
                /* SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
@@ -310,9 +305,99 @@ public class MessageActivity extends AppCompatActivity {
         reviews_iv = (ImageView) findViewById(R.id.reviews_iv);
         community_iv = (ImageView) findViewById(R.id.community_iv);
         account_iv = (ImageView) findViewById(R.id.account_iv);
+    }
 
+    private class AccountValidation extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String data = getJSON("http://beta.comivo.com/mobileapi/account/validatelogin?email=Comivobuyer@gmail.com&password=Com!vo01", 5000);
+
+            return data;
+        }
+
+
+        @Override
+        protected void onPostExecute(String responseString) {
+            //super.onPostExecute(s);
+
+            if (MessageActivity.this.isFinishing()) {
+                return;
+            }
+
+            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+            serverResponseParsing.parseLoginValidate(responseString);
+
+            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
+                    " firstName " + serverResponseParsing.getFirstName() +
+                    " lastName" + serverResponseParsing.getLastName() +
+                    " profileImage" + serverResponseParsing.getProfileImage() +
+                    " profileCoverImage" + serverResponseParsing.getProfileCoverImage() +
+                    " accountType" + serverResponseParsing.getAccountType() +
+                    " newUser" + serverResponseParsing.getNewUser() +
+                    " companyName" + serverResponseParsing.getCompanyName() +
+                    " tokenId" + serverResponseParsing.getTokenId() +
+                    " token" + serverResponseParsing.getToken() +
+                    " email" + serverResponseParsing.getEmail() +
+                    " message" + serverResponseParsing.getMessage() +
+                    " \n = " + responseString
+            );
+
+
+
+
+        }
+
+        public String getJSON(String url, int timeout) {
+            HttpURLConnection c = null;
+            try {
+                URL u = new URL(url);
+                c = (HttpURLConnection) u.openConnection();
+                c.setRequestMethod("GET");
+                c.setRequestProperty("Content-length", "0");
+                c.setRequestProperty("platform", "android");
+                c.setRequestProperty("version", "1.0.0");
+                c.setRequestProperty("deviceId", "454sa4da4daa54d4d45asd45asd");
+                c.setUseCaches(false);
+                c.setAllowUserInteraction(false);
+                c.setConnectTimeout(timeout);
+                c.setReadTimeout(timeout);
+                c.connect();
+                int status = c.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
+
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (c != null) {
+                    try {
+                        c.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            return null;
+        }
 
     }
+
 
 
 

@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +30,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,6 +56,9 @@ public class PrivacyActivity extends AppCompatActivity {
 
         setContentView(R.layout.privacy_policy_activity);
 
+
+        new PrivacyPolicyAgreement().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 
@@ -60,32 +72,6 @@ public class PrivacyActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-        BackendManager backendManager = BackendManager.getInstance();
-        backendManager.getPrivacyPolicy().enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-                serverResponseParsing.parseMembershipAndPrivacy(response.body().string());
-
-                Log.d("LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                        " cmsType " + serverResponseParsing.getCmsPageTypeId() +
-                        " title" + serverResponseParsing.getTitle() +
-                        " content" + serverResponseParsing.getContent() +
-                        " isActive" + serverResponseParsing.getIsActive() +
-                        " type" + serverResponseParsing.getType() +
-                        " message" + serverResponseParsing.getMessage());
-            }
-        });
-
-
 
 
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +103,109 @@ public class PrivacyActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private class PrivacyPolicyAgreement extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String data = getJSON("http://beta.comivo.com/mobileapi/cms/cmstype?type=Privacy_Policy", 5000);
+
+
+            return data;
+        }
+
+
+        @Override
+        protected void onPostExecute(String responseString) {
+            //super.onPostExecute(s);
+
+            if (PrivacyActivity.this.isFinishing()) {
+                return;
+            }
+
+            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+            serverResponseParsing.parseMembershipAndPrivacy(responseString);
+
+            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
+                    " cmsType " + serverResponseParsing.getCmsPageTypeId() +
+                    " title" + serverResponseParsing.getTitle() +
+                    " content" + serverResponseParsing.getContent() +
+                    " isActive" + serverResponseParsing.getIsActive() +
+                    " type" + serverResponseParsing.getType() +
+                    " message" + serverResponseParsing.getMessage() +
+                    " \n = " + responseString
+            );
+
+            String data = serverResponseParsing.getContent();
+            WebView webview = (WebView) findViewById(R.id.webViewPrivacy);
+            webview.getSettings().setJavaScriptEnabled(true);
+
+            webview.loadDataWithBaseURL("", data, "text/html", "UTF-8", "");
+        }
+
+        public String getJSON(String url, int timeout) {
+            HttpURLConnection c = null;
+            try {
+                URL u = new URL(url);
+                c = (HttpURLConnection) u.openConnection();
+                c.setRequestMethod("GET");
+                c.setRequestProperty("Content-length", "0");
+                c.setRequestProperty("platform", "android");
+                c.setRequestProperty("version", "1.0.0");
+                c.setUseCaches(false);
+                c.setAllowUserInteraction(false);
+                c.setConnectTimeout(timeout);
+                c.setReadTimeout(timeout);
+                c.connect();
+                int status = c.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
+
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (c != null) {
+                    try {
+                        c.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        /*private void aaaaa() {
+            URL myURL = new URL(serviceURL);
+            HttpURLConnection myURLConnection = (HttpURLConnection)myURL.openConnection();
+            String userCredentials = "username:password";
+            String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
+            myURLConnection.setRequestProperty ("Authorization", basicAuth);
+            myURLConnection.setRequestMethod("POST");
+            myURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            myURLConnection.setRequestProperty("Content-Length", "" + postData.getBytes().length);
+            myURLConnection.setRequestProperty("Content-Language", "en-US");
+            myURLConnection.setUseCaches(false);
+            myURLConnection.setDoInput(true);
+            myURLConnection.setDoOutput(true);
+        }*/
     }
 
 

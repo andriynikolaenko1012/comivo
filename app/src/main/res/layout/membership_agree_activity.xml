@@ -44,7 +44,7 @@
         <WebView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/webView3"
+            android:id="@+id/webView_agreement"
             android:background="@color/white_color"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp" />

@@ -75,11 +75,18 @@ public class ExperienceActivity extends AppCompatActivity {
 
                 LayoutInflater inflater = LayoutInflater.from(ExperienceActivity.this);
                 View layout = inflater.inflate(R.layout.delete_educ_dialog, null);
-                AlertDialog MyDialog;
+                ImageView close_img = (ImageView) layout.findViewById(R.id.close_img_3);
+                final AlertDialog MyDialog;
                 AlertDialog.Builder MyBuilder = new AlertDialog.Builder(ExperienceActivity.this);
                 MyBuilder.setView(layout);
                 MyDialog = MyBuilder.create();
-                MyDialog.getWindow().setLayout(400, 300);
+                close_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MyDialog.cancel();
+
+                    }
+                });
                 MyDialog.show();
             }
         });

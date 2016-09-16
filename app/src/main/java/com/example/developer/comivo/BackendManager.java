@@ -5,9 +5,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
-/**
- * Created by Developer on 16.09.2016.
- */
+
 public class BackendManager {
 
     private static final java.lang.String EMAIL = "email";
@@ -15,17 +13,16 @@ public class BackendManager {
     private static BackendManager mInstance = null;
     private OkHttpClient client;
 
-//    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
+    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
     private String memberShipUrl = "cms/cmstype?type=MemberShip";
     private String privacyPolicyUrl = "cms/cmstype?type=Privacy_Policy";
     private String businessTypeUrl = "businesstype/{accountType}";
     private String thanksSendingUrl = "cms/cmstype?type=Thank_You";
 
-
-
-
     private String scheme = "http";
     private String host = "beta.comivo.com";
+
+
 
     private BackendManager() {
         this.client = new OkHttpClient();
@@ -61,6 +58,14 @@ public class BackendManager {
     public Call getAccountForgotPass(String email){
         return this.client.newCall(this.getRequestAccountForgotPass(EMAIL, email));
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -172,6 +177,7 @@ public class BackendManager {
                 .addQueryParameter(paramKey1, paramValue1)
                 .build();
     }
+
 
 
 }

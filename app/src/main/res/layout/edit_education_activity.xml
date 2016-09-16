@@ -24,13 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/school2"
-            android:id="@+id/textView53" />
+            android:id="@+id/textView53"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/editText18"
-            android:background="@drawable/cyan_backgroud_border" />
+            android:background="@drawable/cyan_white_backgroud_border"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,13 +48,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree2"
-            android:id="@+id/textView54" />
+            android:id="@+id/textView54"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/editText19"
-            android:background="@drawable/cyan_backgroud_border" />
+            android:background="@drawable/cyan_white_backgroud_border"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,13 +72,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/field_of_study"
-            android:id="@+id/textView57" />
+            android:id="@+id/textView57"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/editText27"
-            android:background="@drawable/cyan_backgroud_border" />
+            android:background="@drawable/cyan_white_backgroud_border"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,7 +96,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/period2"
-            android:id="@+id/textView55" />
+            android:id="@+id/textView55"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -106,9 +117,10 @@
                     android:id="@+id/editText20"
                     android:hint="Month"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/cyan_backgroud_border"
+                    android:background="@drawable/cyan_white_backgroud_border"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp" />
+                    android:layout_marginRight="5dp"
+                    android:textSize="12sp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -116,8 +128,9 @@
                     android:id="@+id/editText21"
                     android:hint="Month"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/cyan_backgroud_border"
-                    android:layout_marginRight="5dp" />
+                    android:background="@drawable/cyan_white_backgroud_border"
+                    android:layout_marginRight="5dp"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,9 +145,10 @@
                     android:id="@+id/editText22"
                     android:hint="Year"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/cyan_backgroud_border"
+                    android:background="@drawable/cyan_white_backgroud_border"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:textSize="12sp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -142,8 +156,9 @@
                     android:id="@+id/editText23"
                     android:hint="Year"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/cyan_backgroud_border"
-                    android:layout_marginLeft="5dp" />
+                    android:background="@drawable/cyan_white_backgroud_border"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -155,6 +170,6 @@
         android:id="@+id/btn_submit"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="@color/colorBackground" />
+        android:background="@color/color_white_grey" />
 
 </LinearLayout>

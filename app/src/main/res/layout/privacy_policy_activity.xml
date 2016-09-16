@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/tv_privacy_polycy"
                 android:textAllCaps="true"
-                android:text="Privacy polycy"
+                android:text="Privacy policy"
                 android:layout_marginLeft="20dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -45,7 +45,7 @@
         <WebView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/webView3"
+            android:id="@+id/webViewPrivacy"
             android:background="@color/white_color"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp" />
