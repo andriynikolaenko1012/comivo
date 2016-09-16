@@ -1,9 +1,11 @@
 package com.example.developer.comivo.activities.activities_for_messages;
 
+import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.developer.comivo.Constants;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_buyers_acc.BuyersAccActivity;
 import com.example.developer.comivo.activities.activities_for_community.CommunityActivity;
@@ -26,6 +29,19 @@ import com.example.developer.comivo.activities.activities_for_login.SignUpActivi
 import com.example.developer.comivo.activities.activities_for_reviews.ReviewsActivity;
 import com.example.developer.comivo.activities.activities_for_sellers_acc.SellersAccActivity;
 import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MessageActivity extends AppCompatActivity {
@@ -35,6 +51,11 @@ public class MessageActivity extends AppCompatActivity {
     public LinearLayout layout_for_buttons_new, layout_for_reviews_button,
             layout_for_community_button, layout_for_account_button,
             layout_for_message_button;
+
+    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
+    String api8 = "businesstype/{accountType}";
+    OkHttpClient client;
+    private Request request;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -162,6 +183,7 @@ public class MessageActivity extends AppCompatActivity {
                 startActivity(intent2);
                 startActivity(intent2);
 
+
                /* SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
                 int type = sharedPreferences.getInt("USER_TYPE",-1);
                 Log.d("acc","++++++++++++++++++++++++++++1111"+sharedPreferences);
@@ -288,6 +310,55 @@ public class MessageActivity extends AppCompatActivity {
         community_iv = (ImageView) findViewById(R.id.community_iv);
         account_iv = (ImageView) findViewById(R.id.account_iv);
 
+        client = new OkHttpClient();
+        try {
+            getRequest(baseUrl + api8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void getRequest(String url) throws IOException {
+        request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d("LOG", "onResponse " + response.body().string());
+                /*String s = response.body().string();
+                parseString(s);*/
+            }
+        });
+    }
+
+    private void parseString(String string) {
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            String status = jsonObject.getString("Status");
+            JSONArray jsonArray = jsonObject.optJSONArray("Data");
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                String id = jsonObject1.getString("Id");
+                String value = jsonObject1.getString("Value");
+            }
+            String message = jsonObject.getString("Message");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 }

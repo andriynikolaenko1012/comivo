@@ -1,10 +1,13 @@
 package com.example.developer.comivo.activities.activities_for_login;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,11 +20,30 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.developer.comivo.Constants;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class LoginActivity extends Activity{
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    String api27 = "cms/cmstype?type=Thank_You";
+    OkHttpClient client;
+    private Request request;
 
     public EditText editTextEmail, editTextPassw;
     public TextView forgot_passw_tv;
@@ -35,9 +57,70 @@ public class LoginActivity extends Activity{
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.login_activity);
+
+        /*client = new OkHttpClient();
+        String json = bowlingJson();
+
+        try {
+            getRequest(Constants.URL + api27 +json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
         initViews();
 
     }
+    /*private void getRequest(String url) throws IOException {
+        request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d("LOG", "onResponse " + response.body().string());
+                String s = response.body().string();
+                parseString(s);
+            }
+        });
+    }
+
+    private void parseString(String string) {
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            String status = jsonObject.getString("Status");
+
+            String data = jsonObject.getString("Data");
+            String message = jsonObject.getString("Message");
+            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message " + message);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private String bowlingJson() {
+        return "{\"Status\":\"4\","
+                + "\"CMSPageTypeId\":\"3\","
+                + "\"Title\":\"Thank you for signing up with Comivo.\","
+                + "\"Content\":\"<< HTML for Thank you>>\","
+                + "\"IsActive\":\"true\","
+                + "\"Type\":null,"
+                + "\"Message\":null"
+                + "}";
+    }
+*/
+
+
+
     private void initViews(){
         editTextEmail = (EditText)findViewById(R.id.email);
         editTextPassw = (EditText)findViewById(R.id.passw);
@@ -103,6 +186,7 @@ public class LoginActivity extends Activity{
             }
         });
 
+
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,5 +221,7 @@ public class LoginActivity extends Activity{
             imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
+
+
 
 }

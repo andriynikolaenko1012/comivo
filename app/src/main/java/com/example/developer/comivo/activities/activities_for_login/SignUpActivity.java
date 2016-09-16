@@ -1,10 +1,12 @@
 package com.example.developer.comivo.activities.activities_for_login;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +36,20 @@ import android.widget.Toast;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -41,6 +57,13 @@ public class SignUpActivity extends AppCompatActivity {
     public EditText confirm_pass;
     public LinearLayout pass_border, confirm_pass_border;
     public Button btnSignUp;
+
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
+    String api1 = "account/register";
+    OkHttpClient client;
+    private Request request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,7 +229,70 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        client = new OkHttpClient();
+        String json = bowlingJson();
+        try {
+            postRequest(baseUrl + api1, json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    private void parseString(String string) {
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            String status = jsonObject.getString("Status");
+            String data = jsonObject.getString("Data");
+            String message = jsonObject.getString("Message");
+            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message" + message);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void postRequest(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d("LOG", "onResponse " + response.body().string());
+               /* parseString(response.body().string());*/
+            }
+        });
+    }
+
+
+    private String bowlingJson() {
+        return "{\"FirstName\":\"abc\","
+                + "\"LastName\":\"xyz\","
+                + "\"Email\":\"abc.xyz@gmail.com\","
+                + "\"Password\":\"Comivo123\","
+                + "\"Company\":\"abcCtpl\","
+                + "\"AccountType\":1,"
+                + "\"BusinessTypeId\":1"
+                + "}";
+    }
+
+
+
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
