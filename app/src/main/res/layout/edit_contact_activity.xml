@@ -32,13 +32,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/company_name"
-                    android:id="@+id/textView30" />
+                    android:id="@+id/textView30"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:id="@+id/editText5"
-                    android:background="@drawable/cyan_backgroud_border" />
+                    android:background="@drawable/cyan_white_backgroud_border"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -53,13 +56,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website"
-                    android:id="@+id/textView32" />
+                    android:id="@+id/textView32"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:id="@+id/editText6"
-                    android:background="@drawable/cyan_backgroud_border" />
+                    android:background="@drawable/cyan_white_backgroud_border"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,13 +80,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/primacy_email"
-                    android:id="@+id/textView34" />
+                    android:id="@+id/textView34"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:id="@+id/editText7"
-                    android:background="@drawable/cyan_backgroud_border" />
+                    android:background="@drawable/cyan_white_backgroud_border"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,7 +104,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tel"
-                    android:id="@+id/textView36" />
+                    android:id="@+id/textView36"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -114,9 +125,10 @@
                             android:id="@+id/editText8"
                             android:hint="Country Code"
                             android:paddingLeft="10dp"
-                            android:background="@drawable/cyan_backgroud_border"
+                            android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginBottom="5dp"
-                            android:layout_marginRight="5dp" />
+                            android:layout_marginRight="5dp"
+                            android:textSize="12sp" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -124,8 +136,9 @@
                             android:id="@+id/editText10"
                             android:hint="Number"
                             android:paddingLeft="10dp"
-                            android:background="@drawable/cyan_backgroud_border"
-                            android:layout_marginRight="5dp" />
+                            android:background="@drawable/cyan_white_backgroud_border"
+                            android:layout_marginRight="5dp"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -140,9 +153,10 @@
                             android:id="@+id/editText9"
                             android:hint="Area Code"
                             android:paddingLeft="10dp"
-                            android:background="@drawable/cyan_backgroud_border"
+                            android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="5dp" />
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -150,8 +164,9 @@
                             android:id="@+id/editText11"
                             android:hint="Extension"
                             android:paddingLeft="10dp"
-                            android:background="@drawable/cyan_backgroud_border"
-                            android:layout_marginLeft="5dp" />
+                            android:background="@drawable/cyan_white_backgroud_border"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -168,7 +183,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/cell"
                     android:id="@+id/textView38"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -191,8 +208,9 @@
                             android:hint="Country Code"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/cyan_backgroud_border"
-                            android:layout_marginRight="5dp" />
+                            android:background="@drawable/cyan_white_backgroud_border"
+                            android:layout_marginRight="5dp"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -208,8 +226,9 @@
                             android:hint="Number"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/cyan_backgroud_border"
-                            android:layout_marginLeft="5dp" />
+                            android:background="@drawable/cyan_white_backgroud_border"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -233,7 +252,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/address"
-                        android:id="@+id/textView40" />
+                        android:id="@+id/textView40"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -246,7 +267,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/city"
-                        android:id="@+id/textView41" />
+                        android:id="@+id/textView41"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -268,8 +291,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:id="@+id/editText14"
-                        android:background="@drawable/cyan_backgroud_border"
-                        android:layout_marginRight="5dp" />
+                        android:background="@drawable/cyan_white_backgroud_border"
+                        android:layout_marginRight="5dp"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,8 +306,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:id="@+id/editText15"
-                        android:background="@drawable/cyan_backgroud_border"
-                        android:layout_marginLeft="5dp" />
+                        android:background="@drawable/cyan_white_backgroud_border"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -304,7 +329,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/zip"
-                        android:id="@+id/textView42" />
+                        android:id="@+id/textView42"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -317,7 +344,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/state"
-                        android:id="@+id/textView43" />
+                        android:id="@+id/textView43"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -339,8 +368,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:id="@+id/editText16"
-                        android:background="@drawable/cyan_backgroud_border"
-                        android:layout_marginRight="5dp" />
+                        android:background="@drawable/cyan_white_backgroud_border"
+                        android:layout_marginRight="5dp"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -353,8 +383,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:id="@+id/editText17"
-                        android:background="@drawable/cyan_backgroud_border"
-                        android:layout_marginLeft="5dp" />
+                        android:background="@drawable/cyan_white_backgroud_border"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -369,7 +400,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/country"
-                    android:id="@+id/textView44" />
+                    android:id="@+id/textView44"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -399,13 +432,19 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
 
-                        <Button
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="SUBMIT"
                             android:id="@+id/btnSubmit"
                             android:layout_marginLeft="5dp"
-                            android:background="@color/colorBackground" />
+                            android:background="@color/colorBackground"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 

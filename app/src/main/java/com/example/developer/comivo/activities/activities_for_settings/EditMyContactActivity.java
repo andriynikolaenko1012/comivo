@@ -40,7 +40,7 @@ public class EditMyContactActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
-        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        TextView btnSubmit = (TextView) findViewById(R.id.btnSubmit);
 
         tittle.setText(R.string.edit_contact);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);

@@ -20,7 +20,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.ServerResponseParsing;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,11 +38,6 @@ import okhttp3.Response;
 
 public class PrivacyActivity extends AppCompatActivity {
     public Button btn_Deny, btn_Agree;
-
-    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
-    String api9 = "cms/cmstype?type=Privacy_Policy";
-    OkHttpClient client;
-    private Request request;
 
 
     @Override
@@ -63,6 +60,31 @@ public class PrivacyActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getPrivacyPolicy().enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                serverResponseParsing.parseMembershipAndPrivacy(response.body().string());
+
+                Log.d("LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
+                        " cmsType " + serverResponseParsing.getCmsPageTypeId() +
+                        " title" + serverResponseParsing.getTitle() +
+                        " content" + serverResponseParsing.getContent() +
+                        " isActive" + serverResponseParsing.getIsActive() +
+                        " type" + serverResponseParsing.getType() +
+                        " message" + serverResponseParsing.getMessage());
+            }
+        });
+
 
 
 
@@ -95,52 +117,7 @@ public class PrivacyActivity extends AppCompatActivity {
             }
         });
 
-        client = new OkHttpClient();
-
-        try {
-            getRequest(baseUrl + api9);
-            } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void getRequest(String url) throws IOException {
-        request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("platform", "Android")
-                .addHeader("version", "1.0.0")
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d("LOG", "onResponse " + response.body().string());
-                /*String s = response.body().string();
-                parseString(s);*/
-            }
-        });
-    }
-
-
-    private void parseString(String string) {
-        try {
-            JSONObject jsonObject = new JSONObject(string);
-            String status = jsonObject.getString("Status");
-            String data = jsonObject.getString("Data");
-            String message = jsonObject.getString("Message");
-            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message" + message);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
 }

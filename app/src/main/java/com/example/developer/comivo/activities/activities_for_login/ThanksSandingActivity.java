@@ -19,7 +19,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.ServerResponseParsing;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,10 +38,6 @@ import okhttp3.Response;
 
 public class ThanksSandingActivity extends AppCompatActivity {
 
-    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
-    String api27 = "cms/cmstype?type=Thank_You";
-    OkHttpClient client;
-    private Request request;
 
     public Button btnDone;
 
@@ -63,6 +61,27 @@ public class ThanksSandingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getThanksSending().enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                serverResponseParsing.parseSimpleResponse(response.body().string());
+
+                Log.d("LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
+                        " data " + serverResponseParsing.getData() +
+                        " message" + serverResponseParsing.getMessage());
+            }
+        });
+
+
+
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,49 +100,6 @@ public class ThanksSandingActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        client = new OkHttpClient();
-        try {
-            getRequest(baseUrl + api27);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void getRequest(String url) throws IOException {
-        request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("platform", "Android")
-                .addHeader("version", "1.0.0")
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d("LOG", "onResponse " + response.body().string());
-            }
-        });
-    }
-
-    private void parseString(String string) {
-        try {
-            JSONObject jsonObject = new JSONObject(string);
-            String status = jsonObject.getString("Status");
-            JSONArray jsonArray = jsonObject.optJSONArray("Data");
-            String data = jsonObject.getString("Data");
-            String message = jsonObject.getString("Message");
-            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message " + message);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
 
     }
 

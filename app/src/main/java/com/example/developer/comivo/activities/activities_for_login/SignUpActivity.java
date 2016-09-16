@@ -58,13 +58,13 @@ public class SignUpActivity extends AppCompatActivity {
     public LinearLayout pass_border, confirm_pass_border;
     public Button btnSignUp;
 
-    public static final MediaType JSON
+    /*public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private final String baseUrl = "http://beta.comivo.com/mobileapi/";
     String api1 = "account/register";
     OkHttpClient client;
     private Request request;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -229,23 +229,23 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        client = new OkHttpClient();
+        /*client = new OkHttpClient();
         String json = bowlingJson();
         try {
             postRequest(baseUrl + api1, json);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
-    private void parseString(String string) {
+    /*private void parseString(String string) {
         try {
             JSONObject jsonObject = new JSONObject(string);
             String status = jsonObject.getString("Status");
             String data = jsonObject.getString("Data");
             String message = jsonObject.getString("Message");
-            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message" + message);
+            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message " + message);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -272,8 +272,8 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d("LOG", "onResponse " + response.body().string());
-               /* parseString(response.body().string());*/
+                String s = response.body().string();
+                parseString(s);
             }
         });
     }
@@ -290,7 +290,7 @@ public class SignUpActivity extends AppCompatActivity {
                 + "}";
     }
 
-
+*/
 
 
 
@@ -320,7 +320,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    public String validateNewPass(String pass1, String pass2){
+    /*public String validateNewPass(String pass1, String pass2){
         StringBuilder retVal = new StringBuilder();
 
         if(pass1.length() < 1 || pass2.length() < 1 )retVal.append("Empty fields <br>");
@@ -367,6 +367,6 @@ public class SignUpActivity extends AppCompatActivity {
         return retVal.toString();
 
     }
-
+*/
 
 }

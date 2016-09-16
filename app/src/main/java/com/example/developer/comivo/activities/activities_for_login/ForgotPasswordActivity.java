@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.ServerResponseParsing;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,20 +35,17 @@ import okhttp3.Response;
 
 public class ForgotPasswordActivity extends Activity {
 
-    private final String baseUrl = "http://beta.comivo.com/mobileapi/";
-    String api2 = "account/forgotpassword";
-    OkHttpClient client;
-    private Request request;
 
     public LinearLayout back;
     public Button reset;
-    final Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.forgot_password_activity);
+
 
         back = (LinearLayout) findViewById(R.id.back_to_login_activity);
         reset = (Button) findViewById(R.id.btn_reset_pass);
@@ -98,12 +97,6 @@ public class ForgotPasswordActivity extends Activity {
             }
 
         });
-        client = new OkHttpClient();
-        try {
-            getRequest(baseUrl + api2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -113,42 +106,4 @@ public class ForgotPasswordActivity extends Activity {
         finish();
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void getRequest(String url) throws IOException {
-        request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("platform", "Android")
-                .addHeader("version", "1.0.0")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d("LOG", "onResponse " + response.body().string());
-            }
-        });
-    }
-
-    
-
-    private void parseString(String string) {
-        try {
-            JSONObject jsonObject = new JSONObject(string);
-            String status = jsonObject.getString("Status");
-            JSONArray jsonArray = jsonObject.optJSONArray("Data");
-            String data = jsonObject.getString("Data");
-            String message = jsonObject.getString("Message");
-            Log.d("LOG", "Parsed string: status " + status + " data " + data + " message " + message);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }
