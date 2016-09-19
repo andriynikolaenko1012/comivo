@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("DEVICE_ID", deviceId);
         editor.apply();
 
-        String deviceIdD = sharedPreferences.getString("DEVICE_ID",deviceId);
-        Log.d("Id","++++++++++++++++++++++++++++4321"+deviceIdD);
+        String devId = sharedPreferences.getString("DEVICE_ID",deviceId);
+        Log.d("Id","++++++++++++++++++++++++++++4321"+devId);
 
         new Timer().schedule(new TimerTask(){
             public void run() {

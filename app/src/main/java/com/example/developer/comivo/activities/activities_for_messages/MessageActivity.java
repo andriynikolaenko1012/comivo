@@ -78,7 +78,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        new AccountValidation().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        /*new GetBusinessType().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);*/
 
 
         message_tv = (TextView) findViewById(R.id.message_tv);
@@ -307,12 +307,12 @@ public class MessageActivity extends AppCompatActivity {
         account_iv = (ImageView) findViewById(R.id.account_iv);
     }
 
-    private class AccountValidation extends AsyncTask<Void, Void, String> {
+    /*private class GetBusinessType extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... params) {
 
-            String data = getJSON("http://beta.comivo.com/mobileapi/account/validatelogin?email=Comivobuyer@gmail.com&password=Com!vo01", 5000);
+            String data = getJSON("http://beta.comivo.com/mobileapi/businesstype/{accountType}", 5000);
 
             return data;
         }
@@ -327,19 +327,11 @@ public class MessageActivity extends AppCompatActivity {
             }
 
             ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-            serverResponseParsing.parseLoginValidate(responseString);
+            serverResponseParsing.parseBusinessType(responseString);
 
             Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                    " firstName " + serverResponseParsing.getFirstName() +
-                    " lastName" + serverResponseParsing.getLastName() +
-                    " profileImage" + serverResponseParsing.getProfileImage() +
-                    " profileCoverImage" + serverResponseParsing.getProfileCoverImage() +
-                    " accountType" + serverResponseParsing.getAccountType() +
-                    " newUser" + serverResponseParsing.getNewUser() +
-                    " companyName" + serverResponseParsing.getCompanyName() +
-                    " tokenId" + serverResponseParsing.getTokenId() +
-                    " token" + serverResponseParsing.getToken() +
-                    " email" + serverResponseParsing.getEmail() +
+                    " id " + serverResponseParsing.getId() +
+                    " Value" + serverResponseParsing.getValue() +
                     " message" + serverResponseParsing.getMessage() +
                     " \n = " + responseString
             );
@@ -358,7 +350,6 @@ public class MessageActivity extends AppCompatActivity {
                 c.setRequestProperty("Content-length", "0");
                 c.setRequestProperty("platform", "android");
                 c.setRequestProperty("version", "1.0.0");
-                c.setRequestProperty("deviceId", "454sa4da4daa54d4d45asd45asd");
                 c.setUseCaches(false);
                 c.setAllowUserInteraction(false);
                 c.setConnectTimeout(timeout);
@@ -396,7 +387,8 @@ public class MessageActivity extends AppCompatActivity {
             return null;
         }
 
-    }
+    }*/
+
 
 
 

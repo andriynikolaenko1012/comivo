@@ -122,7 +122,8 @@
                     android:background="@color/color_text_views_background"
                     android:visibility="visible"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="15dp" />
+                    android:layout_marginTop="15dp"
+                    android:inputType="textPassword" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -167,7 +168,8 @@
                     android:background="@color/color_text_views_background"
                     android:visibility="visible"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="15dp" />
+                    android:layout_marginTop="15dp"
+                    android:inputType="textPassword" />
 
                 <TextView
                     android:layout_width="match_parent"

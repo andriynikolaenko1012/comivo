@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.UserModelResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class MyProfileActivity extends AppCompatActivity {
 
     public TextView user_name_text_view, company_name_text_view;
     public ImageView my_photo;
+
+    private UserModelResponse userModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +95,11 @@ public class MyProfileActivity extends AppCompatActivity {
                     " \n = " + responseString
             );
 
+            userModel.setFirstName(serverResponseParsing.getFirstName());
+            userModel.setLastName(serverResponseParsing.getLastName());
+            userModel.setProfileImage(serverResponseParsing.getProfileImage());
+            userModel.setProfileCoverImage(serverResponseParsing.getProfileCoverImage());
+            userModel.setCompanyName(serverResponseParsing.getCompanyName());
 
         }
 
@@ -170,14 +178,18 @@ public class MyProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ImageView userPhoto = (ImageView) findViewById(R.id.my_photo);
-        Glide.with(this).load(R.drawable.image_my_profile).into(userPhoto);
+
 
         user_name_text_view = (TextView) findViewById(R.id.user_name_text_view);
         company_name_text_view = (TextView) findViewById(R.id.company_name_text_view);
         my_photo = (ImageView) findViewById(R.id.my_photo);
 
-        user_name_text_view.setText("COMIVO BUYER");
-        company_name_text_view.setText("COMIVO BUYER");
+        String fullName = userModel.getFirstName() + userModel.getLastName();
+        String companyName = userModel.getCompanyName();
+
+        user_name_text_view.setText(fullName);
+        company_name_text_view.setText(companyName);
+        Glide.with(this).load(userModel.getProfileImage()).into(userPhoto);
 
 
 

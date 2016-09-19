@@ -30,8 +30,16 @@ public class ServerResponseParsing {
     private String content;
     private String isActive;
     private String type;
+    private String id;
+    private String value;
 
+    public String getId() {
+        return id;
+    }
 
+    public String getValue() {
+        return value;
+    }
 
     private ArrayList<String> idList;
     private ArrayList<String> valueList;
@@ -57,9 +65,15 @@ public class ServerResponseParsing {
     public void parseSimpleResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            status = jsonObject.getString("Status");
-            data = jsonObject.getString("Data");
-            message = jsonObject.getString("Message");
+            if (!jsonObject.isNull(STATUS_KEY)) {
+                status = jsonObject.getString("Status");
+            }
+            if (!jsonObject.isNull(DATA_KEY)) {
+                data = jsonObject.getString("Data");
+            }
+            if (!jsonObject.isNull(MESSAGE_KEY)) {
+                message = jsonObject.getString("Message");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -71,16 +85,30 @@ public class ServerResponseParsing {
             if (!jsonObject.isNull(STATUS_KEY)) {
                 status = jsonObject.getString("Status");
             }
-            JSONArray jsonArray = jsonObject.getJSONArray("Data");
+
+            JSONArray jsonarray = jsonObject.getJSONArray("Data");
+            for (int i = 0; i < jsonarray.length(); i++) {
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                String id = jsonobject.getString("Id");
+                String value = jsonobject.getString("Value");
+            }*/
+
+
+
+
+            /*JSONArray jsonArray = jsonObject.getJSONArray("Data");
             idList = new ArrayList<>(jsonArray.length());
             valueList = new ArrayList<>(jsonArray.length());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject innerObject = jsonArray.getJSONObject(i);
                 idList.add(innerObject.getString("Id"));
                 valueList.add(innerObject.getString("Value"));
-            }
+            }*/
 
-            if (!jsonObject.isNull(MESSAGE_KEY)) {
+
+
+
+   /*         if (!jsonObject.isNull(MESSAGE_KEY)) {
                 message = jsonObject.getString("Message");
             }
 
@@ -93,6 +121,7 @@ public class ServerResponseParsing {
     public static final String STATUS_KEY = "Status";
     public static final String DATA_KEY = "Data";
     public static final String MESSAGE_KEY = "Message";
+
     public void parseMembershipAndPrivacy(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -143,8 +172,10 @@ public class ServerResponseParsing {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("aaa", e.getMessage(), e);
         }
     }
+
 
 
     public String getFirstName() {
