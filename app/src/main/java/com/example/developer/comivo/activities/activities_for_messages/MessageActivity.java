@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.UserModel;
 import com.example.developer.comivo.activities.activities_for_buyers_acc.BuyersAccActivity;
 import com.example.developer.comivo.activities.activities_for_community.CommunityActivity;
 import com.example.developer.comivo.activities.activities_for_reviews.ReviewsActivity;
@@ -50,6 +51,7 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_activity);
 
+        final UserModel userModel = UserModel.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -170,13 +172,16 @@ public class MessageActivity extends AppCompatActivity {
                 community_iv.setImageResource(R.drawable.community_icon);
                 account_iv.setImageResource(R.drawable.accounts_pressed_icon);
 
-                Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
-                startActivity(intent2);
-                startActivity(intent2);
 
+                int accountType = userModel.getAccountType();
 
-
-
+                if (accountType == 1){
+                    Intent intent2 = new Intent(MessageActivity.this, BuyersAccActivity.class);
+                    startActivity(intent2);
+                } else if (accountType == 2) {
+                    Intent intent2 = new Intent(MessageActivity.this, SellersAccActivity.class);
+                    startActivity(intent2);
+                }
 
 
 

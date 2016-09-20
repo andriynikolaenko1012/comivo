@@ -122,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:id="@+id/textView19"
+                android:textColor="@color/color_white_grey"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="10sp" />
@@ -162,12 +163,33 @@
                 android:src="@drawable/ic_privacy_icon" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/privacy_term"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Privacy"
                 android:id="@+id/textView16"
                 android:layout_marginLeft="5dp"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="/"
+                android:id="@+id/textView23"
+                android:layout_marginLeft="5dp"
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_white_grey" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Terms of use"
+                android:id="@+id/textView24"
+                android:layout_marginLeft="5dp"
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
 
         </LinearLayout>
 

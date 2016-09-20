@@ -3,67 +3,62 @@ package com.example.developer.comivo.activities.activities_for_login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.UserModel;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.net.ssl.HttpsURLConnection;
-
-import butterknife.internal.Utils;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class SignUpActivity extends AppCompatActivity {
 
     public TextView member, privacy, pas_invalid, pass_not_match;
-    public EditText confirm_pass, pass;
+    public EditText etFirstName, etLastName, etEmail, etConfirmEmail, etPass, etConfirmPass,
+                    etCompany;
     public LinearLayout pass_border, confirm_pass_border;
     public Button btnSignUp;
+
+    public CheckBox buyer_acc, seller_acc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,247 +70,160 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private class UserRegistration extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String data = getJSON("http://beta.comivo.com/mobileapi/account/register", 5000);
-
-            return data;
-
-        }
-
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (SignUpActivity.this.isFinishing()) {
-                return;
-            }
-
-            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-            serverResponseParsing.parseSimpleResponse(responseString);
-
-            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                    " data " + serverResponseParsing.getData() +
-                    " message " + serverResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
-
-        }
-
-        String otherParametersUrServiceNeed =  "FirstName=abc&LastName=xyz&Email=abc.xyz@gmail.com" +
-                "&Password=Comivo123&Company=abcCtpl&AccountType=1&BusinessType=1";
-        String request = "http://beta.comivo.com/mobileapi/account/register";
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setReadTimeout(timeout);
-                c.setConnectTimeout(timeout);
-                c.setRequestMethod("POST");
-                c.setRequestProperty("Content-Type", "application/json");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setDoInput(true);
-                c.setDoOutput(true);
-
-
-
-
-
-
-                /*URL urlToRequest = new URL(urlStr);
-    HttpURLConnection urlConnection = (HttpURLConnection)urlToRequest.openConnection();
-    urlConnection.setDoOutput(true);
-    urlConnection.setRequestMethod("POST");
-    urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-    String postParamaters = "param1=value1&param2=value2"
-    urlConnection.setFixedLengthStreamingMode(postParameters.getBytes().length);
-    PrintWriter out = new PrintWriter(urlConnection.getOutputStream());
-    out.print(postParameters);
-    out.close();
-
-    urlConnection.connect();
-*/
-
-
-
-
-               /* Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("FirstName", "abc")
-                        .appendQueryParameter("LastName", "xyz")
-                        .appendQueryParameter("Email", "abc.xyz@gmail.com")
-                        .appendQueryParameter("Password", "Comivo123")
-                        .appendQueryParameter("Company", "abcCtpl")
-                        .appendQueryParameter("AccountType", "1")
-                        .appendQueryParameter("BusinessType", "1");
-                String query = builder.build().getEncodedQuery();
-
-                OutputStream os = c.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(query);
-                writer.flush();
-                writer.close();
-                os.close();
-                c.connect();*/
-
-                DataOutputStream wr = new DataOutputStream(c.getOutputStream ());
-                wr.writeBytes(otherParametersUrServiceNeed);
-
-
-                JSONObject jsonParam = new JSONObject();
-                jsonParam.put("FirstName", "abc");
-                jsonParam.put("LastName", "xyz");
-                jsonParam.put("Email", "abc.xyz@gmail.com");
-                jsonParam.put("Password", "Comivo123");
-                jsonParam.put("Company", "abcCtpl");
-                jsonParam.put("AccountType", "1");
-                jsonParam.put("BusinessType", "1");
-                wr.writeBytes(jsonParam.toString());
-
-                wr.flush();
-                wr.close();
-
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-
-    }
-
     private void initViews() {
 
+        buyer_acc = (CheckBox) findViewById(R.id.buyer_acc);
+        seller_acc = (CheckBox) findViewById(R.id.seller_acc);
+        etFirstName = (EditText) findViewById(R.id.first_name);
+        etLastName = (EditText) findViewById(R.id.last_name);
+        etEmail = (EditText) findViewById(R.id.email);
+        etConfirmEmail = (EditText) findViewById(R.id.confirm_email);
+        etPass = (EditText) findViewById(R.id.pass);
+        etConfirmPass = (EditText) findViewById(R.id.confirm_pass);
+        etCompany = (EditText) findViewById(R.id.company);
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
-        pass = (EditText) findViewById(R.id.pass);
-        confirm_pass = (EditText) findViewById(R.id.confirm_pass);
-
-        final String password = pass.getText().toString();
-        final String confirmPassword = confirm_pass.getText().toString();
-
 
         final CheckBox checkPrivacy = (CheckBox) findViewById(R.id.checked_privacy);
 
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-        pass.setOnClickListener(new View.OnClickListener() {
+        final String accountType = spinner.getSelectedItem().toString();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item) {
+
             @Override
-            public void onClick(View v) {
-                LayoutInflater inflater = LayoutInflater.from(SignUpActivity.this);
-                View layout = inflater.inflate(R.layout.password_warning_dialog, null);
-                final AlertDialog MyDialog;
-                AlertDialog.Builder MyBuilder = new AlertDialog.Builder(SignUpActivity.this);
-                MyBuilder.setView(layout);
-                MyDialog = MyBuilder.create();
-                MyDialog.show();
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent);
+                if (position == getCount()) {
+                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
+                    ((TextView)v.findViewById(android.R.id.text1)).setTextSize(10);
+                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount()));
+                }
+
+                return v;
             }
-        });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+            @Override
+            public int getCount() {
+                return super.getCount()-1;
+            }
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type_of_business, R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.add("Agency");
+        adapter.add("Distributor");
+        adapter.add("Business Type*");
+
         spinner.setAdapter(adapter);
+        spinner.setSelection(adapter.getCount());
 
-        /*buyerAcc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                sellerAcc.setChecked(true);
-            }
-        });*/
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinner.getSelectedItem().toString().equals("Agency")){
+                    buyer_acc.setChecked(true);
+                    seller_acc.setChecked(false);
+                    String accountType = "1";
 
+                } else if (spinner.getSelectedItem().toString().equals("Distributor")){
+                    seller_acc.setChecked(true);
+                    buyer_acc.setChecked(false);
+                    String accountType = "2";
 
-
-        /*buyerAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (buyerAcc.isChecked()){
-                    sellerAcc.setChecked(false);
-                    buyerAcc.setChecked(true);
-                } else {
-                    buyerAcc.setChecked(false);
-                    sellerAcc.setChecked(true);
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
-        if (buyerAcc.isChecked()){
-            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("USER_TYPE",1);
-            editor.commit();
-            int type = sharedPreferences.getInt("USER_TYPE",-1);
-            Log.d("acc","++++++++++++++++++++++++++++1234"+type);
-        } else {
-            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("USER_TYPE",2);
-            editor.commit();
-            int type = sharedPreferences.getInt("USER_TYPE",-1);
-            Log.d("acc","++++++++++++++++++++++++++++1234"+type);
-        }*/
 
-            checkPrivacy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (checkPrivacy.isChecked()) {
-                        checkPrivacy.setChecked(true);
-                        btnSignUp.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+        buyer_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyer_acc.setChecked(true);
+                seller_acc.setChecked(false);
+                spinner.setSelection(0);
+                String accountType = "1";
+            }
+        });
 
-                                validateNewPass(password, confirmPassword);
-                                new UserRegistration().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                                /*Intent intent = new Intent(SignUpActivity.this, ThanksSandingActivity.class);
-                                startActivity(intent);*/
-                            }
-                        });
-                    }
-                }
-            });
+        seller_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyer_acc.setChecked(false);
+                seller_acc.setChecked(true);
+                spinner.setSelection(1);
+                String accountType = "2";
+            }
+        });
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!checkPrivacy.isChecked()) {
+                    Toast.makeText(SignUpActivity.this, "Please, tap \"I agree to abide by Comivo LLC'S\"", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (isFieldsValidate()) {
 
-                Toast.makeText(SignUpActivity.this, "Please, tap \"I agree to abide by Comivo LLC'S\"", Toast.LENGTH_SHORT).show();
+                        Log.e("LOG", "is field validate");
+                        String firstName = etFirstName.getText().toString();
+                        String lastName = etLastName.getText().toString();
+                        String email = etEmail.getText().toString();
+                        String password = etPass.getText().toString();
+                        String company = etCompany.getText().toString();
+
+                        BackendManager backendManager = BackendManager.getInstance();
+                        backendManager.getAccountRegistration(firstName, lastName, password, email, company, accountType).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                                serverResponseParsing.parseSimpleResponse(response.body().string());
+
+                                if (serverResponseParsing.getStatus().equals("4") && !serverResponseParsing.getData().equals("0")) {
+                                    Intent intent = new Intent(SignUpActivity.this, ThanksSandingActivity.class);
+                                    startActivity(intent);
+                                }
+                                else if (serverResponseParsing.getData().equals("0")){
+                                    Log.e("test", serverResponseParsing.getData());
+                                    runOnUiThread(new Runnable() {
+                                        public void run() {
+
+                                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+
+                                            /*UserModel userModel = UserModel.getInstance();
+                                            if (userModel.isNewUser()){
+                                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                                startActivity(intent);
+                                                Toast.makeText(SignUpActivity.this, "This email already exist", Toast.LENGTH_SHORT).show();
+                                            }*/
+
+                                        }
+                                    });
+                                    
+                                }
+
+
+                            }
+                        });
+                    }
+
+
+                }
             }
         });
 
@@ -337,27 +245,104 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-
         pas_invalid = (TextView) findViewById(R.id.pass_invalid);
         pass_not_match = (TextView) findViewById(R.id.pass_not_match);
-        pass_border = (LinearLayout) findViewById(R.id.pass_border);
-        confirm_pass_border = (LinearLayout) findViewById(R.id.confirm_pass_border);
-
-
-
-            /*confirm_pass.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    pass.setVisibility(View.GONE);
-                    confirm_pass.setVisibility(View.GONE);
-                    pas_invalid.setVisibility(View.VISIBLE);
-                    pass_not_match.setVisibility(View.VISIBLE);
-                    pass_border.setVisibility(View.VISIBLE);
-                    confirm_pass_border.setVisibility(View.VISIBLE);
-                }
-            });*/
 
     }
+
+    private boolean isFieldsValidate() {
+
+        boolean hasUppercase = !etPass.getText().toString().equals(etPass.getText().toString().toLowerCase());
+        boolean hasLowercase = !etPass.getText().toString().equals(etPass.getText().toString().toUpperCase());
+        boolean hasNumber = etPass.getText().toString().matches(".*\\d.*");
+        boolean noSpecialChar = etPass.getText().toString().matches("[a-zA-Z0-9 ]*");
+
+        String email = etEmail.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+
+        if (etFirstName.getText().toString().isEmpty()) {
+            etFirstName.setError("First name is required");
+            etFirstName.setFocusable(true);
+            return false;
+        }
+        if (etLastName.getText().toString().isEmpty()) {
+            etLastName.setError("Last name is required");
+            etLastName.setFocusable(true);
+            return false;
+        }
+
+        if (etEmail.getText().toString().isEmpty()) {
+            etEmail.setError("Email is required");
+            etEmail.setFocusable(true);
+            return false;
+        }
+        if (!etEmail.getText().toString().equals(etConfirmEmail.getText().toString())){
+            Toast.makeText(SignUpActivity.this, "Emails are not matched", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (!email.matches(emailPattern)){
+            etEmail.setError("Email not valid");
+            return false;
+        }
+
+        if (etPass.getText().toString().isEmpty()) {
+            etPass.setError("Password is required");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (etPass.getText().toString().length() < 8) {
+            etPass.setError("Password is too short. Needs to have 8 characters");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (!etPass.getText().toString().equals(etConfirmPass.getText().toString())){
+            pass_not_match.setVisibility(View.VISIBLE);
+            etPass.setBackgroundResource(R.drawable.red_dark_border);
+            etConfirmPass.setBackgroundResource(R.drawable.red_dark_border);
+            return false;
+        } else {
+            pass_not_match.setVisibility(View.GONE);
+            etPass.setBackgroundResource(R.color.color_text_views_background);
+            etConfirmPass.setBackgroundResource(R.color.color_text_views_background);
+        }
+
+        if (!hasUppercase) {
+            etPass.setError("Password needs an upper case");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasLowercase) {
+            etPass.setError("Password needs a lowercase");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasNumber) {
+            etPass.setError("Password needs a number");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (noSpecialChar) {
+            etPass.setError("Password needs a special character i.e. !,@,#, etc.");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (etCompany.getText().toString().isEmpty()) {
+            etCompany.setError("Company name is required");
+            etCompany.setFocusable(true);
+            return false;
+        }
+
+        return true;
+    }
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -386,53 +371,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public String validateNewPass(String pass1, String pass2) {
-        StringBuilder retVal = new StringBuilder();
 
-        if (pass1.length() < 1 || pass2.length() < 1) retVal.append("Empty fields <br>");
-
-        if (pass1 != null && pass2 != null) {
-
-            if (pass1.equals(pass2)) {
-
-                pass1 = pass2;
-                boolean hasUppercase = !pass1.equals(pass1.toLowerCase());
-                boolean hasLowercase = !pass1.equals(pass1.toUpperCase());
-                boolean hasNumber = pass1.matches(".*\\d.*");
-                boolean noSpecialChar = pass1.matches("[a-zA-Z0-9 ]*");
-
-                if (pass1.length() < 8) {
-                    retVal.append("Password is too short. Needs to have 8 characters <br>");
-                }
-
-                if (!hasUppercase) {
-                    retVal.append("Password needs an upper case <br>");
-                }
-
-                if (!hasLowercase) {
-                    retVal.append("Password needs a lowercase <br>");
-                }
-
-                if (!hasNumber) {
-                    retVal.append("Password needs a number <br>");
-                }
-
-                if (noSpecialChar) {
-                    retVal.append("Password needs a special character i.e. !,@,#, etc.  <br>");
-                }
-            } else {
-                retVal.append("Passwords don't match<br>");
-            }
-        } else {
-            retVal.append("Passwords Null <br>");
-        }
-        if (retVal.length() == 0) {
-            retVal.append("Success");
-        }
-
-        return retVal.toString();
-
-    }
 }
 
 

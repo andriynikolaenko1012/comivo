@@ -32,7 +32,8 @@
             android:text="Don&apos;t include personal or identifying info in your message"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:inputType="textMultiLine" />
     </LinearLayout>
 
     <TextView

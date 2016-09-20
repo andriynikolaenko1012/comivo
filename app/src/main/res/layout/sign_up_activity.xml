@@ -75,7 +75,8 @@
                     android:textSize="10sp"
                     android:background="@color/color_text_views_background"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="15dp" />
+                    android:layout_marginTop="15dp"
+                    android:inputType="textEmailAddress" />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -86,30 +87,8 @@
                     android:textSize="10sp"
                     android:background="@color/color_text_views_background"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="15dp" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pass_border"
-                    android:paddingLeft="2dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:paddingRight="2dp"
-                    android:background="@drawable/red_border"
-                    android:visibility="gone">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/editText87"
-                        android:paddingLeft="10dp"
-                        android:hint="@string/pass"
-                        android:textColor="@android:color/white"
-                        android:textSize="10sp"
-                        android:background="@drawable/background_lists" />
-                </LinearLayout>
+                    android:layout_marginTop="15dp"
+                    android:inputType="textEmailAddress" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -133,29 +112,6 @@
                     android:visibility="gone"
                     android:text="@string/invalid"
                     android:id="@+id/pass_invalid"/>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/confirm_pass_border"
-                    android:paddingLeft="2dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:paddingRight="2dp"
-                    android:background="@drawable/red_border"
-                    android:visibility="gone">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/editText88"
-                        android:paddingLeft="10dp"
-                        android:hint="@string/confirm_pass"
-                        android:textColor="@android:color/white"
-                        android:textSize="10sp"
-                        android:background="@color/color_text_views_background" />
-                </LinearLayout>
 
                 <EditText
                     android:layout_width="match_parent"

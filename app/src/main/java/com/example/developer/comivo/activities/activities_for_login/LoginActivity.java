@@ -3,11 +3,9 @@ package com.example.developer.comivo.activities.activities_for_login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,28 +13,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
 import com.example.developer.comivo.UserModel;
-import com.example.developer.comivo.UserModelResponse;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -53,7 +48,6 @@ public class LoginActivity extends Activity{
     public Button log_in, sign_in, failed_log_in;
     private CheckBox keepLoggedIn;
     private EditText etEmail, etPass;
-    private String mail, pass;
 
 
 
@@ -72,21 +66,19 @@ public class LoginActivity extends Activity{
 
     private void initViews(){
 
-        etEmail  = (EditText)findViewById(R.id.email);
-        etPass  = (EditText)findViewById(R.id.passw);
+        final UserModel userModel = UserModel.getInstance();
 
-       /* etEmail.setText("Comivobuyer@gmail.com");
-        etPass.setText("Com!vo01");*/
+        etEmail  = (EditText)findViewById(R.id.email_login);
+        etPass  = (EditText)findViewById(R.id.passw_login);
 
-        mail = etEmail.getText().toString();
-        pass = etPass.getText().toString();
 
         keepLoggedIn = (CheckBox) findViewById(R.id.keep_me_logged_in);
 
         keepLoggedIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                UserModel userModel = UserModel.getInstance();
+                userModel.setNewUser(false);
             }
         });
 
@@ -146,105 +138,164 @@ public class LoginActivity extends Activity{
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isFieldsValidate()) {
 
-                new AccountValidation().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    String email = etEmail.getText().toString();
+                    String password = etPass.getText().toString();
+                    String deviceId = userModel.getDeviceId();
 
-                Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
-                startActivity(intent);
-                finish();
+                    BackendManager backendManager = BackendManager.getInstance();
+                    backendManager.getLoginValidation(email, password, deviceId).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
 
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+
+                            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                            serverResponseParsing.parseLoginValidate(response.body().string());
+
+                            Log.e("status", serverResponseParsing.getStatus());
+
+                            if (serverResponseParsing.getStatus().equals("1")||serverResponseParsing.getStatus().equals("3")){
+                                Log.e("test 1 3", serverResponseParsing.getData());
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(LoginActivity.this, "We don't recognize your Online ID and / or Password.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
+                            if (serverResponseParsing.getStatus().equals("2")){
+                                Log.e("test 2", serverResponseParsing.getData());
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(LoginActivity.this, "Email is not confirm.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
+                            if (serverResponseParsing.getStatus().equals("4")){
+                                Log.e("message", serverResponseParsing.getStatus());
+
+                                if (serverResponseParsing.getTokenId() !=null) {
+                                    userModel.setTokenId(Integer.parseInt(serverResponseParsing.getTokenId()));
+                                }
+                                if (serverResponseParsing.getProfileCoverImage() !=null) {
+                                    userModel.setProfileCoverImage(serverResponseParsing.getProfileCoverImage());
+                                }
+                                if (serverResponseParsing.getProfileImage() !=null) {
+                                    userModel.setProfileImage(serverResponseParsing.getProfileImage());
+                                }
+                                if (serverResponseParsing.getToken() !=null){
+                                    userModel.setToken(serverResponseParsing.getToken());
+                                }
+                                if (serverResponseParsing.getFirstName() !=null){
+                                    userModel.setFirstName(serverResponseParsing.getFirstName());
+                                }
+                                if (serverResponseParsing.getEmail() !=null){
+                                    userModel.setEmail(serverResponseParsing.getEmail());
+                                }
+                                if (serverResponseParsing.getCompanyName() !=null) {
+                                    userModel.setCompanyName(serverResponseParsing.getCompanyName());
+                                }
+                                if (serverResponseParsing.getLastName() !=null) {
+                                    userModel.setLastName(serverResponseParsing.getLastName());
+                                }
+                                if (serverResponseParsing.getAccountType() !=null){
+                                    userModel.setAccountType(Integer.parseInt(serverResponseParsing.getAccountType()));
+                                }
+                                if (serverResponseParsing.getNewUser() !=null){
+                                    userModel.setNewUser(Boolean.parseBoolean(serverResponseParsing.getNewUser()));
+                                }
+                                if (serverResponseParsing.getUserId() !=null){
+                                    userModel.setUserId(Integer.parseInt(serverResponseParsing.getUserId()));
+                                }
+
+                                Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
+                                startActivity(intent);
+
+                            }
+
+                            else if (serverResponseParsing.getStatus().equals("10")){
+                                Log.e("test 10", serverResponseParsing.getData());
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(LoginActivity.this, "User is inactive. Please activate your account", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                }
             }
+
+
         });
 
     }
 
-    private class AccountValidation extends AsyncTask<Void, Void, String> {
 
-        @Override
-        protected String doInBackground(Void... params) {
+    private boolean isFieldsValidate() {
 
-            String data = getJSON("http://beta.comivo.com/mobileapi/account/validatelogin?email=Comivobuyer@gmail.com&password=Com!vo01", 5000);
+        String email = etEmail.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        boolean hasUppercase = !etPass.getText().toString().equals(etPass.getText().toString().toLowerCase());
+        boolean hasLowercase = !etPass.getText().toString().equals(etPass.getText().toString().toUpperCase());
+        boolean hasNumber = etPass.getText().toString().matches(".*\\d.*");
+        boolean noSpecialChar = etPass.getText().toString().matches("[a-zA-Z0-9 ]*");
 
-            return data;
+        if (!email.matches(emailPattern)){
+            etEmail.setError("Email not valid");
+            return false;
         }
 
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (LoginActivity.this.isFinishing()) {
-                return;
-            }
-
-            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-            serverResponseParsing.parseLoginValidate(responseString);
-
-            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                    " FirstName " + serverResponseParsing.getFirstName() +
-                    " LastName" + serverResponseParsing.getLastName() +
-                    " ProfileImage" + serverResponseParsing.getProfileImage() +
-                    " ProfileCoverImage" + serverResponseParsing.getProfileCoverImage() +
-                    " AccountType" + serverResponseParsing.getAccountType() +
-                    " NewUser" + serverResponseParsing.getNewUser() +
-                    " CompanyName" + serverResponseParsing.getCompanyName() +
-                    " TokenId" + serverResponseParsing.getTokenId() +
-                    " Token" + serverResponseParsing.getToken() +
-                    " Email" + serverResponseParsing.getEmail() +
-                    " message" + serverResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
-
+        if (etPass.getText().toString().isEmpty()) {
+            etPass.setError("Password is required");
+            etPass.setFocusable(true);
+            return false;
         }
 
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setRequestProperty("deviceId", "454sa4da4daa54d4d45asd45asd");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
+        if (etPass.getText().toString().length() < 8) {
+            etPass.setError("Password is too short. Needs to have 8 characters");
+            etPass.setFocusable(true);
+            return false;
         }
 
+        if (!hasUppercase) {
+            etPass.setError("Password needs an upper case");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasLowercase) {
+            etPass.setError("Password needs a lowercase");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasNumber) {
+            etPass.setError("Password needs a number");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (noSpecialChar) {
+            etPass.setError("Password needs a special character i.e. !,@,#, etc.");
+            etPass.setFocusable(true);
+            return false;
+        }
+
+        if (etEmail.getText().toString().isEmpty()) {
+            etEmail.setError("Email is required");
+            etEmail.setFocusable(true);
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -272,47 +323,5 @@ public class LoginActivity extends Activity{
             imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
-
-    /*public boolean isEmailValid(String email)
-    {
-        String regExpn =
-                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
-
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-
-        if(matcher.matches())
-            return true;
-        else
-            return false;
-    }*/
-
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    // validating password with retype password
-    private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 8) {
-            return true;
-        }
-        return false;
-    }
-
-
-
 
 }

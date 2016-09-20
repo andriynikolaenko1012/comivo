@@ -61,27 +61,6 @@ public class ThanksSandingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        BackendManager backendManager = BackendManager.getInstance();
-        backendManager.getThanksSending().enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-                serverResponseParsing.parseSimpleResponse(response.body().string());
-
-                Log.d("LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                        " data " + serverResponseParsing.getData() +
-                        " message" + serverResponseParsing.getMessage());
-            }
-        });
-
-
-
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

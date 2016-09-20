@@ -1,69 +1,138 @@
 package com.example.developer.comivo;
 
 
+import okhttp3.OkHttpClient;
+
 public class UserModel {
 
+    private static UserModel mInstance;
     private String FirstName;
     private String LastName;
-    private String Email;
-    private String Password;
-    private String Company;
+    private String ProfileImage;
+    private String ProfileCoverImage;
+    private boolean NewUser;
+    private String CompanyName;
+    private int TokenId;
+    private String Token;
     private int AccountType;
-    private int BusinessType;
+    private String Email;
+    private String deviceId;
+    private String Password;
+    private int UserId;
+
+
+    private UserModel() {
+
+    }
+
+    public static UserModel getInstance() {
+        if (mInstance == null) {
+            mInstance = new UserModel();
+        }
+        return mInstance;
+    }
 
     public String getFirstName() {
-        return this.FirstName;
+        return FirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.FirstName = firstName;
+        FirstName = firstName;
     }
 
     public String getLastName() {
-        return this.LastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.LastName = lastName;
+        LastName = lastName;
     }
 
-    public String getEmail() {
-        return this.Email;
+    public String getProfileImage() {
+        return ProfileImage;
     }
 
-    public void setEmail(String email) {
-        this.Email = email;
+    public void setProfileImage(String profileImage) {
+        ProfileImage = profileImage;
     }
 
-    public String getPassword() {
-        return this.Password;
+    public String getProfileCoverImage() {
+        return ProfileCoverImage;
     }
 
-    public void setPassword(String password) {
-        this.Password = password;
+    public void setProfileCoverImage(String profileCoverImage) {
+        ProfileCoverImage = profileCoverImage;
     }
 
-    public String getCompany() {
-        return this.Company;
+    public boolean isNewUser() {
+        return NewUser;
     }
 
-    public void setCompany(String company) {
-        this.Company = company;
+    public void setNewUser(boolean newUser) {
+        NewUser = newUser;
+    }
+
+    public String getCompanyName() {
+        return CompanyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        CompanyName = companyName;
+    }
+
+    public int getTokenId() {
+        return TokenId;
+    }
+
+    public void setTokenId(int tokenId) {
+        TokenId = tokenId;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
     }
 
     public int getAccountType() {
-        return this.AccountType;
+        return AccountType;
     }
 
     public void setAccountType(int accountType) {
-        this.AccountType = accountType;
+        AccountType = accountType;
     }
 
-    public int getBusinessType() {
-        return this.BusinessType;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setBusinessType(int businessType) {
-        this.BusinessType = businessType;
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
     }
 }

@@ -37,9 +37,6 @@
         <item>Business Type*</item>
         <item>Agency</item>
         <item>Distributor</item>
-        <item>Producer</item>
-        <item>Other</item>
-        <item>Trader</item>
     </string-array>
 
     <string name="enter_passcode">Enter Passcode</string>
@@ -57,7 +54,7 @@
     <string name="thank">Thank You</string>
     <string name="thank_you">Thank you for signing up with COMIVO</string>
     <string name="check_email">Please, check your email in the next few minutes \n for a confirmation code.</string>
-    <string name="follow">Follow the instructions to confirm your accaunt.</string>
+    <string name="follow">Follow the instructions to confirm your account.</string>
     <string name="thank_you_from">Thank you from the COMIVO Team!</string>
     <string name="done">Done</string>
 

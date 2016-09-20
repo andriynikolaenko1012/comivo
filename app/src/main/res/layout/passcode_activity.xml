@@ -48,29 +48,43 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/first_char"
+            android:maxLength="1"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+
+            android:singleLine="true"
+            android:inputType="textCapCharacters"
+            android:layout_gravity="center" />
 
         <EditText
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/second_char"
+            android:maxLength="1"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:inputType="textCapCharacters"
+            android:layout_gravity="center" />
 
         <EditText
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/third_char"
+            android:maxLength="1"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:inputType="textCapCharacters"
+            android:layout_gravity="center" />
 
         <EditText
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/fourth_char"
+            android:maxLength="1"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:inputType="textCapCharacters"
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -107,5 +121,17 @@
             android:layout_weight="1"
             android:visibility="invisible" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/pin_hidden_edittext"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:password="true"
+        android:maxLength="5"
+        android:textColor="#00000000"/>
 
 </LinearLayout>

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.developer.comivo.activities.activities_for_login.LoginActivity;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,8 +34,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
-
-    LinearLayout layout;
 
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -53,20 +52,31 @@ public class MainActivity extends AppCompatActivity {
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         String deviceId = telephonyManager.getDeviceId();
 
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        final UserModel userModel = UserModel.getInstance();
+        userModel.setDeviceId(deviceId);
+
+        /*SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("DEVICE_ID", deviceId);
-        editor.apply();
+        editor.apply();*/
 
-        String devId = sharedPreferences.getString("DEVICE_ID",deviceId);
-        Log.d("Id","++++++++++++++++++++++++++++4321"+devId);
+        /*String devId = sharedPreferences.getString("DEVICE_ID",deviceId);
+        Log.d("Id","++++++++++++++++++++++++++++4321"+devId);*/
 
         new Timer().schedule(new TimerTask(){
             public void run() {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
+
+                        if (userModel.isNewUser()){
+                            Log.e("user", "user already exist");
+                            startActivity(new Intent(MainActivity.this, MessageActivity.class));
+                            finish();
+                        } else {
+                            Log.e("new user", "new user");
                             startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        finish();
+                            finish();
+                        }
                     }
                 });
             }

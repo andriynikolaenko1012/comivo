@@ -32,24 +32,26 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/email"
+            android:id="@+id/email_login"
             android:paddingLeft="10dp"
             android:hint="@string/email"
             android:textColor="@android:color/white"
             android:textSize="10dp"
             android:background="@drawable/background_lists"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/passw"
+            android:id="@+id/passw_login"
             android:paddingLeft="10dp"
             android:hint="@string/pass"
             android:textColor="@android:color/white"
             android:textSize="10dp"
             android:background="@drawable/background_lists"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword" />
 
     </LinearLayout>
 

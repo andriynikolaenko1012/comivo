@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,8 @@ import com.example.developer.comivo.R;
 
 
 public class ChangePassActivity extends AppCompatActivity {
+
+    public EditText etCurrentPass, etNewPass, etConfirmPass;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,10 @@ public class ChangePassActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        etCurrentPass = (EditText) findViewById(R.id.etCurrentPass);
+        etNewPass = (EditText) findViewById(R.id.etNewPass);
+        etConfirmPass = (EditText) findViewById(R.id.etConfirmPass);
+
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +61,108 @@ public class ChangePassActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ChangePassActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
+                if (isFieldsValidate()){
+                    Toast.makeText(ChangePassActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
     }
+
+    private boolean isFieldsValidate() {
+
+        boolean hasUppercase = !etCurrentPass.getText().toString().equals(etCurrentPass.getText().toString().toLowerCase());
+        boolean hasUppercase2 = !etNewPass.getText().toString().equals(etNewPass.getText().toString().toLowerCase());
+        boolean hasLowercase = !etCurrentPass.getText().toString().equals(etCurrentPass.getText().toString().toUpperCase());
+        boolean hasLowercase2 = !etNewPass.getText().toString().equals(etNewPass.getText().toString().toUpperCase());
+        boolean hasNumber = etCurrentPass.getText().toString().matches(".*\\d.*");
+        boolean hasNumber2 = etNewPass.getText().toString().matches(".*\\d.*");
+        boolean noSpecialChar = etCurrentPass.getText().toString().matches("[a-zA-Z0-9 ]*");
+        boolean noSpecialChar2 = etNewPass.getText().toString().matches("[a-zA-Z0-9 ]*");
+
+        if (etNewPass.getText().toString().isEmpty()) {
+            etNewPass.setError("Password is required");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (etCurrentPass.getText().toString().isEmpty()) {
+            etCurrentPass.setError("Password is required");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (etNewPass.getText().toString().length() < 8) {
+            etNewPass.setError("Password is too short. Needs to have 8 characters");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (etCurrentPass.getText().toString().length() < 8) {
+            etCurrentPass.setError("Password is too short. Needs to have 8 characters");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasUppercase) {
+            etNewPass.setError("Password needs an upper case");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasUppercase2) {
+            etCurrentPass.setError("Password needs an upper case");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasLowercase) {
+            etNewPass.setError("Password needs a lowercase");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasLowercase2) {
+            etCurrentPass.setError("Password needs a lowercase");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasNumber) {
+            etNewPass.setError("Password needs a number");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (!hasNumber2) {
+            etCurrentPass.setError("Password needs a number");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (noSpecialChar) {
+            etNewPass.setError("Password needs a special character i.e. !,@,#, etc.");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+        if (noSpecialChar2) {
+            etCurrentPass.setError("Password needs a special character i.e. !,@,#, etc.");
+            etCurrentPass.setFocusable(true);
+            return false;
+        }
+
+        if (!etNewPass.getText().toString().equals(etConfirmPass.getText().toString())){
+            Toast.makeText(ChangePassActivity.this, "Passwords didn't match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (etCurrentPass.getText().toString().equals(etNewPass.getText().toString())){
+            Toast.makeText(ChangePassActivity.this, "Password can't be the same", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
 }

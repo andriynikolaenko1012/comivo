@@ -1,9 +1,13 @@
 package com.example.developer.comivo;
 
+import android.widget.EditText;
+
 import okhttp3.Call;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 
 public class BackendManager {
@@ -12,6 +16,7 @@ public class BackendManager {
     private static final java.lang.String PASSWORD = "password";
     private static BackendManager mInstance = null;
     private OkHttpClient client;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private final String baseUrl = "http://beta.comivo.com/mobileapi/";
     private String memberShipUrl = "cms/cmstype?type=MemberShip";
@@ -21,7 +26,6 @@ public class BackendManager {
 
     private String scheme = "http";
     private String host = "beta.comivo.com";
-
 
 
     private BackendManager() {
@@ -48,25 +52,16 @@ public class BackendManager {
     }
 
     public Call getLoginValidation(String email, String password, String deviceId) {
-        return this.client.newCall(this.getRequestValidateLogin( deviceId, EMAIL, email, PASSWORD, password));
+        return this.client.newCall(this.getRequestValidateLogin(deviceId, EMAIL, email, PASSWORD, password));
     }
 
-    public Call getThanksSending(){
+    public Call getThanksSending() {
         return this.client.newCall(this.getRequest(this.thanksSendingUrl));
     }
 
-    public Call getAccountForgotPass(String email){
+    public Call getAccountForgotPass(String email) {
         return this.client.newCall(this.getRequestAccountForgotPass(EMAIL, email));
     }
-
-
-
-
-
-
-
-
-
 
 
     private Request getRequest(String pathSegment) {
@@ -79,8 +74,8 @@ public class BackendManager {
     }
 
     private Request getRequestValidateLogin(String deviceId,
-                               String paramKey1, String paramValue1,
-                               String paramKey2, String paramValue2) {
+                                            String paramKey1, String paramValue1,
+                                            String paramKey2, String paramValue2) {
         return new Request.Builder()
                 .url(this.builtUrlValidateLogin("mobileapi/account/validatelogin", paramKey1, paramValue1, paramKey2, paramValue2))
                 .get()
@@ -99,8 +94,32 @@ public class BackendManager {
                 .build();
     }
 
+    public Call getAccountRegistration(String first_name, String last_name, String password, String email, String company, String accountType) {
+        return this.client.newCall(this.postRequest(first_name, last_name, password, email, company, accountType));
+    }
+
+    private Request postRequest(String firstName, String last_name, String password, String email, String company, String accountType) {
+        RequestBody body = RequestBody.create(JSON, bowlingJson(firstName,last_name, password, email, company, accountType ));
+        return new Request.Builder()
+                .url(baseUrl + "account/register")
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .post(body)
+                .build();
+    }
 
 
+
+    private String bowlingJson(String firstName, String last_name, String password, String email, String first_name, String accountType) {
+        return "{\"FirstName\":\"" + first_name + " \","
+                + "\"LastName\":\"xyz\","
+                + "\"Email\":\"abc.xyz@gmail.com\","
+                + "\"Password\":\"Comivo123\","
+                + "\"Company\":\"abcCtpl\","
+                + "\"AccountType\":1,"
+                + "\"BusinessTypeId\":1"
+                + "}";
+    }
 
 
     private Request getRequest(String pathSegment, String paramKey1, String paramValue1) {
@@ -156,28 +175,42 @@ public class BackendManager {
     }
 
     private HttpUrl builtUrlValidateLogin(String pathSegment,
-                             String paramKey1, String paramValue1,
-                             String paramKey2, String paramValue2) {
+                                          String paramKey1, String paramValue1,
+                                          String paramKey2, String paramValue2) {
         return new HttpUrl.Builder()
                 .scheme(this.scheme)
                 .host(this.host)
-                .addPathSegment("mobileapi/account/validatelogin")
+                .addPathSegment("mobileapi")
+                .addPathSegment("account")
+                .addPathSegment("validatelogin")
                 .addQueryParameter(paramKey1, paramValue1)
                 .addQueryParameter(paramKey2, paramValue2)
                 .build();
     }
 
     private HttpUrl builtUrlAccountForgotPass(
-                        String paramKey1, String paramValue1) {
+            String paramKey1, String paramValue1) {
         return new HttpUrl.Builder()
                 .scheme(this.scheme)
                 .host(this.host)
+                .addPathSegment("mobileapi")
                 .addPathSegment("account")
                 .addPathSegment("forgotpassword")
                 .addQueryParameter(paramKey1, paramValue1)
                 .build();
     }
 
-
+    private HttpUrl builtUrlVerifyCode( int userId,
+            String paramKey1, String paramValue1) {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("account")
+                .addPathSegment("forgotpassword")
+                .addPathSegment("verifycode")
+                .addQueryParameter(paramKey1, paramValue1)
+                .build();
+    }
 
 }

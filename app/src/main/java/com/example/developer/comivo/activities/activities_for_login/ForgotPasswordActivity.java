@@ -18,10 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.developer.comivo.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.UserModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,8 @@ public class ForgotPasswordActivity extends Activity {
     public LinearLayout back;
     public Button reset;
 
+    public EditText emailForForgot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +60,11 @@ public class ForgotPasswordActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.forgot_password_activity);
 
-        new ForgotPassword().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        final EditText emailForgot = (EditText) findViewById(R.id.email_for_forgot);
-        final String email = emailForgot.getText().toString();
+        emailForForgot = (EditText) findViewById(R.id.email_for_forgot);
 
+        UserModel userModel = UserModel.getInstance();
+        final String user_email = userModel.getEmail();
 
         back = (LinearLayout) findViewById(R.id.back_to_login_activity);
         reset = (Button) findViewById(R.id.btn_reset_pass);
@@ -78,42 +82,61 @@ public class ForgotPasswordActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                LayoutInflater inflater = LayoutInflater.from(ForgotPasswordActivity.this);
-                View layout = inflater.inflate(R.layout.password_notification_dialog, null);
-                final AlertDialog MyDialog;
+                if (isFieldsValidate()) {
 
+                    BackendManager backendManager = BackendManager.getInstance();
+                    backendManager.getAccountForgotPass(user_email).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
 
-                AlertDialog.Builder MyBuilder = new AlertDialog.Builder(ForgotPasswordActivity.this);
-                MyBuilder.setView(layout);
+                        }
 
-                TextView tv_email = (TextView) layout.findViewById(R.id.tv_email);
-                if (emailForgot.getText().length() > 5){
-                    tv_email.setText(email);
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                            serverResponseParsing.parseSimpleResponse(response.body().string());
+
+                            if (serverResponseParsing.getStatus().equals("4")){
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        LayoutInflater inflater = LayoutInflater.from(ForgotPasswordActivity.this);
+                                        View layout = inflater.inflate(R.layout.password_notification_dialog, null);
+                                        final AlertDialog MyDialog;
+
+                                        AlertDialog.Builder MyBuilder = new AlertDialog.Builder(ForgotPasswordActivity.this);
+                                        MyBuilder.setView(layout);
+
+                                        String email = emailForForgot.getText().toString();
+                                        TextView btnOk = (TextView) layout.findViewById(R.id.btnOk);
+                                        TextView btnCancel = (TextView) layout.findViewById(R.id.btnCancel);
+                                        TextView tvEmail = (TextView) layout.findViewById(R.id.tv_email);
+                                        tvEmail.setText(email);
+                                        MyDialog = MyBuilder.create();
+
+                                        btnOk.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(ForgotPasswordActivity.this, PasscodeActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
+
+                                        btnCancel.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                MyDialog.cancel();
+                                            }
+                                        });
+
+                                        MyDialog.show();
+                                    }
+                                });
+
+                            }
+                        }
+                    });
                 }
-
-                TextView btnOk = (TextView) layout.findViewById(R.id.btnOk);
-                TextView btnCancel = (TextView) layout.findViewById(R.id.btnCancel);
-
-                MyDialog = MyBuilder.create();
-
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(ForgotPasswordActivity.this, PasscodeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MyDialog.cancel();
-                    }
-                });
-
-
-                MyDialog.show();
 
             }
 
@@ -127,82 +150,25 @@ public class ForgotPasswordActivity extends Activity {
         finish();
     }
 
-    private class ForgotPassword extends AsyncTask<Void, Void, String> {
 
-        @Override
-        protected String doInBackground(Void... params) {
+    private boolean isFieldsValidate() {
 
-            String data = getJSON("http://beta.comivo.com/mobileapi/account/forgotpassword?email=Comivobuyer@gmail.com", 5000);
+        String email = emailForForgot.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
-            return data;
+        if (!email.matches(emailPattern)){
+            emailForForgot.setError("Email not valid");
+            return false;
         }
 
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (ForgotPasswordActivity.this.isFinishing()) {
-                return;
-            }
-
-            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-            serverResponseParsing.parseSimpleResponse(responseString);
-
-            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                    " data " + serverResponseParsing.getData() +
-                    " message " + serverResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
+        if (emailForForgot.getText().toString().isEmpty()) {
+            emailForForgot.setError("Email is required");
+            emailForForgot.setFocusable(true);
+            return false;
         }
 
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-
+        return true;
     }
 
 }
