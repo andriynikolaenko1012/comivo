@@ -24,6 +24,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class ReviewsSearchResultsActivity extends AppCompatActivity {
@@ -70,7 +71,7 @@ public class ReviewsSearchResultsActivity extends AppCompatActivity {
         tool_bar_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ReviewsSearchResultsActivity.this, ReviewsActivity.class);
+                Intent intent = new Intent(ReviewsSearchResultsActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

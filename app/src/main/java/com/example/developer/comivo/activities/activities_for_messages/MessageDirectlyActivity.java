@@ -51,7 +51,7 @@ public class MessageDirectlyActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MessageDirectlyActivity.this, MessageActivity.class);
+                Intent intent = new Intent(MessageDirectlyActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

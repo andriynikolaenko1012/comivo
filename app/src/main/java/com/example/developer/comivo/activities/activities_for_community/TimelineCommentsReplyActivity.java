@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class TimelineCommentsReplyActivity extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class TimelineCommentsReplyActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TimelineCommentsReplyActivity.this, CommunityActivity.class);
+                Intent intent = new Intent(TimelineCommentsReplyActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

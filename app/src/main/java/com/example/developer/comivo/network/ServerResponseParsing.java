@@ -1,8 +1,7 @@
-package com.example.developer.comivo;
+package com.example.developer.comivo.network;
 
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

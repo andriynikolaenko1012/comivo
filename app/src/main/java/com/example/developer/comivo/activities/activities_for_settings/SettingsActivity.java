@@ -1,16 +1,10 @@
 package com.example.developer.comivo.activities.activities_for_settings;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -20,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_login.LoginActivity;
-import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -53,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, MessageActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,7 +1,5 @@
-package com.example.developer.comivo;
+package com.example.developer.comivo.models;
 
-
-import okhttp3.OkHttpClient;
 
 public class UserModel {
 

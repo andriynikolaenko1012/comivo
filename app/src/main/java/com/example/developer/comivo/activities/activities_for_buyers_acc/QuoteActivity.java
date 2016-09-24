@@ -1,16 +1,10 @@
 package com.example.developer.comivo.activities.activities_for_buyers_acc;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,10 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.activities.activities_for_community.CommunityActivity;
-import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
-import com.example.developer.comivo.activities.activities_for_reviews.ReviewsActivity;
-import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class QuoteActivity extends AppCompatActivity{
@@ -72,7 +63,7 @@ public class QuoteActivity extends AppCompatActivity{
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuoteActivity.this, BuyersAccActivity.class);
+                Intent intent = new Intent(QuoteActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

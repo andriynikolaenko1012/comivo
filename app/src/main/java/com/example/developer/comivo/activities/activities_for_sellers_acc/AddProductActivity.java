@@ -1,24 +1,17 @@
 package com.example.developer.comivo.activities.activities_for_sellers_acc;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class AddProductActivity extends AppCompatActivity {
@@ -59,7 +52,7 @@ public class AddProductActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddProductActivity.this, SellersAccActivity.class);
+                Intent intent = new Intent(AddProductActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

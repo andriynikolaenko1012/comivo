@@ -53,7 +53,7 @@ public class ChatWithCOMIVOActivity extends AppCompatActivity{
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChatWithCOMIVOActivity.this, MessageActivity.class);
+                Intent intent = new Intent(ChatWithCOMIVOActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

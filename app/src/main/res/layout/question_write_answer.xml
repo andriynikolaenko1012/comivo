@@ -79,14 +79,14 @@
             android:layout_weight="1"
             android:id="@+id/linearLayout60"
             android:clickable="true"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add a coment..."
                 android:id="@+id/textView273"
-                android:layout_gravity="center_horizontal" />
+                android:layout_marginLeft="20dp" />
         </LinearLayout>
 
         <LinearLayout

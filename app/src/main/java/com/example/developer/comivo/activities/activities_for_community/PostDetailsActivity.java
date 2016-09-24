@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class PostDetailsActivity extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostDetailsActivity.this, CommunityActivity.class);
+                Intent intent = new Intent(PostDetailsActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

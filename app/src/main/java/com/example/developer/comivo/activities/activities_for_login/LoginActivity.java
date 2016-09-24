@@ -3,7 +3,6 @@ package com.example.developer.comivo.activities.activities_for_login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -20,22 +19,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.developer.comivo.BackendManager;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
+import com.example.developer.comivo.network.BackendManager;
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.ServerResponseParsing;
-import com.example.developer.comivo.UserModel;
-import com.example.developer.comivo.activities.activities_for_messages.MessageActivity;
+import com.example.developer.comivo.network.ServerResponseParsing;
+import com.example.developer.comivo.models.UserModel;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -153,11 +143,14 @@ public class LoginActivity extends Activity{
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-
+                            /*Log.e("LOGIN","---------------------------------------------\n" + response.body().string());*/
+/*
+                            String s = response.body().string();
+*/
                             ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
                             serverResponseParsing.parseLoginValidate(response.body().string());
 
-                            Log.e("status", serverResponseParsing.getStatus());
+                           /* Log.e("status", serverResponseParsing.getStatus());*/
 
                             if (serverResponseParsing.getStatus().equals("1")||serverResponseParsing.getStatus().equals("3")){
                                 Log.e("test 1 3", serverResponseParsing.getData());
@@ -214,8 +207,11 @@ public class LoginActivity extends Activity{
                                     userModel.setUserId(Integer.parseInt(serverResponseParsing.getUserId()));
                                 }
 
-                                Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MessageActivityNew.class);
                                 startActivity(intent);
+
+                                /*Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
+                                startActivity(intent);*/
 
                             }
 

@@ -51,7 +51,7 @@ public class BroadcastActivity extends AppCompatActivity{
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BroadcastActivity.this, MessageActivity.class);
+                Intent intent = new Intent(BroadcastActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

@@ -31,8 +31,8 @@
                 android:id="@+id/take_photo_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView22"
                     android:src="@drawable/ic_image_icon" />
 
@@ -53,8 +53,8 @@
                 android:id="@+id/choose_from_galery_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView23"
                     android:src="@drawable/ic_galerry_icon" />
 
@@ -74,8 +74,8 @@
                 android:id="@+id/delete_photo_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView24"
                     android:src="@drawable/ic_delete_icon" />
 

@@ -1,6 +1,4 @@
-package com.example.developer.comivo;
-
-import android.widget.EditText;
+package com.example.developer.comivo.network;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;

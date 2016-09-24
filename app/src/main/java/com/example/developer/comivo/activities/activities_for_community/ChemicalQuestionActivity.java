@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 
 
 public class ChemicalQuestionActivity extends AppCompatActivity {
@@ -61,7 +62,7 @@ public class ChemicalQuestionActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChemicalQuestionActivity.this, CommunityActivity.class);
+                Intent intent = new Intent(ChemicalQuestionActivity.this, MessageActivityNew.class);
                 startActivity(intent);
                 finish();
             }

@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.ServerResponseParsing;
+import com.example.developer.comivo.network.ServerResponseParsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;

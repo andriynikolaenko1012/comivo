@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.UserModel;
+import com.example.developer.comivo.models.UserModel;
 
 
 public class MyProfileActivity extends AppCompatActivity {

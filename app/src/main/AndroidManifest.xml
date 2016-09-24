@@ -242,25 +242,8 @@
         </activity>
 
         <activity
-            android:name=".activities.activities_for_messages.MessageActivity">
-            <!--<meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>-->
-        </activity>
-
-        <activity
-            android:name=".activities.activities_for_reviews.ReviewsActivity">
-            <!--<meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>-->
-        </activity>
-
-        <activity
-            android:name=".activities.activities_for_community.CommunityActivity">
-            <!--<meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>-->
-        </activity>
-
-        <activity
-            android:name=".activities.activities_for_buyers_acc.BuyersAccActivity">
+            android:name=".activities.activities_for_messages.MessageActivityNew"
+            android:noHistory="true">
             <!--<meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
         </activity>
@@ -441,12 +424,6 @@
 
         <activity
             android:name=".activities.activities_for_buyers_acc.InquiriesEditActivity">
-            <!--<meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>-->
-        </activity>
-
-        <activity
-            android:name=".activities.activities_for_sellers_acc.SellersAccActivity">
             <!--<meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
         </activity>
