@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_community.CommunitySearchActivity;
+import com.example.developer.comivo.activities.activities_for_reviews.ReviewsSearchActivity;
 import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
 
 import com.example.developer.comivo.fragments.AccountBuyersFragment;
@@ -45,7 +47,7 @@ public class MessageActivityNew extends AppCompatActivity {
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
         leftButton.setImageResource(R.drawable.ic_header_menu_icon);
 
-        ImageView rightButton = (ImageView) findViewById(R.id.right_button);
+        final ImageView rightButton = (ImageView) findViewById(R.id.right_button);
         rightButton.setImageResource(R.drawable.ic_search_button);
 
         toolbar.getParent();
@@ -54,9 +56,11 @@ public class MessageActivityNew extends AppCompatActivity {
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MessageActivityNew.this, MessageSearchActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         });
 
@@ -118,6 +122,17 @@ public class MessageActivityNew extends AppCompatActivity {
                 ft.commit();
                 tittle.setText(R.string.reviews);
 
+                rightButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(MessageActivityNew.this, ReviewsSearchActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
+
             }
         });
         layout_for_community_button.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +158,17 @@ public class MessageActivityNew extends AppCompatActivity {
                 ft.addToBackStack(null);
                 ft.commit();
                 tittle.setText(R.string.community);
+
+                rightButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(MessageActivityNew.this, CommunitySearchActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
 
             }
         });
@@ -186,6 +212,7 @@ public class MessageActivityNew extends AppCompatActivity {
                 tittle.setText(R.string.account);
 
 
+
             }
         });
         layout_for_message_button.setOnClickListener(new View.OnClickListener() {
@@ -212,6 +239,17 @@ public class MessageActivityNew extends AppCompatActivity {
                 ft.commit();
 
                 tittle.setText(R.string.message);
+
+                rightButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(MessageActivityNew.this, MessageSearchActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
 
             }
         });

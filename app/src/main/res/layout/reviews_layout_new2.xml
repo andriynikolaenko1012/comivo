@@ -32,12 +32,4 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/my_container_reviews"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tabs_for_review"
-        android:layout_marginTop="5dp">
-    </FrameLayout>
-
 </RelativeLayout>

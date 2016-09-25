@@ -1,32 +1,23 @@
 package com.example.developer.comivo.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.activities.activities_for_sellers_acc.AddProductActivity;
-import com.example.developer.comivo.activities.activities_for_sellers_acc.OpportunityDetailsActivity;
-import com.example.developer.comivo.activities.activities_for_sellers_acc.OpportunityUpdateQuoteActivity;
-import com.example.developer.comivo.activities.activities_for_sellers_acc.OrderProcessingActivity;
-import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
+import com.example.developer.comivo.fragments.sellers.AccountSellersFragmentInquiries;
+import com.example.developer.comivo.fragments.sellers.AccountSellersFragmentOpportunities;
+import com.example.developer.comivo.fragments.sellers.AccountSellersFragmentOrders;
+import com.example.developer.comivo.fragments.sellers.AccountSellersFragmentProducts;
 
 
 public class AccountSellersFragment extends Fragment{
 
-    public TextView inquiry_tab, opportunity_tab, order_tab, product_tab,
-            tv_sendOffer, tv_updateQuote;
-
-    public ImageView iv_666, iv_777,add_new_product;
-
-    public ScrollView scroll_opportunity, scroll_inquiry, scroll_order, scroll_product;
+    public TextView inquiry_tab, opportunity_tab, order_tab, product_tab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -37,20 +28,10 @@ public class AccountSellersFragment extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        tv_sendOffer = (TextView) view.findViewById(R.id.tv_sendOffer);
-        tv_updateQuote = (TextView) view.findViewById(R.id.tv_sendOffer);
-
-
-        iv_666 = (ImageView) view.findViewById(R.id.iv_666);
-
-        iv_777 = (ImageView) view.findViewById(R.id.iv_777);
-
-        add_new_product = (ImageView) view.findViewById(R.id.add_new_product);
-
-        scroll_inquiry = (ScrollView) view.findViewById(R.id.scroll_inquiry);
-        scroll_opportunity = (ScrollView) view.findViewById(R.id.scroll_opportunity);
-        scroll_order = (ScrollView) view.findViewById(R.id.scroll_order);
-        scroll_product = (ScrollView) view.findViewById(R.id.scroll_product);
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.replace(R.id.my_container_acc_sellers, new AccountSellersFragment());
+        ft.addToBackStack(null);
+        ft.commit();
 
         inquiry_tab = (TextView) view.findViewById(R.id.inquiry_tab);
         opportunity_tab = (TextView) view.findViewById(R.id.opportunity_tab);
@@ -66,16 +47,15 @@ public class AccountSellersFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                scroll_inquiry.setVisibility(View.VISIBLE);
-                scroll_opportunity.setVisibility(View.GONE);
-                scroll_order.setVisibility(View.GONE);
-                scroll_product.setVisibility(View.GONE);
-
                 inquiry_tab.setTextColor(getResources().getColor(R.color.green_color));
                 opportunity_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 order_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 product_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
 
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.my_container_acc_sellers, new AccountSellersFragmentInquiries());
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -83,16 +63,15 @@ public class AccountSellersFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                scroll_inquiry.setVisibility(View.GONE);
-                scroll_opportunity.setVisibility(View.VISIBLE);
-                scroll_order.setVisibility(View.GONE);
-                scroll_product.setVisibility(View.GONE);
-
                 inquiry_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 opportunity_tab.setTextColor(getResources().getColor(R.color.green_color));
                 order_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 product_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
 
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.my_container_acc_sellers, new AccountSellersFragmentOpportunities());
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -100,17 +79,15 @@ public class AccountSellersFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                scroll_inquiry.setVisibility(View.GONE);
-                scroll_opportunity.setVisibility(View.GONE);
-                scroll_order.setVisibility(View.VISIBLE);
-                scroll_product.setVisibility(View.GONE);
-
-
                 inquiry_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 opportunity_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 order_tab.setTextColor(getResources().getColor(R.color.green_color));
                 product_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
 
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.my_container_acc_sellers, new AccountSellersFragmentOrders());
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -118,58 +95,15 @@ public class AccountSellersFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                scroll_inquiry.setVisibility(View.GONE);
-                scroll_opportunity.setVisibility(View.GONE);
-                scroll_order.setVisibility(View.GONE);
-                scroll_product.setVisibility(View.VISIBLE);
-
                 inquiry_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 opportunity_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 order_tab.setTextColor(getResources().getColor(R.color.colorSecondary));
                 product_tab.setTextColor(getResources().getColor(R.color.green_color));
 
-            }
-        });
-
-
-        tv_sendOffer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OpportunityUpdateQuoteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        tv_updateQuote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OpportunityUpdateQuoteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        iv_666.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OpportunityDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        iv_777.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OrderProcessingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        add_new_product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AddProductActivity.class);
-                startActivity(intent);
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.my_container_acc_sellers, new AccountSellersFragmentProducts());
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
