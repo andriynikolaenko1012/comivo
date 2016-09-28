@@ -244,7 +244,6 @@ public class ServerResponseParsing {
     }
 
 
-
     public String getFirstName() {
         return firstName;
     }
