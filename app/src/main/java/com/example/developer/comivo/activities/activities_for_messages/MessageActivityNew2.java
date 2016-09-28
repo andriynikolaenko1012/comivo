@@ -1,3 +1,4 @@
+/*
 package com.example.developer.comivo.activities.activities_for_messages;
 
 import android.content.Intent;
@@ -5,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,23 +18,30 @@ import android.widget.TextView;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_community.CommunitySearchActivity;
 import com.example.developer.comivo.activities.activities_for_reviews.ReviewsSearchActivity;
-
 import com.example.developer.comivo.activities.activities_for_settings.SettingsActivity;
+import com.example.developer.comivo.adapters.MessageAdapter;
 import com.example.developer.comivo.fragments.AccountBuyersFragment;
 import com.example.developer.comivo.fragments.AccountSellersFragment;
 import com.example.developer.comivo.fragments.CommunityFragment;
 import com.example.developer.comivo.fragments.MessageFragment;
 import com.example.developer.comivo.fragments.ReviewsFragment;
+import com.example.developer.comivo.models.MessagesModel;
 import com.example.developer.comivo.models.UserModel;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MessageActivityNew extends AppCompatActivity {
+
+public class MessageActivityNew2 extends AppCompatActivity {
 
     public TextView message_tv, reviews_tv, community_tv, account_tv;
     public ImageView message_iv, reviews_iv, community_iv, account_iv;
     public LinearLayout layout_for_buttons_new, layout_for_reviews_button,
             layout_for_community_button, layout_for_account_button,
             layout_for_message_button;
+
+    private List<MessagesModel> messagesModels = new ArrayList<>();
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +68,7 @@ public class MessageActivityNew extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MessageActivityNew.this, MessageSearchActivity.class);
+                Intent intent = new Intent(MessageActivityNew2.this, MessageSearchActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -67,13 +78,22 @@ public class MessageActivityNew extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        recyclerView=(RecyclerView)findViewById(R.id.my_container);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setHasFixedSize(true);
+
+        initializeData();
+        initializeAdapter();
 
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        */
+/*FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.my_container, new MessageFragment());
         ft.addToBackStack(null);
-        ft.commit();
-
+        ft.commit();*//*
 
 
 
@@ -128,7 +148,7 @@ public class MessageActivityNew extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(MessageActivityNew.this, ReviewsSearchActivity.class);
+                        Intent intent = new Intent(MessageActivityNew2.this, ReviewsSearchActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -165,7 +185,7 @@ public class MessageActivityNew extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(MessageActivityNew.this, CommunitySearchActivity.class);
+                        Intent intent = new Intent(MessageActivityNew2.this, CommunitySearchActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -246,7 +266,7 @@ public class MessageActivityNew extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(MessageActivityNew.this, MessageSearchActivity.class);
+                        Intent intent = new Intent(MessageActivityNew2.this, MessageSearchActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -260,7 +280,7 @@ public class MessageActivityNew extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MessageActivityNew.this, SettingsActivity.class);
+                Intent intent = new Intent(MessageActivityNew2.this, SettingsActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -277,13 +297,77 @@ public class MessageActivityNew extends AppCompatActivity {
         account_iv = (ImageView) findViewById(R.id.account_iv);
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        if(getFragmentManager().getBackStackEntryCount() > 0)
-            getFragmentManager().popBackStack();
-        else
-            super.onBackPressed();
+    private void initializeData(){
+        messagesModels = new ArrayList<>();
+        messagesModels.add(new MessagesModel("Jim Kim", "ABC Chemical LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.jim_img));
+
+        messagesModels.add(new MessagesModel("Tony Sit", "SUNIVO AMERICA LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.tony_img));
+
+        messagesModels.add(new MessagesModel("Thomas Huang", "ABC Chemical LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_offline_status, R.drawable.thomas_img));
+
+        messagesModels.add(new MessagesModel("Michelle Tacker", "Dush International Chemical LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.michelle_img));
+
+        messagesModels.add(new MessagesModel("Reminding", "", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.reminding_img));
+
+        messagesModels.add(new MessagesModel("Holiday", "", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.holiday_img));
+
+        messagesModels.add(new MessagesModel("Jon Jones (COMIVO)", "", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.comivo_img));
+
+        messagesModels.add(new MessagesModel("Jim Kim", "ABC Chemical LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.jim_img));
+
+        messagesModels.add(new MessagesModel("Tony Sit", "SUNIVO AMERICA LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_online_status, R.drawable.tony_img));
+
+        messagesModels.add(new MessagesModel("Thomas Huang", "ABC Chemical LLC", "9:38AM",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                        "tempor incididunt ut labore et dolore magna aliqua...",
+                R.drawable.ic_offline_status, R.drawable.thomas_img));
+
     }
 
+    private void initializeAdapter(){
+        MessageAdapter adapter = new MessageAdapter(messagesModels);
+        recyclerView.setAdapter(adapter);
+    }
+
+
+
+    */
+/*userName = (TextView) itemView.findViewById(R.id.tv_user_name);
+    companyName = (TextView) itemView.findViewById(R.id.tv_company_name);
+    time = (TextView) itemView.findViewById(R.id.tv_time);
+    messageText = (TextView) itemView.findViewById(R.id.tv_message_text);
+    status = (ImageView) itemView.findViewById(R.id.iv_online_status);
+    coverImage = (ImageView) itemView.findViewById(R.id.iv_cover_image);
+*//*
+
+
+
 }
+*/

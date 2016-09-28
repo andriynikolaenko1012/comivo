@@ -27,8 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-
-
     private void initViews(){
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);

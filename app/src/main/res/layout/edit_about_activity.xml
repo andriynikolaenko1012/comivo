@@ -51,7 +51,8 @@
             android:layout_height="30dp"
             android:id="@+id/editText29"
             android:background="@drawable/cyan_white_backgroud_border"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,7 +67,8 @@
             android:layout_height="30dp"
             android:id="@+id/editText30"
             android:background="@drawable/cyan_white_backgroud_border"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +83,8 @@
             android:layout_height="100dp"
             android:id="@+id/editText31"
             android:background="@drawable/cyan_white_backgroud_border"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"

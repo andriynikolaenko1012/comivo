@@ -25,6 +25,11 @@
             android:name=".activities.activities_for_login.ForgotPasswordActivity">
         </activity>
 
+       <!-- <activity
+            android:name=".activities.activities_for_messages.MessageActivityNew2">
+        </activity>-->
+
+
         <activity
             android:name=".activities.activities_for_login.LoginActivity">
         </activity>
@@ -62,14 +67,9 @@
         </activity>
 
         <activity
-            android:name=".activities.activities_for_messages.MessageSearchActivity">
+            android:name=".activities.activities_for_messages.MessageSearchActivity"
+            android:noHistory="true">
             <!--<meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>-->
-        </activity>
-
-        <activity
-            android:name=".activities.activities_for_settings.SettingsActivity">
-           <!-- <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
         </activity>
 
@@ -77,6 +77,10 @@
             android:name=".activities.activities_for_settings.MyProfileActivity">
             <!--<meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>-->
+        </activity>
+
+        <activity android:name=".activities.activities_for_settings.SettingsActivity"
+            android:noHistory="true">
         </activity>
 
         <activity

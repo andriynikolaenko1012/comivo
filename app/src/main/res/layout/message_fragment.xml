@@ -19,96 +19,82 @@
             <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/jim_kim_layout"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout4" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView36"
-                            android:src="@drawable/ic_online_status" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView40"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout5"
-                    android:layout_toRightOf="@+id/linearLayout4"
-                    android:layout_toLeftOf="@+id/linearLayout6"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout4"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/jim_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jim Kim (ABC Chemical LLC)"
-                            android:id="@+id/textView94" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/jim" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView95" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/abc_chemical" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout6"
-                    android:layout_alignParentRight="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView96"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView41"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -123,95 +109,80 @@
                 android:id="@+id/tony_sit_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView37"
-                            android:src="@drawable/ic_online_status" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView38"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout2"
-                    android:layout_toRightOf="@+id/linearLayout"
-                    android:layout_toLeftOf="@+id/linearLayout3"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/tony_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tony Sit (SUNIVO America LLC)"
-                            android:id="@+id/textView91" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/tony" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView92" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/sunivo2" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout3"
-                    android:layout_alignParentRight="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView93"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView39"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -226,95 +197,80 @@
                 android:id="@+id/thomas_huang_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout7" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_offline_status" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView42"
-                            android:src="@drawable/ic_offline_status" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView43"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout8"
-                    android:layout_toRightOf="@+id/linearLayout7"
-                    android:layout_toLeftOf="@+id/linearLayout9"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout7"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/thomas_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Thomas Huang (ABC Chemical LLC)"
-                            android:id="@+id/textView97" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/thomas" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView98" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/abc_chemical" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout9"
-                    android:layout_alignParentRight="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView99"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView44"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -329,95 +285,80 @@
                 android:id="@+id/mishelle_taker_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout10" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView45"
-                            android:src="@drawable/ic_online_status" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView46"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout11"
-                    android:layout_toRightOf="@+id/linearLayout10"
-                    android:layout_toLeftOf="@+id/linearLayout12"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout10"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/michelle_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Michelle Taker (Dush International LLC)"
-                            android:id="@+id/textView100" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/michelle" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView101" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/dush" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout12"
-                    android:layout_alignParentRight="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView102"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView47"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -432,98 +373,72 @@
                 android:id="@+id/reminding_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout13" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status"
+                    android:visibility="invisible" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView48"
-                            android:src="@drawable/ic_online_status"
-                            android:visibility="invisible" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView49"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout14"
-                    android:layout_toRightOf="@+id/linearLayout13"
-                    android:layout_toLeftOf="@+id/linearLayout15"
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout13"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/reminding_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Reminding"
-                            android:id="@+id/textView103"
-                            android:textColor="@android:color/holo_orange_light" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@color/orange_color"
+                    android:text="@string/reminding" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView104"
-                            android:textColor="@android:color/holo_orange_light" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout15"
-                    android:layout_alignParentRight="true" >
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView105"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView50"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right"
+                    android:textColor="@color/orange_color" />
             </RelativeLayout>
 
             <View
@@ -538,98 +453,72 @@
                 android:id="@+id/holiday_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout19" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status"
+                    android:visibility="invisible" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView54"
-                            android:src="@drawable/ic_online_status"
-                            android:visibility="invisible" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView55"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout20"
-                    android:layout_toRightOf="@+id/linearLayout19"
-                    android:layout_toLeftOf="@+id/linearLayout21"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout19"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/holiday_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Holiday"
-                            android:id="@+id/textView109"
-                            android:textColor="@color/colorMain" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/holiday" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView110"
-                            android:textColor="@color/colorMain" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout21"
-                    android:layout_alignParentRight="true" >
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView111"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView56"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right"
+                    android:textColor="@color/colorMain" />
             </RelativeLayout>
 
             <View
@@ -644,102 +533,428 @@
                 android:id="@+id/comivo_layout"
                 android:layout_below="@+id/my_tool_bar"
                 android:layout_above="@+id/layout_for_buttons"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/linearLayout16" >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_offline_status" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:id="@+id/imageView51"
-                            android:src="@drawable/ic_offline_status" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView52"
-                            android:src="@drawable/ic_user_icon_test" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout17"
-                    android:layout_toRightOf="@+id/linearLayout16"
-                    android:layout_toLeftOf="@+id/linearLayout18"
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignBottom="@+id/linearLayout16"
-                    android:layout_alignParentTop="true" >
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/comivo_img" />
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jon Jones (COMIVO)"
-                            android:id="@+id/textView106"
-                            android:textColor="@color/colorMain" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/jon" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Some message..."
-                            android:id="@+id/textView107"
-                            android:textColor="@color/colorMain" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linearLayout18"
-                    android:layout_alignParentRight="true" >
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9:38 AM"
-                            android:id="@+id/textView108"
-                            android:textColor="@color/colorMain"
-                            android:gravity="center" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView53"
-                            android:src="@drawable/ic_arrow_right"
-                            android:layout_gravity="right" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right"
+                    android:textColor="@color/colorMain" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/color_white_grey"/>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/jim_kim_layout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/jim_img" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/jim" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/abc_chemical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"/>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tony_sit_layout"
+                android:layout_below="@+id/my_tool_bar"
+                android:layout_above="@+id/layout_for_buttons"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/tony_img" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/tony" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/sunivo2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"/>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/thomas_huang_layout"
+                android:layout_below="@+id/my_tool_bar"
+                android:layout_above="@+id/layout_for_buttons"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_offline_status" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/thomas_img" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/thomas" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/abc_chemical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"/>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mishelle_taker_layout"
+                android:layout_below="@+id/my_tool_bar"
+                android:layout_above="@+id/layout_for_buttons"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/iv_online_status"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_online_status" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/iv_cover_image"
+                    android:layout_toRightOf="@+id/iv_online_status"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/michelle_img" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_arrow_right"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignBottom="@+id/iv_cover_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_cover_image"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/michelle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_company_name"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_user_name"
+                    android:textSize="12sp"
+                    android:textColor="@color/dim_foreground_material_dark"
+                    android:text="@string/dush" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorMain"
+                    android:text="@string/am" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_message_text"
+                    android:textSize="10sp"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_alignLeft="@+id/tv_user_name"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:text="@string/lorem"
+                    android:layout_toLeftOf="@+id/iv_arrow_right" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_white_grey"/>
+
 
         </LinearLayout>
     </ScrollView>

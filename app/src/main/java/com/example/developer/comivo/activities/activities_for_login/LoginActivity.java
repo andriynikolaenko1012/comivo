@@ -61,6 +61,8 @@ public class LoginActivity extends Activity{
         etEmail  = (EditText)findViewById(R.id.email_login);
         etPass  = (EditText)findViewById(R.id.passw_login);
 
+        etEmail.setText("comivobuyer@gmail.com");
+        etPass.setText("Com!vo01");
 
         keepLoggedIn = (CheckBox) findViewById(R.id.keep_me_logged_in);
 
@@ -131,7 +133,9 @@ public class LoginActivity extends Activity{
                 if (isFieldsValidate()) {
 
                     String email = etEmail.getText().toString();
+
                     String password = etPass.getText().toString();
+
                     String deviceId = userModel.getDeviceId();
 
                     BackendManager backendManager = BackendManager.getInstance();
@@ -210,7 +214,7 @@ public class LoginActivity extends Activity{
                                 Intent intent = new Intent(LoginActivity.this, MessageActivityNew.class);
                                 startActivity(intent);
 
-                                /*Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
+                                /*Intent intent = new Intent(LoginActivity.this, MessageActivityNew2.class);
                                 startActivity(intent);*/
 
                             }

@@ -3,11 +3,16 @@ package com.example.developer.comivo.activities.activities_for_settings;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+
+import java.io.File;
 
 
 public class AboutCompanyActivity extends AppCompatActivity {
@@ -60,4 +67,6 @@ public class AboutCompanyActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
