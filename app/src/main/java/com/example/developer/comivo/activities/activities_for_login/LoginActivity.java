@@ -48,9 +48,6 @@ public class LoginActivity extends Activity{
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.login_activity);
-
-
-
         initViews();
     }
 
