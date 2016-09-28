@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.developer.comivo.activities.activities_for_login.LoginActivity;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
         /*String devId = sharedPreferences.getString("DEVICE_ID",deviceId);
         Log.d("Id","++++++++++++++++++++++++++++4321"+devId);*/
+
+        // Testing JSON parsing
+        /*String json = "{\n" +
+                " \"Status\": 4,\n" +
+                " \"Data\": {\n" +
+                " \"CompanyId\": 123,\n" +
+                " \"CompanyName\": \"Test\",\n" +
+                " \"Website\": \"www.google.com\",\n" +
+                " \"Description\": \"Test Description\",\n" +
+                " \"ImageUrl\": \"152baf2c-55f5-4d7a-9a8d-ddc80e21db80.jpg\",\n" +
+                " \"Photoes\": [\n" +
+                " 5,\n" +
+                " 6\n" +
+                " ]\n" +
+                " },\n" +
+                " \"Message\": null\n" +
+                " }";
+        SettingsResponseParsing parser = SettingsResponseParsing.getInstance();
+        parser.parseUserprofileCompany(json);*/
 
         new Timer().schedule(new TimerTask(){
             public void run() {
