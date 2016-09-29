@@ -259,4 +259,8 @@ public class CommonResponseParsing {
     public String getUnitValue() {
         return unitValue;
     }
+
+    public ArrayList<String> getCountriesList() {
+        return countriesList;
+    }
 }
