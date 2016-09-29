@@ -95,9 +95,9 @@ public class QAActivity extends AppCompatActivity {
                     " FAQSectionTitle" + settingsResponseParsing.getFAQSectionTitle() +
                     " FAQBoxId" + settingsResponseParsing.getFAQBoxId() +
                     " FAQBoxTitle" + settingsResponseParsing.getFAQBoxTitle() +
-                    " FAQId" + settingsResponseParsing.getFAQId() +
+                    /*" FAQId" + settingsResponseParsing.getFAQId() +
                     " question" + settingsResponseParsing.getQuestion() +
-                    " answer" + settingsResponseParsing.getAnswer() +
+                    " answer" + settingsResponseParsing.getAnswer() +*/
                     " message" + settingsResponseParsing.getMessage() +
                     " \n = " + responseString
             );
