@@ -29,11 +29,6 @@ public class CommonResponseParsing {
     private String message;
     private String data;
 
-    private String countryId;
-    private String countryName;
-    private String countryPhoneCode;
-    private String IsRequired;
-
     private String paymentTermId;
     private String paymentTermValue;
 
@@ -75,9 +70,11 @@ public class CommonResponseParsing {
                 message = jsonObject.getString(MESSAGE);
             }
 
-            Log.d(this.getClass().getName(), status + " status " + countryId + " countryId " +
+            // Here ArrayList data must be printed.
+            // It is better to make it in a loop like that for (int i = 0; i < jsonDataArray.length(); i++)
+            /*Log.d(this.getClass().getName(), status + " status " +  + " countryId " +
                     countryName + " countryName " + countryPhoneCode + "countryPhoneCode" +
-                    getIsRequired() + " isRequired " + message + " message ");
+                    getIsRequired() + " isRequired " + message + " message ");*/
 
 
         } catch (JSONException e) {
@@ -212,20 +209,8 @@ public class CommonResponseParsing {
         return data;
     }
 
-    public String getCountryId() {
-        return countryId;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public String getCountryPhoneCode() {
-        return countryPhoneCode;
-    }
-
-    public String getIsRequired() {
-        return IsRequired;
+    public ArrayList<String> getCountriesList() {
+        return countriesList;
     }
 
     public String getPaymentTermId() {
@@ -258,9 +243,5 @@ public class CommonResponseParsing {
 
     public String getUnitValue() {
         return unitValue;
-    }
-
-    public ArrayList<String> getCountriesList() {
-        return countriesList;
     }
 }
