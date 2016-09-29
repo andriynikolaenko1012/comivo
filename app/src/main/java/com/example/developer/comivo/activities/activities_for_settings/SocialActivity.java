@@ -13,12 +13,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developer.comivo.R;
 
 public class SocialActivity extends AppCompatActivity{
+
+    public LinearLayout facebook_layout, linkedin_layout, twitter_layout,
+            google_layout, instagram_layout, pinterest_layout,
+            tumblr_layout, wechat_layout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,15 @@ public class SocialActivity extends AppCompatActivity{
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        facebook_layout = (LinearLayout) findViewById(R.id.facebook_layout);
+        linkedin_layout = (LinearLayout) findViewById(R.id.linkedin_layout);
+        twitter_layout = (LinearLayout) findViewById(R.id.twitter_layout);
+        google_layout = (LinearLayout) findViewById(R.id.google_layout);
+        instagram_layout = (LinearLayout) findViewById(R.id.instagram_layout);
+        pinterest_layout = (LinearLayout) findViewById(R.id.pinterest_layout);
+        tumblr_layout = (LinearLayout) findViewById(R.id.tumblr_layout);
+        wechat_layout = (LinearLayout) findViewById(R.id.wechat_layout);
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override

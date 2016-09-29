@@ -21,6 +21,11 @@ import com.example.developer.comivo.R;
 
 
 public class NotificationBuyersActivity extends AppCompatActivity {
+
+    public ImageView iv_newsletter, iv_sound, iv_location, iv_follow,
+            iv_message, iv_quote;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,55 @@ public class NotificationBuyersActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        iv_newsletter = (ImageView) findViewById(R.id.iv_newsletter);
+        iv_sound = (ImageView) findViewById(R.id.iv_sound);
+        iv_location = (ImageView) findViewById(R.id.iv_location);
+        iv_follow = (ImageView) findViewById(R.id.iv_follow);
+        iv_message = (ImageView) findViewById(R.id.iv_message);
+        iv_quote = (ImageView) findViewById(R.id.iv_quote);
+
+        iv_newsletter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
+
+        iv_sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
+
+        iv_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
+
+        iv_follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
+
+        iv_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
+
+        iv_quote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated());
+            }
+        });
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override

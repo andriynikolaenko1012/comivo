@@ -67,10 +67,11 @@ public class MyProfileActivity extends AppCompatActivity {
         String fullName = userModel.getFirstName() + " " + userModel.getLastName();
         String companyName = userModel.getCompanyName();
         String countryName = userModel.getCountryName();
+        String photo = userModel.getProfileImage();
 
         user_name_text_view.setText(fullName);
         company_name_text_view.setText(companyName);
-        if (userModel.getProfileImage() != null) {
+        if (photo != null) {
             Glide.with(this).load(userModel.getProfileImage()).into(my_photo);
         } else {
             Glide.with(this).load(R.drawable.ic_user_icon_test).into(my_photo);

@@ -44,8 +44,8 @@
                 android:id="@+id/cv5"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/textView75"
-                android:layout_toLeftOf="@+id/imageView157"
-                android:layout_toStartOf="@+id/imageView157">
+                android:layout_toLeftOf="@+id/iv_inquiries2"
+                android:layout_toStartOf="@+id/iv_inquiries2">
             </View>
 
             <TextView
@@ -59,10 +59,10 @@
                 android:layout_below="@+id/cv5" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView157"
-                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_inquiries2"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -95,8 +95,8 @@
                 android:id="@+id/cv6"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/textView77"
-                android:layout_toLeftOf="@+id/imageView156"
-                android:layout_toStartOf="@+id/imageView156">
+                android:layout_toLeftOf="@+id/iv_message2"
+                android:layout_toStartOf="@+id/iv_message2">
             </View>
 
             <TextView
@@ -110,10 +110,10 @@
                 android:layout_below="@+id/cv6" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView156"
-                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_message2"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -156,15 +156,15 @@
                 android:id="@+id/cv7"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/textView79"
-                android:layout_toLeftOf="@+id/imageView155"
-                android:layout_toStartOf="@+id/imageView155">
+                android:layout_toLeftOf="@+id/iv_follow2"
+                android:layout_toStartOf="@+id/iv_follow2">
             </View>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView155"
-                android:src="@drawable/ic_check_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_follow2"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -198,10 +198,10 @@
                 android:layout_marginLeft="10dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView154"
-                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_location2"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -234,8 +234,8 @@
                 android:id="@+id/cv8"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/textView83"
-                android:layout_toLeftOf="@+id/imageView153"
-                android:layout_toStartOf="@+id/imageView153">
+                android:layout_toLeftOf="@+id/iv_sound"
+                android:layout_toStartOf="@+id/iv_sound">
             </View>
 
             <TextView
@@ -249,10 +249,10 @@
                 android:layout_below="@+id/cv8" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView153"
-                android:src="@drawable/ic_check_icon_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_sound"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -279,10 +279,10 @@
                 android:gravity="center" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView152"
-                android:src="@drawable/ic_check_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/iv_newsletter2"
+                android:src="@drawable/img_notification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"

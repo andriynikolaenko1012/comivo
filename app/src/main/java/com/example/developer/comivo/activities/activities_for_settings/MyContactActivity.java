@@ -103,19 +103,19 @@ public class MyContactActivity extends AppCompatActivity {
             alternative_email_tv.setText("");
         }
 
-        if (!phoneNumber.isEmpty()){
+        if (phoneNumber.length() == 0){
             tel_tv.setText(phoneNumber);
         } else {
             tel_tv.setText("");
         }
 
-        if (!cellNumber.isEmpty()){
+        if (phoneNumber.length() == 0){
             cell_tv.setText(cellNumber);
         } else {
             cell_tv.setText("");
         }
 
-        if (!userAddress.isEmpty()){
+        if (phoneNumber.length() == 0){
             address_tv.setText(userAddress);
         } else {
             address_tv.setText("");
