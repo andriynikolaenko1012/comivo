@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class CommonResponseParsing {
 
     private CommonResponseParsing() { }
@@ -44,6 +46,8 @@ public class CommonResponseParsing {
     private String unitId;
     private String unitValue;
 
+    private ArrayList<String> countriesList;
+
     /**
      * Method for parsing list of countries
      *
@@ -58,12 +62,13 @@ public class CommonResponseParsing {
             if (!jsonObject.isNull(DATA)) {
                 data = jsonObject.getString(DATA);
                 JSONArray jsonDataArray = jsonObject.getJSONArray(DATA);
+                countriesList = new ArrayList<>();
                 for (int i = 0; i < jsonDataArray.length(); i++) {
                     JSONObject jsonCountries = jsonDataArray.getJSONObject(i);
-                    countryId = jsonCountries.getString("Id");
-                    countryName = jsonCountries.getString("Name");
-                    countryPhoneCode = jsonCountries.getString("TelephoneCode");
-                    IsRequired = jsonCountries.getString("IsRequired");
+                    countriesList.add(jsonCountries.getString("Id"));
+                    countriesList.add(jsonCountries.getString("Name"));
+                    countriesList.add(jsonCountries.getString("TelephoneCode"));
+                    countriesList.add(jsonCountries.getString("IsRequired"));
                 }
             }
             if (!jsonObject.isNull(MESSAGE)) {
@@ -253,5 +258,9 @@ public class CommonResponseParsing {
 
     public String getUnitValue() {
         return unitValue;
+    }
+
+    public ArrayList<String> getCountriesList() {
+        return countriesList;
     }
 }
