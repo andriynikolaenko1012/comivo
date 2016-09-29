@@ -21,12 +21,19 @@ import android.widget.TextView;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.network.CommonResponseParsing;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -123,16 +130,19 @@ public class EditMyContactActivity extends AppCompatActivity{
             CommonResponseParsing commonResponseParsing = CommonResponseParsing.getInstance();
             commonResponseParsing.parseCountriesList(responseString);
 
-            Log.d("test LOG", "Parsed string: status " + commonResponseParsing.getStatus() +
-                    " countryId " + commonResponseParsing.getCountriesList().get(0) +
-                    " countryName" + commonResponseParsing.getCountriesList().get(1) +
-                    " countryPhoneCode" + commonResponseParsing.getCountriesList().get(2) +
-                    " IsRequired" + commonResponseParsing.getCountriesList().get(3) +
-                    " message" + commonResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
+            for (int i = 0; i < commonResponseParsing.getCountriesList().size(); i+=4) {
+                Log.e("test LOG", "Parsed string: status " + commonResponseParsing.getStatus() +
+                        " countryId " + commonResponseParsing.getCountriesList().get(i) +
+                        " countryName" + commonResponseParsing.getCountriesList().get(i +1) +
+                        " countryPhoneCode" + commonResponseParsing.getCountriesList().get(i +2) +
+                        " IsRequired" + commonResponseParsing.getCountriesList().get(i + 3) +
+                        " message" + commonResponseParsing.getMessage() +
+                        " \n = " + responseString
+                );
+            }
 
         }
+        
 
         public String getJSON(String url, int timeout) {
             HttpURLConnection c = null;
