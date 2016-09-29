@@ -72,10 +72,7 @@ public class QAActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
 
-            String data = getJSON("http://beta.comivo.com/mobileapi/faq/list", 5000);
-
-
-            return data;
+            return getJSON("http://beta.comivo.com/mobileapi/faq/list", 5000);
         }
 
 
@@ -90,17 +87,19 @@ public class QAActivity extends AppCompatActivity {
             SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
             settingsResponseParsing.parseFAQList(responseString);
 
-            Log.e("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
-                    " FAQSectionId " + settingsResponseParsing.getFAQSectionId() +
-                    " FAQSectionTitle" + settingsResponseParsing.getFAQSectionTitle() +
-                    " FAQBoxId" + settingsResponseParsing.getFAQBoxId() +
-                    " FAQBoxTitle" + settingsResponseParsing.getFAQBoxTitle() +
-                    " FAQId" + settingsResponseParsing.getFAQId() +
-                    " question" + settingsResponseParsing.getQuestion() +
-                    " answer" + settingsResponseParsing.getAnswer() +
-                    " message" + settingsResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
+            for (int i = 0; i < settingsResponseParsing.getFAQJsonArray().size(); i+=3) {
+                Log.e("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
+                        " FAQSectionId " + settingsResponseParsing.getFAQSectionId() +
+                        " FAQSectionTitle" + settingsResponseParsing.getFAQSectionTitle() +
+                        " FAQBoxId" + settingsResponseParsing.getFAQBoxId() +
+                        " FAQBoxTitle" + settingsResponseParsing.getFAQBoxTitle() +
+                        " FAQId " + settingsResponseParsing.getFAQJsonArray().get(i) +
+                        " question " + settingsResponseParsing.getFAQJsonArray().get(i + 1) +
+                        " answer " + settingsResponseParsing.getFAQJsonArray().get(i + 2) +
+                        " message" + settingsResponseParsing.getMessage() +
+                        " \n = " + responseString
+                );
+            }
 
         }
 

@@ -186,7 +186,7 @@ public class SettingsResponseParsing {
                 // FAQModelList
                 JSONArray FAQModelList = FAQBoxModelList.getJSONArray("FAQModelList");
                 for (int i = 0; i < FAQModelList.length(); i++) {
-                    JSONObject jsonFAQ = jsonDataArray.getJSONObject(i);
+                    JSONObject jsonFAQ = FAQModelList.getJSONObject(i);
                     // Every three elements from ArrayList == one jsonFAQ object
                     FAQJsonArray.add(jsonFAQ.getString("FAQId"));
                     FAQJsonArray.add(jsonFAQ.getString("Question"));
