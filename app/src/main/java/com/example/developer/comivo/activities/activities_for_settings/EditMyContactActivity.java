@@ -1,33 +1,25 @@
 package com.example.developer.comivo.activities.activities_for_settings;
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.network.CommResponseParsing;
-import com.example.developer.comivo.network.ServerResponseParsing;
+import com.example.developer.comivo.network.CommonResponseParsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -116,11 +108,7 @@ public class EditMyContactActivity extends AppCompatActivity{
 
         @Override
         protected String doInBackground(Void... params) {
-
-            String data = getJSON("http://beta.comivo.com/mobileapi/countries", 5000);
-
-
-            return data;
+            return getJSON("http://beta.comivo.com/mobileapi/countries", 5000);
         }
 
 
@@ -132,15 +120,15 @@ public class EditMyContactActivity extends AppCompatActivity{
                 return;
             }
 
-            CommResponseParsing commResponseParsing = CommResponseParsing.getInstance();
-            commResponseParsing.parseCountriesList(responseString);
+            CommonResponseParsing commonResponseParsing = CommonResponseParsing.getInstance();
+            commonResponseParsing.parseCountriesList(responseString);
 
-            Log.d("test LOG", "Parsed string: status " + commResponseParsing.getStatus() +
-                    " countryId " + commResponseParsing.getCountryId() +
-                    " countryName" + commResponseParsing.getCountryName() +
-                    " countryPhoneCode" + commResponseParsing.getCountryPhoneCode() +
-                    " IsRequired" + commResponseParsing.getIsRequired() +
-                    " message" + commResponseParsing.getMessage() +
+            Log.d("test LOG", "Parsed string: status " + commonResponseParsing.getStatus() +
+                    " countryId " + commonResponseParsing.getCountryId() +
+                    " countryName" + commonResponseParsing.getCountryName() +
+                    " countryPhoneCode" + commonResponseParsing.getCountryPhoneCode() +
+                    " IsRequired" + commonResponseParsing.getIsRequired() +
+                    " message" + commonResponseParsing.getMessage() +
                     " \n = " + responseString
             );
 

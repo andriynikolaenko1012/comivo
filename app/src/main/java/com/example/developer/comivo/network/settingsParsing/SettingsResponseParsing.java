@@ -7,29 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kevin Khanda on 28.09.2016.
- * This is a class to parse mobileapi/settings
- */
-
-/**
-    JSON template
-
-    try {
-            JSONObject jsonObject = new JSONObject(response);
-            if (!jsonObject.isNull(STATUS)) {
-                status = jsonObject.getString(STATUS);
-            }
-            if (!jsonObject.isNull(DATA)) {
-                data = jsonObject.getString(DATA);
-                JSONObject jsonData = jsonObject.getJSONObject(DATA);
-            }
-            if (!jsonObject.isNull(MESSAGE)) {
-                message = jsonObject.getString(MESSAGE);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+ * This is a class to parse Settings
  */
 public class SettingsResponseParsing {
 
@@ -66,6 +48,7 @@ public class SettingsResponseParsing {
     private String FAQId;
     private String question;
     private String answer;
+    private ArrayList<JSONObject> FAQJsonArray;
     private String notificationSettingsId;
     private String title;
     private String isEnabled;
@@ -202,6 +185,7 @@ public class SettingsResponseParsing {
                 JSONObject FAQBoxModelList = FAQBoxModelListArray.getJSONObject(0);
                 FAQBoxId = FAQBoxModelList.getString("FAQBoxId");
                 FAQBoxTitle = FAQBoxModelList.getString("Title");
+                FAQJsonArray = new ArrayList<>();
                 // FAQModelList
                 JSONArray FAQModelList = FAQBoxModelList.getJSONArray("FAQModelList");
                 for (int i = 0; i < FAQModelList.length(); i++) {
@@ -209,6 +193,7 @@ public class SettingsResponseParsing {
                     FAQId = jsonFAQ.getString("FAQId");
                     question = jsonFAQ.getString("Question");
                     answer = jsonFAQ.getString("Answer");
+                    FAQJsonArray.add(jsonFAQ); // This string will add JSONObjects to ArrayList
                 }
             }
             if (!jsonObject.isNull(MESSAGE)) {
@@ -596,6 +581,38 @@ public class SettingsResponseParsing {
 
     public String getPhotos2() {
         return photos2;
+    }
+
+    public String getFAQSectionId() {
+        return FAQSectionId;
+    }
+
+    public String getFAQSectionTitle() {
+        return FAQSectionTitle;
+    }
+
+    public String getFAQBoxId() {
+        return FAQBoxId;
+    }
+
+    public String getFAQBoxTitle() {
+        return FAQBoxTitle;
+    }
+
+    public String getFAQId() {
+        return FAQId;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public ArrayList<JSONObject> getFAQJsonArray() {
+        return FAQJsonArray;
     }
 
     public String getNotificationSettingsId() {
