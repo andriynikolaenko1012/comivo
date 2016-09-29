@@ -61,6 +61,27 @@ public class BackendManager {
         return this.client.newCall(this.getRequestAccountForgotPass(EMAIL, email));
     }
 
+    /*request for countries*/
+    public Call getCountries(){
+        return this.client.newCall(this.getCountriesRequest());
+    }
+
+    private Request getCountriesRequest() {
+        return new Request.Builder()
+                .url(this.builtUrlCountries())
+                .get()
+                .build();
+    }
+
+    private HttpUrl builtUrlCountries() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("countries")
+                .build();
+    }
+
 
     private Request getRequest(String pathSegment) {
         return new Request.Builder()
@@ -210,5 +231,8 @@ public class BackendManager {
                 .addQueryParameter(paramKey1, paramValue1)
                 .build();
     }
+
+
+
 
 }

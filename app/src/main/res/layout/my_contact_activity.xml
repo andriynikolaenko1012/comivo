@@ -45,10 +45,9 @@
             android:layout_height="wrap_content"
             android:text="@string/name"
             android:id="@+id/textView29"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -58,9 +57,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="America Chemical LLC"
             android:id="@+id/company_name_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorSecondary" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,10 +75,9 @@
             android:layout_height="wrap_content"
             android:text="@string/primacy_email"
             android:id="@+id/textView31"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -89,9 +87,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tony@us.comivo.com"
             android:id="@+id/primacy_email_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorMain" />
     </LinearLayout>
 
     <LinearLayout
@@ -107,10 +105,9 @@
             android:layout_height="wrap_content"
             android:text="@string/alternative_email"
             android:id="@+id/textView33"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -120,9 +117,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tonykcsit@gmail.com"
             android:id="@+id/alternative_email_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorMain" />
     </LinearLayout>
 
     <LinearLayout
@@ -138,10 +135,9 @@
             android:layout_height="wrap_content"
             android:text="@string/tel"
             android:id="@+id/textView35"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -151,9 +147,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 - 123 - 456 - 789"
             android:id="@+id/tel_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorSecondary" />
     </LinearLayout>
 
     <LinearLayout
@@ -169,10 +165,9 @@
             android:layout_height="wrap_content"
             android:text="@string/cell"
             android:id="@+id/textView37"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -182,9 +177,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 - 123 - 456 - 789"
             android:id="@+id/cell_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorSecondary" />
     </LinearLayout>
 
     <LinearLayout
@@ -200,10 +195,9 @@
             android:layout_height="wrap_content"
             android:text="@string/address"
             android:id="@+id/textView39"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
             android:layout_marginBottom="5dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="match_parent"
@@ -213,8 +207,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3050 Post Oak Blvd. Suite 520, Houston, TX 77056&lt; United States"
             android:id="@+id/address_tv"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/colorSecondary" />
     </LinearLayout>
 </LinearLayout>

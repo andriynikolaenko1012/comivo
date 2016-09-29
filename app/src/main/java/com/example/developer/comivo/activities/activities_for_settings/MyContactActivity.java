@@ -18,9 +18,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.models.UserModel;
 
 
 public class MyContactActivity extends AppCompatActivity {
+
+    public TextView company_name_tv, primacy_email_tv, alternative_email_tv, tel_tv,
+            cell_tv, address_tv;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,76 @@ public class MyContactActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        UserModel userModel = UserModel.getInstance();
+
+        String companyName = userModel.getCompanyName();
+        String primaryEmail = userModel.getEmail();
+        String alternativeEmail = userModel.getAlternativeEmail();
+
+        String countryCode = String.valueOf(userModel.getCountryCode());
+        String areaCode = String.valueOf(userModel.getAreaCode());
+        String number = String.valueOf(userModel.getNumber());
+        String extension = String.valueOf(userModel.getExtension());
+        String phoneNumber = countryCode + "-" + areaCode + "-" + number + "-" + extension;
+
+        String country_code = String.valueOf(userModel.getCellCountryCode());
+        String area_code = String.valueOf(userModel.getCellAreaCode());
+        String number_cell = String.valueOf(userModel.getCellNumber());
+        String extension_cell = String.valueOf(userModel.getCellExtension());
+        String cellNumber = country_code + " " + area_code + " " + number_cell + " " + extension_cell;
+
+        String address = userModel.getAddress();
+        String state = userModel.getState();
+        String city = userModel.getCity();
+        String zipCode = String.valueOf(userModel.getZipCode());
+        String country = userModel.getCountryName();
+        String userAddress = zipCode + ", "+ address + ", "+ state + ", "+ city +", "+ country;
+
+        company_name_tv = (TextView) findViewById(R.id.company_name_tv);
+        primacy_email_tv = (TextView) findViewById(R.id.primacy_email_tv);
+        alternative_email_tv = (TextView) findViewById(R.id.alternative_email_tv);
+        tel_tv = (TextView) findViewById(R.id.tel_tv);
+        cell_tv = (TextView) findViewById(R.id.cell_tv);
+        address_tv = (TextView) findViewById(R.id.address_tv);
+
+        if (companyName != null){
+            company_name_tv.setText(companyName);
+        } else {
+            company_name_tv.setText("");
+        }
+
+        if (primaryEmail != null){
+            primacy_email_tv.setText(primaryEmail);
+        } else {
+            primacy_email_tv.setText("");
+        }
+
+        if (alternativeEmail != null){
+            alternative_email_tv.setText(alternativeEmail);
+        } else {
+            alternative_email_tv.setText("");
+        }
+
+        if (!phoneNumber.isEmpty()){
+            tel_tv.setText(phoneNumber);
+        } else {
+            tel_tv.setText("");
+        }
+
+        if (!cellNumber.isEmpty()){
+            cell_tv.setText(cellNumber);
+        } else {
+            cell_tv.setText("");
+        }
+
+        if (!userAddress.isEmpty()){
+            address_tv.setText(userAddress);
+        } else {
+            address_tv.setText("");
+        }
+
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override

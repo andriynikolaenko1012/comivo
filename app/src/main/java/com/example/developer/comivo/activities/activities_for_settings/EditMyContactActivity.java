@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,15 +18,36 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.network.CommResponseParsing;
+import com.example.developer.comivo.network.ServerResponseParsing;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class EditMyContactActivity extends AppCompatActivity{
+
+    public EditText et_companyName, et_website, et_primacyEmail, et_countryCode, et_areaCode,
+            et_number, et_extension, et_cell_country_code, et_cell_number, et_address, et_city,
+            et_zipCode, et_stateProvince;
+
+    public Spinner county_list;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +74,24 @@ public class EditMyContactActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        new getAllCountries().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        et_companyName = (EditText) findViewById(R.id.et_companyName);
+        et_website= (EditText) findViewById(R.id.et_website);
+        et_primacyEmail= (EditText) findViewById(R.id.et_primacyEmail);
+        et_countryCode= (EditText) findViewById(R.id.et_countryCode);
+        et_areaCode= (EditText) findViewById(R.id.et_areaCode);
+        et_number= (EditText) findViewById(R.id.et_number);
+        et_extension= (EditText) findViewById(R.id.et_extension);
+        et_cell_country_code= (EditText) findViewById(R.id.et_cell_country_code);
+        et_cell_number= (EditText) findViewById(R.id.et_cell_number);
+        et_address= (EditText) findViewById(R.id.et_address);
+        et_city= (EditText) findViewById(R.id.et_city);
+        et_zipCode= (EditText) findViewById(R.id.et_zipCode);
+        et_stateProvince = (EditText) findViewById(R.id.et_stateProvince);
+        county_list = (Spinner) findViewById(R.id.county_list);
+
+
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +112,89 @@ public class EditMyContactActivity extends AppCompatActivity{
 
     }
 
-    @Override
+    private class getAllCountries extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String data = getJSON("http://beta.comivo.com/mobileapi/countries", 5000);
+
+
+            return data;
+        }
+
+
+        @Override
+        protected void onPostExecute(String responseString) {
+            //super.onPostExecute(s);
+
+            if (EditMyContactActivity.this.isFinishing()) {
+                return;
+            }
+
+            CommResponseParsing commResponseParsing = CommResponseParsing.getInstance();
+            commResponseParsing.parseCountriesList(responseString);
+
+            Log.d("test LOG", "Parsed string: status " + commResponseParsing.getStatus() +
+                    " countryId " + commResponseParsing.getCountryId() +
+                    " countryName" + commResponseParsing.getCountryName() +
+                    " countryPhoneCode" + commResponseParsing.getCountryPhoneCode() +
+                    " IsRequired" + commResponseParsing.getIsRequired() +
+                    " message" + commResponseParsing.getMessage() +
+                    " \n = " + responseString
+            );
+
+        }
+
+        public String getJSON(String url, int timeout) {
+            HttpURLConnection c = null;
+            try {
+                URL u = new URL(url);
+                c = (HttpURLConnection) u.openConnection();
+                c.setRequestMethod("GET");
+                c.setRequestProperty("Content-length", "0");
+                c.setRequestProperty("platform", "android");
+                c.setRequestProperty("version", "1.0.0");
+                c.setUseCaches(false);
+                c.setAllowUserInteraction(false);
+                c.setConnectTimeout(timeout);
+                c.setReadTimeout(timeout);
+                c.connect();
+                int status = c.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
+
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (c != null) {
+                    try {
+                        c.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            return null;
+        }
+    }
+
+
+        @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View v = getCurrentFocus();
 

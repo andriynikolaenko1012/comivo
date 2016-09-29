@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Country"
-            android:id="@+id/textView25"
+            android:id="@+id/country_name_text_view"
             android:textSize="12sp" />
     </LinearLayout>
 

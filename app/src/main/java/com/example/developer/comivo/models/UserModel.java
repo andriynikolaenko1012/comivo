@@ -18,6 +18,31 @@ public class UserModel {
     private String Password;
     private int UserId;
 
+    /*my contact*/
+    private String alternativeEmail;
+
+    /*address*/
+    private String address;
+    private String state;
+    private String city;
+    private int zipCode;
+    private int countryId;
+    private String countryName;
+
+    /*tell */
+    private int telephoneId;
+    private int countryCode;
+    private int areaCode;
+    private int number;
+    private int extension;
+
+    /*cell*/
+    private int cellTelephoneId;
+    private int cellCountryCode;
+    private int cellAreaCode;
+    private int cellNumber;
+    private int cellExtension;
+
 
     private UserModel() {
 
@@ -29,6 +54,7 @@ public class UserModel {
         }
         return mInstance;
     }
+
 
     public String getFirstName() {
         return FirstName;
@@ -132,5 +158,141 @@ public class UserModel {
 
     public void setUserId(int userId) {
         UserId = userId;
+    }
+
+    public String getAlternativeEmail() {
+        return alternativeEmail;
+    }
+
+    public void setAlternativeEmail(String alternativeEmail) {
+        this.alternativeEmail = alternativeEmail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public int getTelephoneId() {
+        return telephoneId;
+    }
+
+    public void setTelephoneId(int telephoneId) {
+        this.telephoneId = telephoneId;
+    }
+
+    public int getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(int countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public int getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(int areaCode) {
+        this.areaCode = areaCode;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getExtension() {
+        return extension;
+    }
+
+    public void setExtension(int extension) {
+        this.extension = extension;
+    }
+
+    public int getCellTelephoneId() {
+        return cellTelephoneId;
+    }
+
+    public void setCellTelephoneId(int cellTelephoneId) {
+        this.cellTelephoneId = cellTelephoneId;
+    }
+
+    public int getCellCountryCode() {
+        return cellCountryCode;
+    }
+
+    public void setCellCountryCode(int cellCountryCode) {
+        this.cellCountryCode = cellCountryCode;
+    }
+
+    public int getCellAreaCode() {
+        return cellAreaCode;
+    }
+
+    public void setCellAreaCode(int cellAreaCode) {
+        this.cellAreaCode = cellAreaCode;
+    }
+
+    public int getCellNumber() {
+        return cellNumber;
+    }
+
+    public void setCellNumber(int cellNumber) {
+        this.cellNumber = cellNumber;
+    }
+
+    public int getCellExtension() {
+        return cellExtension;
+    }
+
+    public void setCellExtension(int cellExtension) {
+        this.cellExtension = cellExtension;
     }
 }

@@ -23,7 +23,7 @@ public class MyProfileActivity extends AppCompatActivity {
     public LinearLayout myContactLayout, experienceLayout,
                         educationLayout, languageLayout;
 
-    public TextView user_name_text_view, company_name_text_view;
+    public TextView user_name_text_view, company_name_text_view, county_name_text_view;
     public ImageView my_photo;
 
     @Override
@@ -62,13 +62,25 @@ public class MyProfileActivity extends AppCompatActivity {
         my_photo = (ImageView) findViewById(R.id.my_photo);
         user_name_text_view = (TextView) findViewById(R.id.user_name_text_view);
         company_name_text_view = (TextView) findViewById(R.id.company_name_text_view);
+        county_name_text_view = (TextView) findViewById(R.id.country_name_text_view);
 
         String fullName = userModel.getFirstName() + " " + userModel.getLastName();
         String companyName = userModel.getCompanyName();
+        String countryName = userModel.getCountryName();
 
         user_name_text_view.setText(fullName);
         company_name_text_view.setText(companyName);
-        Glide.with(this).load(userModel.getProfileImage()).into(my_photo);
+        if (userModel.getProfileImage() != null) {
+            Glide.with(this).load(userModel.getProfileImage()).into(my_photo);
+        } else {
+            Glide.with(this).load(R.drawable.ic_user_icon_test).into(my_photo);
+        }
+
+        if (!userModel.getCompanyName().isEmpty()){
+            county_name_text_view.setText(countryName);
+        } else {
+            county_name_text_view.setText("");
+        }
 
 
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -124,9 +136,8 @@ public class MyProfileActivity extends AppCompatActivity {
                 LinearLayout takeAPhoto = (LinearLayout) layout.findViewById(R.id.take_photo_layout);
                 LinearLayout loadFromGallery = (LinearLayout) layout.findViewById(R.id.choose_from_galery_layout);
                 LinearLayout deletePhoto = (LinearLayout) layout.findViewById(R.id.delete_photo_layout);
-                Button cancel = (Button) layout.findViewById(R.id.btnCancel);
+                ImageView cancel = (ImageView) layout.findViewById(R.id.btnCancel);
                 MyDialog = MyBuilder.create();
-                MyDialog.getWindow().setLayout(400, 300);
 
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override

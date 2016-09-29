@@ -39,7 +39,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:id="@+id/editText5"
+                    android:id="@+id/et_companyName"
                     android:background="@drawable/cyan_white_backgroud_border"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -63,7 +63,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:id="@+id/editText6"
+                    android:id="@+id/et_website"
                     android:background="@drawable/cyan_white_backgroud_border"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -87,7 +87,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:id="@+id/editText7"
+                    android:id="@+id/et_primacyEmail"
                     android:background="@drawable/cyan_white_backgroud_border"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -122,7 +122,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText8"
+                            android:id="@+id/et_countryCode"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Country Code"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
@@ -133,7 +134,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText10"
+                            android:id="@+id/et_number"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Number"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
@@ -150,7 +152,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText9"
+                            android:id="@+id/et_areaCode"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Area Code"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
@@ -161,7 +164,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText11"
+                            android:id="@+id/et_extension"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Extension"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
@@ -204,7 +208,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText12"
+                            android:id="@+id/et_cell_country_code"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Country Code"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
@@ -222,7 +227,8 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/editText13"
+                            android:id="@+id/et_cell_number"
+                            android:textColorHint="@color/colorSecondary"
                             android:hint="Number"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
@@ -290,7 +296,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:id="@+id/editText14"
+                        android:id="@+id/et_address"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginRight="5dp"
                         android:textSize="12sp" />
@@ -305,7 +311,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:id="@+id/editText15"
+                        android:id="@+id/et_city"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginLeft="5dp"
                         android:textSize="12sp" />
@@ -367,7 +373,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:id="@+id/editText16"
+                        android:id="@+id/et_zipCode"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginRight="5dp"
                         android:textSize="12sp" />
@@ -382,7 +388,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:id="@+id/editText17"
+                        android:id="@+id/et_stateProvince"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginLeft="5dp"
                         android:textSize="12sp" />
@@ -421,7 +427,7 @@
                         <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/spinner2"
+                            android:id="@+id/county_list"
                             android:entries="@array/countries"
                             />
                     </LinearLayout>
