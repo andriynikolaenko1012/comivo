@@ -45,10 +45,7 @@ public class SettingsResponseParsing {
     private String FAQSectionTitle;
     private String FAQBoxId;
     private String FAQBoxTitle;
-    private String FAQId;
-    private String question;
-    private String answer;
-    private ArrayList<JSONObject> FAQJsonArray;
+    private ArrayList<String> FAQJsonArray;
     private String notificationSettingsId;
     private String title;
     private String isEnabled;
@@ -190,10 +187,10 @@ public class SettingsResponseParsing {
                 JSONArray FAQModelList = FAQBoxModelList.getJSONArray("FAQModelList");
                 for (int i = 0; i < FAQModelList.length(); i++) {
                     JSONObject jsonFAQ = jsonDataArray.getJSONObject(i);
-                    FAQId = jsonFAQ.getString("FAQId");
-                    question = jsonFAQ.getString("Question");
-                    answer = jsonFAQ.getString("Answer");
-                    FAQJsonArray.add(jsonFAQ); // This string will add JSONObjects to ArrayList
+                    // Every three elements from ArrayList == one jsonFAQ object
+                    FAQJsonArray.add(jsonFAQ.getString("FAQId"));
+                    FAQJsonArray.add(jsonFAQ.getString("Question"));
+                    FAQJsonArray.add(jsonFAQ.getString("Answer"));
                 }
             }
             if (!jsonObject.isNull(MESSAGE)) {
@@ -599,19 +596,7 @@ public class SettingsResponseParsing {
         return FAQBoxTitle;
     }
 
-    public String getFAQId() {
-        return FAQId;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public ArrayList<JSONObject> getFAQJsonArray() {
+    public ArrayList<String> getFAQJsonArray() {
         return FAQJsonArray;
     }
 

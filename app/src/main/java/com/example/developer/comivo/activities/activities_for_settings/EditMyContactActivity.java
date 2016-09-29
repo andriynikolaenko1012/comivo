@@ -124,10 +124,10 @@ public class EditMyContactActivity extends AppCompatActivity{
             commonResponseParsing.parseCountriesList(responseString);
 
             Log.d("test LOG", "Parsed string: status " + commonResponseParsing.getStatus() +
-                    " countryId " + commonResponseParsing.getCountryId() +
-                    " countryName" + commonResponseParsing.getCountryName() +
-                    " countryPhoneCode" + commonResponseParsing.getCountryPhoneCode() +
-                    " IsRequired" + commonResponseParsing.getIsRequired() +
+                    " countryId " + commonResponseParsing.getCountriesList().get(0) +
+                    " countryName" + commonResponseParsing.getCountriesList().get(1) +
+                    " countryPhoneCode" + commonResponseParsing.getCountriesList().get(2) +
+                    " IsRequired" + commonResponseParsing.getCountriesList().get(3) +
                     " message" + commonResponseParsing.getMessage() +
                     " \n = " + responseString
             );
