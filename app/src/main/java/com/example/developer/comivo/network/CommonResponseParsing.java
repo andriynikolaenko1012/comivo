@@ -7,16 +7,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CommResponseParsing {
+public class CommonResponseParsing {
 
-    private CommResponseParsing() { }
-    private static CommResponseParsing commResponseParsingInstance;
+    private CommonResponseParsing() { }
+    private static CommonResponseParsing commonResponseParsingInstance;
 
-    public static CommResponseParsing getInstance() {
-        if (commResponseParsingInstance == null) {
-            commResponseParsingInstance = new CommResponseParsing();
+    public static CommonResponseParsing getInstance() {
+        if (commonResponseParsingInstance == null) {
+            commonResponseParsingInstance = new CommonResponseParsing();
         }
-        return commResponseParsingInstance;
+        return commonResponseParsingInstance;
     }
 
     private static final String STATUS = "Status";
@@ -95,9 +95,9 @@ public class CommResponseParsing {
                 data = jsonObject.getString(DATA);
                 JSONArray jsonDataArray = jsonObject.getJSONArray(DATA);
                 for (int i = 0; i < jsonDataArray.length(); i++) {
-                    JSONObject jsonPaymentterm = jsonDataArray.getJSONObject(i);
-                    paymentTermId = jsonPaymentterm.getString("Id");
-                    paymentTermValue = jsonPaymentterm.getString("Value");
+                    JSONObject jsonPaymentTerm = jsonDataArray.getJSONObject(i);
+                    paymentTermId = jsonPaymentTerm.getString("Id");
+                    paymentTermValue = jsonPaymentTerm.getString("Value");
                 }
             }
             if (!jsonObject.isNull(MESSAGE)) {
