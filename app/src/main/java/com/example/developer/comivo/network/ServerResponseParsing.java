@@ -96,9 +96,6 @@ public class ServerResponseParsing {
                 String value = jsonobject.getString("Value");
             }*/
 
-
-
-
             /*JSONArray jsonArray = jsonObject.getJSONArray("Data");
             idList = new ArrayList<>(jsonArray.length());
             valueList = new ArrayList<>(jsonArray.length());
@@ -107,9 +104,6 @@ public class ServerResponseParsing {
                 idList.add(innerObject.getString("Id"));
                 valueList.add(innerObject.getString("Value"));
             }*/
-
-
-
 
    /*         if (!jsonObject.isNull(MESSAGE_KEY)) {
                 message = jsonObject.getString("Message");

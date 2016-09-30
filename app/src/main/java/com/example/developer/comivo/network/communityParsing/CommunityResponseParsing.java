@@ -79,6 +79,13 @@ public class CommunityResponseParsing {
     private String clientSecret;
     private String communityCommentId;
     private String comment;
+    private String isFollow;
+    private String follows;
+    private String answers;
+    private String firstDataId;
+    private String firstDataValue;
+    private String secondDataId;
+    private String secondDataValue;
 
     /**
      * Method for parsing JSON for Community Timeline List.
@@ -335,8 +342,8 @@ public class CommunityResponseParsing {
     }
 
     /**
-     * Method for Answer that send as parameters CommunityId
-     * @param response JSON from route "community/answer/{{communityId}}
+     * Method for Answer that send as parameters CommunityId.
+     * @param response JSON from route "community/answer/{{communityId}}".
      */
     public void parseCommunityAnswerCommunityId(String response) {
         try {
@@ -381,9 +388,70 @@ public class CommunityResponseParsing {
         }
     }
 
-    // public void parseCommunityQuestionsList(String response) {
-    //     
-    // }
+    /**
+     * Method for parsing list of Questions. THere are two responses for that method.
+     * One of them takes also search as a parameter.
+     * @param response JSON returned from "community/questions/list".
+     */
+    public void parseCommunityQuestionsList(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (!jsonObject.isNull(STATUS)) {
+                status = jsonObject.getString(STATUS);
+            }
+            if (!jsonObject.isNull(DATA)) {
+                data = jsonObject.getString(DATA);
+                JSONArray jsonArray = jsonObject.getJSONArray(DATA);
+                JSONObject jsonData = jsonArray.getJSONObject(0);
+                communityId = jsonData.getString("CommunityId");
+                title = jsonData.getString("Title");
+                isFollow = jsonData.getString("IsFollow");
+                follows = jsonData.getString("Follow");
+                answers = jsonData.getString("Answers");
+                comments = jsonData.getString("Comments");
+                JSONObject jsonCommunityUser = jsonData.getJSONObject("CommunityUser");
+                // CommunityUser fields
+                userId = jsonCommunityUser.getString("UserId");
+                userFirstName = jsonCommunityUser.getString("FirstName");
+                userLastName = jsonCommunityUser.getString("LastName");
+                profileImage = jsonCommunityUser.getString("ProfileImage");
+                companyName = jsonCommunityUser.getString("CompanyName");
+                userCountry = jsonCommunityUser.getString("Country");
+                userAnswers = jsonCommunityUser.getString("Answers");
+                userQuestions = jsonCommunityUser.getString("Questions");
+                userPosts = jsonCommunityUser.getString("Posts");
+                userReviews = jsonCommunityUser.getString("Reviews");
+                userIsFollow = jsonCommunityUser.getString("IsFollow");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method for parsing Search
+     * @param response JSON returned from "community/question/search".
+     */
+    public void parseCommunityQuestionSearch(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (!jsonObject.isNull(STATUS)) {
+                status = jsonObject.getString(STATUS);
+            }
+            if (!jsonObject.isNull(DATA)) {
+                data = jsonObject.getString(DATA);
+                JSONArray jsonArray = jsonObject.getJSONArray(DATA);
+                JSONObject jsonDataFirst = jsonArray.getJSONObject(0);
+                firstDataId = jsonDataFirst.getString("Id");
+                firstDataValue = jsonDataFirst.getString("Value");
+                JSONObject jsonDataSecond = jsonArray.getJSONObject(1);
+                secondDataId = jsonDataSecond.getString("Id");
+                secondDataValue = jsonDataSecond.getString("Value");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getStatus() {
         return status;
@@ -519,5 +587,33 @@ public class CommunityResponseParsing {
 
     public String getCommunityCommentId() {
         return communityCommentId;
+    }
+
+    public String getIsFollow() {
+        return isFollow;
+    }
+
+    public String getFollows() {
+        return follows;
+    }
+
+    public String getAnswers() {
+        return answers;
+    }
+
+    public String getFirstDataId() {
+        return firstDataId;
+    }
+
+    public String getFirstDataValue() {
+        return firstDataValue;
+    }
+
+    public String getSecondDataId() {
+        return secondDataId;
+    }
+
+    public String getSecondDataValue() {
+        return secondDataValue;
     }
 }
