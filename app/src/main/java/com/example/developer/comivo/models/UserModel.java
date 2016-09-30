@@ -43,6 +43,10 @@ public class UserModel {
     private int cellNumber;
     private int cellExtension;
 
+    /*languages*/
+    private int languageId;
+    private int levelId;
+
 
     private UserModel() {
 
@@ -294,5 +298,21 @@ public class UserModel {
 
     public void setCellExtension(int cellExtension) {
         this.cellExtension = cellExtension;
+    }
+
+    public int getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
+    }
+
+    public int getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
     }
 }

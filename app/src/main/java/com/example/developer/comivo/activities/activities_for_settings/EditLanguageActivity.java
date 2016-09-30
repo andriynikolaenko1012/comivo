@@ -15,13 +15,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,10 +36,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EditLanguageActivity extends AppCompatActivity{
+
+    public Spinner languages, languages_levels;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +56,7 @@ public class EditLanguageActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageView leftButton = (ImageView) toolbar.findViewById(R.id.left_button);
-        Button btnSubmit = (Button) findViewById(R.id.btn_submit);
+        TextView btnSubmit = (TextView) findViewById(R.id.btn_submit);
 
         tittle.setText(R.string.add_language);
         leftButton.setImageResource(R.drawable.ic_icon_arrow);
@@ -56,8 +67,44 @@ public class EditLanguageActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        new GetLanguages().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        new GetLanguagesLevels().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        languages = (Spinner) findViewById(R.id.spinnerForLanguages);
+        languages_levels = (Spinner) findViewById(R.id.spinnerForLanguagesLevels);
+
+        languages.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (languages.getSelectedItem().toString().equals("English")){
+                    int languageId = 1;
+                } else if (languages.getSelectedItem().toString().equals("Chinese")){
+                    int languageId = 2;
+                } else if (languages.getSelectedItem().toString().equals("Spanish")){
+                    int languageId = 3;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        languages_levels.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (languages.getSelectedItem().toString().equals("Native")){
+                    int languageLevel = 1;
+                } else if (languages.getSelectedItem().toString().equals("Fluent")){
+                    int languageLevel = 2;
+                } else if (languages.getSelectedItem().toString().equals("Normal")){
+                    int languageLevel = 3;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,166 +121,6 @@ public class EditLanguageActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-    }
-
-
-
-    private class GetLanguages extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String data = getJSON("http://beta.comivo.com/mobileapi/languages", 5000);
-
-
-            return data;
-        }
-
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (EditLanguageActivity.this.isFinishing()) {
-                return;
-            }
-
-            SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
-            settingsResponseParsing.parseLanguages(responseString);
-
-            Log.d("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
-
-                    " message" + settingsResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
-
-        }
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-
-    }
-
-    private class GetLanguagesLevels extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String data = getJSON("http://beta.comivo.com/mobileapi/languages/levels", 5000);
-
-
-            return data;
-        }
-
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (EditLanguageActivity.this.isFinishing()) {
-                return;
-            }
-
-            SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
-            settingsResponseParsing.parseLanguagesLevels(responseString);
-
-            Log.d("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
-
-                    " message" + settingsResponseParsing.getMessage() +
-                    " \n = " + responseString
-            );
-
-        }
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-
     }
 
 }

@@ -39,6 +39,20 @@
         <item>Distributor</item>
     </string-array>
 
+    <string-array name="languages">
+        <item>English</item>    <!--id = 1-->
+        <item>Chinese</item>    <!--id = 2-->
+        <item>Spanish</item>    <!--id = 3-->
+    </string-array>
+
+
+    <string-array name="languages_levels">
+        <item>Native</item>      <!--id = 1-->
+        <item>Fluent</item>      <!--id = 2-->
+        <item>Normal</item>      <!--id = 3-->
+    </string-array>
+
+
     <string name="enter_passcode">Enter Passcode</string>
     <string name="enter_your_passcode">Enter your passcode</string>
     <string name="confirm_code">Confirm code</string>
