@@ -61,6 +61,29 @@ public class BackendManager {
         return this.client.newCall(this.getRequestAccountForgotPass(EMAIL, email));
     }
 
+    // Request for Timeline List
+    public Call getTimelineList() {
+        return this.client.newCall(this.getTimelineListRequest());
+    }
+
+    private Request getTimelineListRequest() {
+        return new Request.Builder()
+                .url(this.buildTimelineList())
+                .get()
+                .build();
+    }
+
+    private HttpUrl buildTimelineList() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("community")
+                .addPathSegment("timeline")
+                .addPathSegment("list")
+                .build();
+    }
+
     /*request for countries*/
     public Call getCountries(){
         return this.client.newCall(this.getCountriesRequest());
@@ -231,8 +254,5 @@ public class BackendManager {
                 .addQueryParameter(paramKey1, paramValue1)
                 .build();
     }
-
-
-
 
 }
