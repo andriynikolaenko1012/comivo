@@ -18,11 +18,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Adapter for ListView
  */
 
-public class ListViewAdapter extends BaseAdapter {
+public class TimelineAdapter extends BaseAdapter {
 
     private TimelineCommentsActivity timelineCommentsActivity;
 
-    public ListViewAdapter(TimelineCommentsActivity timelineCommentsActivity) {
+    public TimelineAdapter(TimelineCommentsActivity timelineCommentsActivity) {
         this.timelineCommentsActivity = timelineCommentsActivity;
     }
 

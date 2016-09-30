@@ -1,17 +1,14 @@
 package com.example.developer.comivo.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.activities.activities_for_community.QuestionPostActivity;
 import com.example.developer.comivo.fragments.community.CommunityFragmentAnswer;
 import com.example.developer.comivo.fragments.community.CommunityFragmentChemical;
 import com.example.developer.comivo.fragments.community.CommunityFragmentPost;
