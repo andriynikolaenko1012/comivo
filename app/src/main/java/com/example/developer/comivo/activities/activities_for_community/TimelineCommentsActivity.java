@@ -16,8 +16,18 @@ import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
 import com.example.developer.comivo.adapters.ListViewAdapter;
 import com.example.developer.comivo.models.CommentModel;
+import com.example.developer.comivo.models.CommunityUserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.ServerResponseParsing;
+import com.example.developer.comivo.network.communityParsing.CommunityResponseParsing;
 
+import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class TimelineCommentsActivity extends AppCompatActivity {
@@ -36,11 +46,25 @@ public class TimelineCommentsActivity extends AppCompatActivity {
         listViewAdapter = new ListViewAdapter(this);
         list.setAdapter(listViewAdapter);
 
-        initViews();
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getTimelineList().enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                CommunityResponseParsing responseParsing = CommunityResponseParsing.getInstance();
+                responseParsing.parseCommunityTimelineList(response.body().string());
+                initViews(responseParsing);
+            }
+        });
     }
 
 
-    private void initViews(){
+    private void initViews(CommunityResponseParsing responseParsing){
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         tittle.setText(R.string.timeline);
@@ -51,6 +75,18 @@ public class TimelineCommentsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        CommentModel commentModel = new CommentModel(Integer.parseInt(responseParsing.getCommunityId()), responseParsing.getTitle(),
+                responseParsing.getPost(), Integer.parseInt(responseParsing.getPostType()), Date.valueOf(responseParsing.getCreated()),
+                Integer.parseInt(responseParsing.getParentId()),
+                Integer.parseInt(responseParsing.getParentUserId()), Boolean.parseBoolean(responseParsing.getIsUserLike()),
+                Integer.parseInt(responseParsing.getComments()), Integer.parseInt(responseParsing.getLikes()),
+                responseParsing.getParentTitle(), responseParsing.getParentFirstName(), responseParsing.getParentLastName(),
+                Date.valueOf(responseParsing.getQuestionCreated()), new CommunityUserModel(Integer.parseInt(responseParsing.getUserId()),
+                responseParsing.getUserFirstName(), responseParsing.getUserLastName(), responseParsing.getProfileImage(),
+                responseParsing.getCompanyName(), responseParsing.getUserCountry(), Integer.parseInt(responseParsing.getAnswers()),
+                Integer.parseInt(responseParsing.getUserQuestions()), Integer.parseInt(responseParsing.getUserPosts()),
+                Integer.parseInt(responseParsing.getUserReviews()), Boolean.parseBoolean(responseParsing.getIsFollow())));
+        comments.add(commentModel);
 
         share_button = (LinearLayout) findViewById(R.id.layout_share);
         /*reply_button = (LinearLayout) findViewById(R.id.layout_reply2);
