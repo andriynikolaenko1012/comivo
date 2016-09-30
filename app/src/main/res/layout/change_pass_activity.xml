@@ -20,7 +20,9 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"></LinearLayout>
+            android:layout_weight="2">
+
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -41,8 +43,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/etCurrentPass"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
                 android:background="@drawable/cyan_white_backgroud_border"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:inputType="textPassword" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,9 +63,14 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
                 android:id="@+id/etNewPass"
                 android:background="@drawable/cyan_white_backgroud_border"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:inputType="textPassword" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,9 +84,14 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
                 android:id="@+id/etConfirmPass"
                 android:background="@drawable/cyan_white_backgroud_border"
-                android:layout_marginBottom="40dp" />
+                android:layout_marginBottom="40dp"
+                android:inputType="textPassword" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +114,9 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"></LinearLayout>
+            android:layout_weight="2">
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

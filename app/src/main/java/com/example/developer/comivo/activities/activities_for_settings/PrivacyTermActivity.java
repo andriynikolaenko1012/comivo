@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.network.ServerResponseParsing;
+import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -91,20 +92,20 @@ public class PrivacyTermActivity extends AppCompatActivity {
                 return;
             }
 
-            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
-            serverResponseParsing.parseMembershipAndPrivacy(responseString);
+            SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
+            settingsResponseParsing.parseCMSType(responseString);
 
-            Log.d("test LOG", "Parsed string: status " + serverResponseParsing.getStatus() +
-                    " cmsType " + serverResponseParsing.getCmsPageTypeId() +
-                    " title" + serverResponseParsing.getTitle() +
-                    " content" + serverResponseParsing.getContent() +
-                    " isActive" + serverResponseParsing.getIsActive() +
-                    " type" + serverResponseParsing.getType() +
-                    " message" + serverResponseParsing.getMessage() +
+            Log.d("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
+                    " cmsType " + settingsResponseParsing.getCMSPageTypeId() +
+                    " title" + settingsResponseParsing.getTitle() +
+                    " content" + settingsResponseParsing.getContent() +
+                    " isActive" + settingsResponseParsing.getIsActive() +
+                    " type" + settingsResponseParsing.getType() +
+                    " message" + settingsResponseParsing.getMessage() +
                     " \n = " + responseString
             );
 
-            String data = serverResponseParsing.getContent();
+            String data = settingsResponseParsing.getContent();
             privacyTerm = (WebView) findViewById(R.id.wv_privacy_term);
             privacyTerm.getSettings().setJavaScriptEnabled(true);
 

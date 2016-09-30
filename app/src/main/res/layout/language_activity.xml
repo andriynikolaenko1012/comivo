@@ -31,7 +31,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,23 +40,18 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/backgroud_border">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/language"
-                android:id="@+id/tv_language"
-                android:textStyle="bold"
-                android:textColor="@android:color/black" />
-
-        </LinearLayout>
+            android:text="@string/language"
+            android:id="@+id/tv_language"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:layout_above="@+id/textView59"
+            android:layout_alignLeft="@+id/textView59"
+            android:layout_alignStart="@+id/textView59"
+            android:layout_marginTop="5dp" />
 
         <ImageView
             android:layout_width="20dp"
@@ -64,17 +59,33 @@
             android:id="@+id/delete_btn"
             android:src="@drawable/ic_delete_white_icon"
             android:layout_gravity="right"
-            android:layout_marginRight="5dp" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_white_grey"
+            android:id="@+id/cv1"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/delete_btn"
+            android:layout_toStartOf="@+id/delete_btn">
+
+        </View>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Native"
             android:id="@+id/textView59"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/delete_btn" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="30dp"

@@ -142,7 +142,7 @@ public class EditMyContactActivity extends AppCompatActivity{
             }
 
         }
-        
+
 
         public String getJSON(String url, int timeout) {
             HttpURLConnection c = null;

@@ -290,7 +290,7 @@ public class SettingsResponseParsing {
      *
      * @param response JSON that is returned from route "userprofile/detail"
      */
-    public void parseUserprofileDetail(String response) {
+    public void parseUserProfileDetail(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (!jsonObject.isNull(STATUS)) {
@@ -320,7 +320,7 @@ public class SettingsResponseParsing {
      *
      * @param response JSON, returned from server on route "userprofile/contact"
      */
-    public void parseUserprofileContact(String response) {
+    public void parseUserProfileContact(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (!jsonObject.isNull(STATUS)) {
@@ -372,7 +372,7 @@ public class SettingsResponseParsing {
      *
      * @param response JSON, returned from server on route "userprofile/experience"
      */
-    public void parseUserprofileExperience(String response) {
+    public void parseUserProfileExperience(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (!jsonObject.isNull(STATUS)) {
@@ -411,7 +411,7 @@ public class SettingsResponseParsing {
      *
      * @param response JSON that is returned from server on route "userprofile/education"
      */
-    public void parseUserprofileEducation(String response) {
+    public void parseUserProfileEducation(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (!jsonObject.isNull(STATUS)) {
@@ -447,7 +447,7 @@ public class SettingsResponseParsing {
      *
      * @param response JSON, returned by "userprofile/languages"
      */
-    public void parseUserprofileLanguages(String response) {
+    public void parseUserProfileLanguages(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (!jsonObject.isNull(STATUS)) {
