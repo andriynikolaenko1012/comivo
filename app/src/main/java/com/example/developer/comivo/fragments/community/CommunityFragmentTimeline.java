@@ -6,29 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.example.developer.comivo.R;
-import com.example.developer.comivo.activities.activities_for_community.AnswerCommentsActivity;
-import com.example.developer.comivo.activities.activities_for_community.AnswerDetailsActivity;
-import com.example.developer.comivo.activities.activities_for_community.AnswerPostActivity;
-import com.example.developer.comivo.activities.activities_for_community.ChemicalAnswerActivity;
-import com.example.developer.comivo.activities.activities_for_community.ChemicalDetailsActivity;
-import com.example.developer.comivo.activities.activities_for_community.ChemicalQuestionActivity;
-import com.example.developer.comivo.activities.activities_for_community.ChemicalSelectedActivity;
-import com.example.developer.comivo.activities.activities_for_community.PostCommentsActivity;
-import com.example.developer.comivo.activities.activities_for_community.PostDetailsActivity;
-import com.example.developer.comivo.activities.activities_for_community.PostWriteActivity;
-import com.example.developer.comivo.activities.activities_for_community.QuestionCommentsActivity;
-import com.example.developer.comivo.activities.activities_for_community.QuestionPostActivity;
-import com.example.developer.comivo.activities.activities_for_community.QuestionWriteAnswerActivity;
 import com.example.developer.comivo.activities.activities_for_community.ShareActivity;
-import com.example.developer.comivo.activities.activities_for_community.TimelineCommentsActivity;
-import com.example.developer.comivo.activities.activities_for_community.TimelinePostDetailsActivity;
 
 
 public class CommunityFragmentTimeline extends Fragment {

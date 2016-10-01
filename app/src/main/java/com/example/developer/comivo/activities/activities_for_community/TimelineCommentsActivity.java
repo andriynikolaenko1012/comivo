@@ -14,11 +14,10 @@ import android.widget.TextView;
 
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.activities.activities_for_messages.MessageActivityNew;
-import com.example.developer.comivo.adapters.ListViewAdapter;
+import com.example.developer.comivo.adapters.TimelineAdapter;
 import com.example.developer.comivo.models.CommentModel;
 import com.example.developer.comivo.models.CommunityUserModel;
 import com.example.developer.comivo.network.BackendManager;
-import com.example.developer.comivo.network.ServerResponseParsing;
 import com.example.developer.comivo.network.communityParsing.CommunityResponseParsing;
 
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class TimelineCommentsActivity extends AppCompatActivity {
     public ListView list;
     public LinearLayout share_button, reply_button, more_text;
     public ArrayList<CommentModel> comments = new ArrayList<>();
-    public ListViewAdapter listViewAdapter;
+    public TimelineAdapter timelineAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,8 +42,8 @@ public class TimelineCommentsActivity extends AppCompatActivity {
         setContentView(R.layout.timeline_comments);
 
         list = (ListView) findViewById(R.id.list_for_comments);
-        listViewAdapter = new ListViewAdapter(this);
-        list.setAdapter(listViewAdapter);
+        timelineAdapter = new TimelineAdapter(this);
+        list.setAdapter(timelineAdapter);
 
         BackendManager backendManager = BackendManager.getInstance();
         backendManager.getTimelineList().enqueue(new Callback() {

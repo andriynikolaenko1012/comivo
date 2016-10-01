@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kevin Khanda on 29.09.2016.
  * Class for parsing Community.
@@ -86,6 +88,18 @@ public class CommunityResponseParsing {
     private String firstDataValue;
     private String secondDataId;
     private String secondDataValue;
+    ArrayList<JSONObject> chemicals;
+    private String followCount;
+    private String hasUserFollow;
+    private String answersCount;
+    private String questionsCount;
+    private String postsCount;
+    private String productId;
+    private String chemicalName;
+    private String synonyms;
+    private String molecularFormula;
+    private String molecularWeight;
+    private String imageUrl;
 
     /**
      * Method for parsing JSON for Community Timeline List.
@@ -453,6 +467,80 @@ public class CommunityResponseParsing {
         }
     }
 
+    /**
+     * Method for parsing Answers for Questions
+     * @param response JSON returned from "community/question/{questionId}/answers
+     */
+    public void parseCommunityQuestionAnswers(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (!jsonObject.isNull(STATUS)) {
+                status = jsonObject.getString(STATUS);
+            }
+            if (!jsonObject.isNull(DATA)) {
+                data = jsonObject.getString(DATA);
+                JSONArray jsonArray = jsonObject.getJSONArray(DATA);
+                JSONObject jsonData = jsonArray.getJSONObject(0);
+                communityId = jsonData.getString("CommunityId");
+                title = jsonData.getString("Title");
+                post = jsonData.getString("Post");
+                postType = jsonData.getString("PostType");
+                created = jsonData.getString("Created");
+                parentId = jsonData.getString("ParentId");
+                parentUserId = jsonData.getString("ParentUserId");
+                isUserLike = jsonData.getString("IsUserLike");
+                comments = jsonData.getString("Comments");
+                likes = jsonData.getString("Likes");
+                parentTitle = jsonData.getString("ParentTitle");
+                parentFirstName = jsonData.getString("ParentFirstName");
+                parentLastName = jsonData.getString("ParentLastName");
+                questionCreated = jsonData.getString("QuestionCreated");
+                JSONObject jsonCommunityUser = jsonData.getJSONObject("CommunityUser");
+                // CommunityUser fields
+                userId = jsonCommunityUser.getString("UserId");
+                userFirstName = jsonCommunityUser.getString("FirstName");
+                userLastName = jsonCommunityUser.getString("LastName");
+                profileImage = jsonCommunityUser.getString("ProfileImage");
+                companyName = jsonCommunityUser.getString("CompanyName");
+                userCountry = jsonCommunityUser.getString("Country");
+                userAnswers = jsonCommunityUser.getString("Answers");
+                userQuestions = jsonCommunityUser.getString("Questions");
+                userPosts = jsonCommunityUser.getString("Posts");
+                userReviews = jsonCommunityUser.getString("Reviews");
+                userIsFollow = jsonCommunityUser.getString("IsFollow");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method for parsing chemicals. I decided to store objects in array here. Read comments.
+     * @param response JSON from "community/chemicals"
+     */
+    public void parseCommunityChemicals(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (!jsonObject.isNull(STATUS)) {
+                status = jsonObject.getString(STATUS);
+            }
+            if (!jsonObject.isNull(DATA)) {
+                data = jsonObject.getString(DATA);
+                JSONArray jsonArray = jsonObject.getJSONArray(DATA);
+                chemicals = new ArrayList<>();
+                // It is better to store JSONObject in array. Then you can access fields by chemicals.get(1).getString("Id");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonChemicals = jsonArray.getJSONObject(i);
+                    chemicals.add(jsonChemicals);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public String getStatus() {
         return status;
     }
@@ -615,5 +703,53 @@ public class CommunityResponseParsing {
 
     public String getSecondDataValue() {
         return secondDataValue;
+    }
+
+    public ArrayList<JSONObject> getChemicals() {
+        return chemicals;
+    }
+
+    public String getFollowCount() {
+        return followCount;
+    }
+
+    public String getHasUserFollow() {
+        return hasUserFollow;
+    }
+
+    public String getAnswersCount() {
+        return answersCount;
+    }
+
+    public String getQuestionsCount() {
+        return questionsCount;
+    }
+
+    public String getPostsCount() {
+        return postsCount;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public String getChemicalName() {
+        return chemicalName;
+    }
+
+    public String getSynonyms() {
+        return synonyms;
+    }
+
+    public String getMolecularFormula() {
+        return molecularFormula;
+    }
+
+    public String getMolecularWeight() {
+        return molecularWeight;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }
