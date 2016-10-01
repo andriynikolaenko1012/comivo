@@ -39,6 +39,11 @@ public class CommonResponseParsing {
     private String unitId;
     private String unitValue;
 
+    private int countryId;
+    private String countryName;
+    private int countryPhoneCode;
+    private boolean isRequired;
+
     private ArrayList<String> countriesList;
 
     /**
@@ -58,10 +63,15 @@ public class CommonResponseParsing {
                 countriesList = new ArrayList<>();
                 for (int i = 0; i < jsonDataArray.length(); i++) {
                     JSONObject jsonCountries = jsonDataArray.getJSONObject(i);
+                    countryId = Integer.parseInt(jsonCountries.getString("Id"));
+                    countryName = jsonCountries.getString("Name");
+                    countryPhoneCode = Integer.parseInt(jsonCountries.getString("TelephoneCode"));
+                    isRequired = Boolean.parseBoolean(jsonCountries.getString("IsRequired"));
+                    /*JSONObject jsonCountries = jsonDataArray.getJSONObject(i);
                     countriesList.add(jsonCountries.getString("Id"));
                     countriesList.add(jsonCountries.getString("Name"));
                     countriesList.add(jsonCountries.getString("TelephoneCode"));
-                    countriesList.add(jsonCountries.getString("IsRequired"));
+                    countriesList.add(jsonCountries.getString("IsRequired"));*/
                 }
             }
             if (!jsonObject.isNull(MESSAGE)) {
@@ -241,5 +251,21 @@ public class CommonResponseParsing {
 
     public String getUnitValue() {
         return unitValue;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public int getCountryPhoneCode() {
+        return countryPhoneCode;
+    }
+
+    public boolean isRequired() {
+        return isRequired;
     }
 }

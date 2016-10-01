@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.models.UserModel;
 
 
 public class ChangePassActivity extends AppCompatActivity {
@@ -35,6 +36,8 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void initViews(){
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         TextView tittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -61,10 +64,14 @@ public class ChangePassActivity extends AppCompatActivity {
             }
         });
 
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isFieldsValidate()){
+
+                    /*send post request change password*/
+
                     Toast.makeText(ChangePassActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
                 }
 
@@ -73,6 +80,9 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private boolean isFieldsValidate() {
+        UserModel userModel = UserModel.getInstance();
+        String userPassword = userModel.getPassword();
+
 
         boolean hasUppercase = !etCurrentPass.getText().toString().equals(etCurrentPass.getText().toString().toLowerCase());
         boolean hasUppercase2 = !etNewPass.getText().toString().equals(etNewPass.getText().toString().toLowerCase());
@@ -83,14 +93,14 @@ public class ChangePassActivity extends AppCompatActivity {
         boolean noSpecialChar = etCurrentPass.getText().toString().matches("[a-zA-Z0-9 ]*");
         boolean noSpecialChar2 = etNewPass.getText().toString().matches("[a-zA-Z0-9 ]*");
 
-        if (etNewPass.getText().toString().isEmpty()) {
-            etNewPass.setError("Password is required");
-            etNewPass.setFocusable(true);
+        if (etCurrentPass.getText().toString().isEmpty()) {
+            etCurrentPass.setError("Password is required");
+            etCurrentPass.setFocusable(true);
             return false;
         }
 
-        if (etCurrentPass.getText().toString().isEmpty()) {
-            etCurrentPass.setError("Password is required");
+        if (!etCurrentPass.getText().toString().equals(userPassword)){
+            etCurrentPass.setError("Current password must be such as existing");
             etCurrentPass.setFocusable(true);
             return false;
         }
@@ -100,6 +110,16 @@ public class ChangePassActivity extends AppCompatActivity {
             etNewPass.setFocusable(true);
             return false;
         }
+
+        if (etNewPass.getText().toString().isEmpty()) {
+            etNewPass.setError("Password is required");
+            etNewPass.setFocusable(true);
+            return false;
+        }
+
+
+
+
 
         if (etCurrentPass.getText().toString().length() < 8) {
             etCurrentPass.setError("Password is too short. Needs to have 8 characters");

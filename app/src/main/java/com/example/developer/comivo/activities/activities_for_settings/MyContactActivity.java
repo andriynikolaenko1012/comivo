@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +20,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
+
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class MyContactActivity extends AppCompatActivity {
@@ -54,72 +65,96 @@ public class MyContactActivity extends AppCompatActivity {
 
 
         UserModel userModel = UserModel.getInstance();
+        int userId = userModel.getUserId();
 
-        String companyName = userModel.getCompanyName();
-        String primaryEmail = userModel.getEmail();
-        String alternativeEmail = userModel.getAlternativeEmail();
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getUserContact(userId).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-        String countryCode = String.valueOf(userModel.getCountryCode());
-        String areaCode = String.valueOf(userModel.getAreaCode());
-        String number = String.valueOf(userModel.getNumber());
-        String extension = String.valueOf(userModel.getExtension());
-        String phoneNumber = countryCode + "-" + areaCode + "-" + number + "-" + extension;
+            }
 
-        String country_code = String.valueOf(userModel.getCellCountryCode());
-        String area_code = String.valueOf(userModel.getCellAreaCode());
-        String number_cell = String.valueOf(userModel.getCellNumber());
-        String extension_cell = String.valueOf(userModel.getCellExtension());
-        String cellNumber = country_code + " " + area_code + " " + number_cell + " " + extension_cell;
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
 
-        String address = userModel.getAddress();
-        String state = userModel.getState();
-        String city = userModel.getCity();
-        String zipCode = String.valueOf(userModel.getZipCode());
-        String country = userModel.getCountryName();
-        String userAddress = zipCode + ", "+ address + ", "+ state + ", "+ city +", "+ country;
+                company_name_tv = (TextView) findViewById(R.id.company_name_tv);
+                primacy_email_tv = (TextView) findViewById(R.id.primacy_email_tv);
+                alternative_email_tv = (TextView) findViewById(R.id.alternative_email_tv);
+                tel_tv = (TextView) findViewById(R.id.tel_tv);
+                cell_tv = (TextView) findViewById(R.id.cell_tv);
+                address_tv = (TextView) findViewById(R.id.address_tv);
 
-        company_name_tv = (TextView) findViewById(R.id.company_name_tv);
-        primacy_email_tv = (TextView) findViewById(R.id.primacy_email_tv);
-        alternative_email_tv = (TextView) findViewById(R.id.alternative_email_tv);
-        tel_tv = (TextView) findViewById(R.id.tel_tv);
-        cell_tv = (TextView) findViewById(R.id.cell_tv);
-        address_tv = (TextView) findViewById(R.id.address_tv);
+                final SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
+                settingsResponseParsing.parseUserProfileContact(response.body().string());
 
-        if (companyName != null){
-            company_name_tv.setText(companyName);
-        } else {
-            company_name_tv.setText("");
-        }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String companyName = settingsResponseParsing.getCompanyName();
+                        String primaryEmail = settingsResponseParsing.getEmail();
+                        String alternativeEmail = settingsResponseParsing.getAlternativeEmail();
 
-        if (primaryEmail != null){
-            primacy_email_tv.setText(primaryEmail);
-        } else {
-            primacy_email_tv.setText("");
-        }
+                        String countryCode = settingsResponseParsing.getCountryCode();
+                        String areaCode = settingsResponseParsing.getAreaCode();
+                        String number =  settingsResponseParsing.getNumber();
+                        String extension = settingsResponseParsing.getExtension();
+                        String mobileNumber = countryCode + "-" + areaCode + "-" + number;
+                        Log.e("mobile=============== ", mobileNumber);
 
-        if (alternativeEmail != null){
-            alternative_email_tv.setText(alternativeEmail);
-        } else {
-            alternative_email_tv.setText("");
-        }
+                        String country_code = settingsResponseParsing.getMobileCountryCode();
+                        String area_code = settingsResponseParsing.getMobileAreaCode();
+                        String number_cell = settingsResponseParsing.getMobileNumber();
+                        String extension_cell = settingsResponseParsing.getMobileExtension();
+                        String cellNumber = country_code + "-" + area_code + "-" + number_cell;
+                        Log.e("cell=============== ", cellNumber);
 
-        if (phoneNumber.length() == 0){
-            tel_tv.setText(phoneNumber);
-        } else {
-            tel_tv.setText("");
-        }
+                        String address = settingsResponseParsing.getAddress();
+                        String state = settingsResponseParsing.getState();
+                        String city = settingsResponseParsing.getCity();
+                        String zipCode = settingsResponseParsing.getZipCode();
+                        String country = settingsResponseParsing.getCountryName();
+                        String userAddress = zipCode + ", "+ address + ", "+ city + ", "+ state +", "+ country;
+                        Log.e("userAddress ======== ", userAddress);
 
-        if (phoneNumber.length() == 0){
-            cell_tv.setText(cellNumber);
-        } else {
-            cell_tv.setText("");
-        }
+                        if (companyName.length() >0){
+                            company_name_tv.setText(companyName);
+                        } else {
+                            company_name_tv.setText("");
+                        }
 
-        if (phoneNumber.length() == 0){
-            address_tv.setText(userAddress);
-        } else {
-            address_tv.setText("");
-        }
+                        if (primaryEmail.length() >0){
+                            primacy_email_tv.setText(primaryEmail);
+                        } else {
+                            primacy_email_tv.setText("");
+                        }
+
+                        if (alternativeEmail.length() >0){
+                            alternative_email_tv.setText(alternativeEmail);
+                        } else {
+                            alternative_email_tv.setText("");
+                        }
+
+                        if (mobileNumber.length() >0){
+                            tel_tv.setText(mobileNumber);
+                        } else {
+                            tel_tv.setText("");
+                        }
+
+                        if (cellNumber.length() >0){
+                            cell_tv.setText(cellNumber);
+                        } else {
+                            cell_tv.setText("");
+                        }
+
+                        if (userAddress.length() >0){
+                            address_tv.setText(userAddress);
+                        } else {
+                            address_tv.setText("");
+                        }
+                    }
+                });
+            }
+        });
 
 
         leftButton.setOnClickListener(new View.OnClickListener() {

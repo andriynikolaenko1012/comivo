@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -17,13 +18,22 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.communityParsing.CommunityResponseParsing;
+import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class MyProfileActivity extends AppCompatActivity {
     public LinearLayout myContactLayout, experienceLayout,
                         educationLayout, languageLayout;
 
-    public TextView user_name_text_view, company_name_text_view, county_name_text_view;
+    public TextView user_name_text_view, company_name_text_view, country_name_text_view;
     public ImageView my_photo;
 
     @Override
@@ -33,11 +43,10 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.my_profile_activity);
 
         initViews();
+
     }
 
     private void initViews(){
-
-        UserModel userModel = UserModel.getInstance();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
@@ -59,30 +68,81 @@ public class MyProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
+        final UserModel userModel = UserModel.getInstance();
+        int userId = userModel.getUserId();
+
         my_photo = (ImageView) findViewById(R.id.my_photo);
         user_name_text_view = (TextView) findViewById(R.id.user_name_text_view);
         company_name_text_view = (TextView) findViewById(R.id.company_name_text_view);
-        county_name_text_view = (TextView) findViewById(R.id.country_name_text_view);
+        country_name_text_view = (TextView) findViewById(R.id.country_name_text_view);
 
-        String fullName = userModel.getFirstName() + " " + userModel.getLastName();
-        String companyName = userModel.getCompanyName();
-        String countryName = userModel.getCountryName();
-        String photo = userModel.getProfileImage();
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getUserProfile(userId).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-        user_name_text_view.setText(fullName);
-        company_name_text_view.setText(companyName);
-        if (photo != null) {
-            Glide.with(this).load(userModel.getProfileImage()).into(my_photo);
-        } else {
-            Glide.with(this).load(R.drawable.ic_user_icon_test).into(my_photo);
-        }
+            }
 
-        if (!userModel.getCompanyName().isEmpty()){
-            county_name_text_view.setText(countryName);
-        } else {
-            county_name_text_view.setText("");
-        }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
+                settingsResponseParsing.parseUserProfileDetail(response.body().string());
 
+                Log.e("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
+                        " userId " + settingsResponseParsing.getUserId() +
+                        " userContactId " + settingsResponseParsing.getUserContactId() +
+                        " firstName " + settingsResponseParsing.getFirstName() +
+                        " lastName" + settingsResponseParsing.getLastName() +
+                        " companyName " + settingsResponseParsing.getCompanyName() +
+                        " countryName " + settingsResponseParsing.getCountryName() +
+                        " photo " + settingsResponseParsing.getProfileImage() +
+                        " message" + settingsResponseParsing.getMessage() );
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String firstName = settingsResponseParsing.getFirstName();
+                        String lastName = settingsResponseParsing.getLastName();
+                        String companyName = settingsResponseParsing.getCompanyName();
+                        String countryName = settingsResponseParsing.getCountryName();
+                        String userContactId = settingsResponseParsing.getUserContactId();
+                        String photo = settingsResponseParsing.getProfileImage();
+
+                        if (firstName !=null && lastName !=null){
+                            user_name_text_view.setText(firstName + " " + lastName);
+                            userModel.setFirstName(firstName);
+                            userModel.setLastName(lastName);
+                        } else {
+                            user_name_text_view.setText("");
+                        }
+
+                        if (companyName !=null){
+                            company_name_text_view.setText(companyName);
+                            userModel.setCompanyName(companyName);
+                        } else {
+                            company_name_text_view.setText("");
+                        }
+
+                        if (photo != null) {
+                            Glide.with(MyProfileActivity.this).load(photo).into(my_photo);
+                            Log.e("photo ==============", settingsResponseParsing.getProfileImage());
+                            userModel.setProfileImage(photo);
+                        } else {
+                            Glide.with(MyProfileActivity.this).load(R.drawable.ic_user_icon_test).into(my_photo);
+                        }
+
+                        if (countryName !=null){
+                            country_name_text_view.setText(countryName);
+                            userModel.setCountryName(countryName);
+                        } else {
+                            country_name_text_view.setText("");
+                        }
+                    }
+                });
+
+            }
+        });
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override

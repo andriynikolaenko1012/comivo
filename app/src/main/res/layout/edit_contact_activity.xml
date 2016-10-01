@@ -41,7 +41,8 @@
                     android:layout_height="30dp"
                     android:id="@+id/et_companyName"
                     android:background="@drawable/cyan_white_backgroud_border"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,7 +66,8 @@
                     android:layout_height="30dp"
                     android:id="@+id/et_website"
                     android:background="@drawable/cyan_white_backgroud_border"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,7 +91,8 @@
                     android:layout_height="30dp"
                     android:id="@+id/et_primacyEmail"
                     android:background="@drawable/cyan_white_backgroud_border"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:inputType="textEmailAddress" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,10 +129,12 @@
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Country Code"
                             android:paddingLeft="10dp"
+                            android:maxLength="10"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginBottom="5dp"
                             android:layout_marginRight="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="phone" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -137,10 +142,12 @@
                             android:id="@+id/et_number"
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Number"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginRight="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="number" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -155,11 +162,13 @@
                             android:id="@+id/et_areaCode"
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Area Code"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginLeft="5dp"
                             android:layout_marginBottom="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="number" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -167,10 +176,12 @@
                             android:id="@+id/et_extension"
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Extension"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginLeft="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="number" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -211,11 +222,13 @@
                             android:id="@+id/et_cell_country_code"
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Country Code"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginRight="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="phone" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -230,11 +243,13 @@
                             android:id="@+id/et_cell_number"
                             android:textColorHint="@color/colorSecondary"
                             android:hint="Number"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/cyan_white_backgroud_border"
                             android:layout_marginLeft="5dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:inputType="number" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -299,7 +314,8 @@
                         android:id="@+id/et_address"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginRight="5dp"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:inputType="text" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -314,7 +330,8 @@
                         android:id="@+id/et_city"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginLeft="5dp"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:inputType="text" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -374,9 +391,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:id="@+id/et_zipCode"
+                        android:maxLength="10"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginRight="5dp"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:inputType="number" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -391,7 +410,8 @@
                         android:id="@+id/et_stateProvince"
                         android:background="@drawable/cyan_white_backgroud_border"
                         android:layout_marginLeft="5dp"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:inputType="text" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -427,9 +447,9 @@
                         <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/county_list"
-                            android:entries="@array/countries"
-                            />
+                            android:id="@+id/county_list"/>
+                            <!--android:entries="@array/countries"-->
+
                     </LinearLayout>
 
                     <LinearLayout

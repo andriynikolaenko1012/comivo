@@ -13,13 +13,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.models.Country;
+import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
 import com.example.developer.comivo.network.commonParsing.CommonResponseParsing;
+import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,8 +33,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class EditMyContactActivity extends AppCompatActivity{
@@ -48,8 +60,6 @@ public class EditMyContactActivity extends AppCompatActivity{
         initViews();
     }
 
-
-
     private void initViews(){
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
@@ -66,8 +76,6 @@ public class EditMyContactActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        new getAllCountries().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
         et_companyName = (EditText) findViewById(R.id.et_companyName);
         et_website= (EditText) findViewById(R.id.et_website);
         et_primacyEmail= (EditText) findViewById(R.id.et_primacyEmail);
@@ -82,6 +90,46 @@ public class EditMyContactActivity extends AppCompatActivity{
         et_zipCode= (EditText) findViewById(R.id.et_zipCode);
         et_stateProvince = (EditText) findViewById(R.id.et_stateProvince);
         county_list = (Spinner) findViewById(R.id.county_list);
+
+
+
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getCountries().enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final CommonResponseParsing commonResponseParsing = CommonResponseParsing.getInstance();
+                commonResponseParsing.parseCountriesList(response.body().string());
+
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        ArrayList<Country> countries = new ArrayList<Country>();
+                        ArrayList<String> countriesNames = new ArrayList<String>();
+                        Country country = new Country();
+                        country.setId(commonResponseParsing.getCountryId());
+                        country.setName(commonResponseParsing.getCountryName());
+                        country.setTelephoneCode(String.valueOf(commonResponseParsing.getCountryPhoneCode()));
+                        country.setRequired(Boolean.parseBoolean(String.valueOf(commonResponseParsing.isRequired())));
+                        countries.add(country);
+                        countriesNames.add(commonResponseParsing.getCountryName());
+
+                        county_list.setAdapter(new ArrayAdapter<String>(EditMyContactActivity.this, android.R.layout.simple_spinner_dropdown_item, countriesNames));
+                    }
+                });
+*/
+
+            }
+        });
+
+
+        /*send post request change my contact*/
 
 
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -103,87 +151,6 @@ public class EditMyContactActivity extends AppCompatActivity{
 
 
     }
-
-    private class getAllCountries extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return getJSON("http://beta.comivo.com/mobileapi/countries", 5000);
-        }
-
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (EditMyContactActivity.this.isFinishing()) {
-                return;
-            }
-
-            CommonResponseParsing commonResponseParsing = CommonResponseParsing.getInstance();
-            commonResponseParsing.parseCountriesList(responseString);
-
-            for (int i = 0; i < commonResponseParsing.getCountriesList().size(); i+=4) {
-                Log.e("test LOG", "Parsed string: status " + commonResponseParsing.getStatus() +
-                        " countryId " + commonResponseParsing.getCountriesList().get(i) +
-                        " countryName" + commonResponseParsing.getCountriesList().get(i +1) +
-                        " countryPhoneCode" + commonResponseParsing.getCountriesList().get(i +2) +
-                        " IsRequired" + commonResponseParsing.getCountriesList().get(i + 3) +
-                        " message" + commonResponseParsing.getMessage() +
-                        " \n = " + responseString
-                );
-            }
-
-        }
-
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-    }
-
 
         @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

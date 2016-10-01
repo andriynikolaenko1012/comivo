@@ -70,6 +70,8 @@ public class BackendManager {
         return new Request.Builder()
                 .url(this.buildTimelineList())
                 .get()
+                .addHeader("platform", "Android")       /*for all request need two parameters*/
+                .addHeader("version", "1.0.0")          /*device platform and apk version*/
                 .build();
     }
 
@@ -83,6 +85,58 @@ public class BackendManager {
                 .addPathSegment("list")
                 .build();
     }
+
+    /*request for user profile, api 33*/
+    public Call getUserProfile(int userId){
+        return this.client.newCall(this.getUserProfileRequest(userId));
+    }
+
+    private Request getUserProfileRequest(int userId){
+        return new Request.Builder()
+                .url(this.buildUserProfile())
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .addHeader("userId", String.valueOf(userId))
+                .build();
+    }
+
+    private HttpUrl buildUserProfile() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("userprofile")
+                .addPathSegment("detail")
+                .build();
+    }
+
+    /*request for user profile, api 34*/
+    public Call getUserContact(int userId){
+        return this.client.newCall(this.getUserContactRequest(userId));
+    }
+
+    private Request getUserContactRequest(int userId){
+        return new Request.Builder()
+                .url(this.buildUserContact())
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .addHeader("userId", String.valueOf(userId))
+                .build();
+    }
+
+    private HttpUrl buildUserContact() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("userprofile")
+                .addPathSegment("contact")
+                .build();
+    }
+
+
 
     /*request for countries*/
     public Call getCountries(){
