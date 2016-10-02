@@ -51,6 +51,8 @@ public class EditMyContactActivity extends AppCompatActivity{
 
     public Spinner county_list;
 
+    ArrayList<String> countrieslist;
+    ArrayList<Country> country;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,25 +107,28 @@ public class EditMyContactActivity extends AppCompatActivity{
                 final CommonResponseParsing commonResponseParsing = CommonResponseParsing.getInstance();
                 commonResponseParsing.parseCountriesList(response.body().string());
 
-                /*runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
+                        /*country = new ArrayList<Country>();
+                        countrieslist = new ArrayList<String>();
 
-                        ArrayList<Country> countries = new ArrayList<Country>();
-                        ArrayList<String> countriesNames = new ArrayList<String>();
-                        Country country = new Country();
-                        country.setId(commonResponseParsing.getCountryId());
-                        country.setName(commonResponseParsing.getCountryName());
-                        country.setTelephoneCode(String.valueOf(commonResponseParsing.getCountryPhoneCode()));
-                        country.setRequired(Boolean.parseBoolean(String.valueOf(commonResponseParsing.isRequired())));
-                        countries.add(country);
-                        countriesNames.add(commonResponseParsing.getCountryName());
+                        Country countries = new Country();
 
-                        county_list.setAdapter(new ArrayAdapter<String>(EditMyContactActivity.this, android.R.layout.simple_spinner_dropdown_item, countriesNames));
+                        countries.setId(commonResponseParsing.getCountryId());
+                        countries.setName(commonResponseParsing.getCountryName());
+                        countries.setTelephoneCode(String.valueOf(commonResponseParsing.getCountryPhoneCode()));
+                        countries.setRequired(Boolean.parseBoolean(String.valueOf(commonResponseParsing.isRequired())));
+                        country.add(countries);
+                        countrieslist.add(commonResponseParsing.getCountryName());
+
+                        county_list
+                                .setAdapter(new ArrayAdapter<String>(EditMyContactActivity.this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        countrieslist));*/
                     }
                 });
-*/
 
             }
         });
