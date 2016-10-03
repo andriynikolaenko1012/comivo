@@ -292,8 +292,30 @@ public class BackendManager {
 
     }
 
+    /*request for company info*/
+    public Call getCompanyInfo(int userId){
+        return this.client.newCall(this.getCompanyInfoRequest(userId));
+    }
 
+    private Request getCompanyInfoRequest(int userId){
+        return new Request.Builder()
+                .url(this.buildCompanyInfo())
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .addHeader("userId", String.valueOf(userId))
+                .build();
+    }
 
+    private HttpUrl buildCompanyInfo() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("userprofile")
+                .addPathSegment("company")
+                .build();
+    }
 
 
     private Request getRequest(String pathSegment, String paramKey1, String paramValue1) {

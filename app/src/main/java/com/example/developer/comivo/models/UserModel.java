@@ -54,6 +54,11 @@ public class UserModel {
     private int languageId;
     private int levelId;
 
+    /*company*/
+    private String CompanyId;
+    private String Website;
+    private String Description;
+    private String ImageUrl;
 
     private UserModel() {
 
@@ -369,5 +374,37 @@ public class UserModel {
 
     public void setApp_version(String app_version) {
         this.app_version = app_version;
+    }
+
+    public String getCompanyId() {
+        return CompanyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        CompanyId = companyId;
+    }
+
+    public String getWebsite() {
+        return Website;
+    }
+
+    public void setWebsite(String website) {
+        Website = website;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
     }
 }
