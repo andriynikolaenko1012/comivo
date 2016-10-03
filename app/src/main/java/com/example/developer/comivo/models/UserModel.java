@@ -13,10 +13,17 @@ public class UserModel {
     private int TokenId;
     private String Token;
     private int AccountType;
+    private int BusinessType;
     private String Email;
     private String deviceId;
     private String Password;
     private int UserId;
+
+    private String device_model;
+    private String platform;
+    private String version;
+    private String manufacturer;
+    private String app_version;
 
     /*my contact*/
     private String alternativeEmail;
@@ -314,5 +321,53 @@ public class UserModel {
 
     public void setLevelId(int levelId) {
         this.levelId = levelId;
+    }
+
+    public int getBusinessType() {
+        return BusinessType;
+    }
+
+    public void setBusinessType(int businessType) {
+        BusinessType = businessType;
+    }
+
+    public String getDevice_model() {
+        return device_model;
+    }
+
+    public void setDevice_model(String device_model) {
+        this.device_model = device_model;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getApp_version() {
+        return app_version;
+    }
+
+    public void setApp_version(String app_version) {
+        this.app_version = app_version;
     }
 }

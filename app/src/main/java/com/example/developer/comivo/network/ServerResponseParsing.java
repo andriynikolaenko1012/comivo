@@ -145,10 +145,6 @@ public class ServerResponseParsing {
     }
 
 
-//    {"Status":4,"Data":{"UserId":11231,"ResponseStatus":2,"LoginUserModel":null,
-// "Code":"a15b7716f678001f5e3a5e0c49251e31"},"Message":null}
-
-
 
     public static final String FIRST_NAME_KEY = "FirstName";
     public static final String LAST_NAME_KEY = "LastName";
@@ -160,19 +156,6 @@ public class ServerResponseParsing {
             if (!jsonObject.isNull(STATUS_KEY)) {
                 status = jsonObject.getString("Status");
             }
-
-
-       /*     JSONObject jsonObject1 = jsonObject.getJSONObject("Data");
-            firstName = jsonObject1.getString("FirstName");
-            lastName = jsonObject1.getString("LastName");
-            profileImage = jsonObject1.getString("ProfileImage");
-            profileCoverImage = jsonObject1.getString("ProfileCoverImage");
-            accountType = String.valueOf(jsonObject1.getInt("AccountType"));
-            newUser = jsonObject1.getString("NewUser");
-            companyName = jsonObject1.getString("CompanyName");
-            tokenId = jsonObject1.getString("TokenId");
-            token = jsonObject1.getString("Token");
-            email =jsonObject1.getString("Email");*/
 
             JSONObject jsonObject1 = jsonObject.optJSONObject("Data");
             userId = jsonObject1.getString("UserId");
@@ -212,29 +195,6 @@ public class ServerResponseParsing {
             e.printStackTrace();
         }
 
-//        try{
-//            JSONObject jsonObject = new JSONObject(response);
-//            if (!jsonObject.isNull(STATUS_KEY)) {
-//                status = jsonObject.getString("Status");
-//            }
-//            JSONObject jsonObject1 = jsonObject.getJSONObject("Data");
-//            firstName = jsonObject1.getString("FirstName");
-//            lastName = jsonObject1.getString("LastName");
-//            profileImage = jsonObject1.getString("ProfileImage");
-//            profileCoverImage = jsonObject1.getString("ProfileCoverImage");
-//            accountType = jsonObject1.getString("AccountType");
-//            newUser = jsonObject1.getString("NewUser");
-//            companyName = jsonObject1.getString("CompanyName");
-//            tokenId = jsonObject1.getString("TokenId");
-//            token = jsonObject1.getString("Token");
-//            email =jsonObject1.getString("Email");
-//            if (!jsonObject.isNull(MESSAGE_KEY)) {
-//                message = jsonObject.getString("Message");
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            Log.e("aaa", e.getMessage(), e);
-//        }
     }
 
 

@@ -118,9 +118,6 @@ public class ChangePassActivity extends AppCompatActivity {
         }
 
 
-
-
-
         if (etCurrentPass.getText().toString().length() < 8) {
             etCurrentPass.setError("Password is too short. Needs to have 8 characters");
             etCurrentPass.setFocusable(true);

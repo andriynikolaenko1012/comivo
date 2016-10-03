@@ -136,6 +136,30 @@ public class BackendManager {
                 .build();
     }
 
+    /*request for Q&A*/
+
+    public Call getUserQ_A(){
+        return this.client.newCall(this.getUserQ_ARequest());
+    }
+
+    private Request getUserQ_ARequest(){
+        return new Request.Builder()
+                .url(this.buildQ_AUrl())
+                .get()
+                .addHeader("platform", "Android")
+                .addHeader("version", "1.0.0")
+                .build();
+    }
+
+    private HttpUrl buildQ_AUrl() {
+        return new HttpUrl.Builder()
+                .scheme(this.scheme)
+                .host(this.host)
+                .addPathSegment("mobileapi")
+                .addPathSegment("faq")
+                .addPathSegment("list")
+                .build();
+    }
 
 
     /*request for countries*/
@@ -190,12 +214,14 @@ public class BackendManager {
                 .build();
     }
 
-    public Call getAccountRegistration(String first_name, String last_name, String password, String email, String company, String accountType) {
-        return this.client.newCall(this.postRequest(first_name, last_name, password, email, company, accountType));
+
+    /*request for account registration*/
+    public Call getAccountRegistration(String first_name, String last_name, String email, String password, String company, String account_type, String business_type) {
+        return this.client.newCall(this.postRequest(first_name, last_name, email, password, company, account_type, business_type));
     }
 
-    private Request postRequest(String firstName, String last_name, String password, String email, String company, String accountType) {
-        RequestBody body = RequestBody.create(JSON, bowlingJson(firstName,last_name, password, email, company, accountType ));
+    private Request postRequest(String first_name, String last_name, String email, String password, String company, String account_type, String business_type) {
+        RequestBody body = RequestBody.create(JSON, signUpJson(first_name, last_name, email, password, company, account_type, business_type));
         return new Request.Builder()
                 .url(baseUrl + "account/register")
                 .addHeader("platform", "Android")
@@ -206,16 +232,68 @@ public class BackendManager {
 
 
 
-    private String bowlingJson(String firstName, String last_name, String password, String email, String first_name, String accountType) {
-        return "{\"FirstName\":\"" + first_name + " \","
-                + "\"LastName\":\"xyz\","
-                + "\"Email\":\"abc.xyz@gmail.com\","
-                + "\"Password\":\"Comivo123\","
-                + "\"Company\":\"abcCtpl\","
-                + "\"AccountType\":1,"
-                + "\"BusinessTypeId\":1"
+    private String signUpJson(String first_name, String last_name, String email, String password, String company, String account_type, String business_type) {
+         return "{\"FirstName\":\"" + first_name + " \","
+                + "\"LastName\":\"" + last_name + " \","
+                + "\"Email\":\"" + email + " \","
+                + "\"Password\":\"" + password + " \","
+                + "\"Company\":\"" + company + " \","
+                + "\"AccountType\":\"" + account_type + " \","
+                + "\"BusinessTypeId\":\"" + account_type + "\""
                 + "}";
+
     }
+
+    /*request for account device saving*/
+    public Call getDeviceSave(String userId, String device_model, String platform, String device_id, String version, String manufacturer, String app_version) {
+        return this.client.newCall(this.postDeviceSaveRequest(userId,device_model, platform, device_id, version, manufacturer, app_version));
+    }
+
+    private Request postDeviceSaveRequest(String userId, String device_model, String platform, String device_id, String version, String manufacturer, String app_version) {
+        RequestBody body = RequestBody.create(JSON, saveDeviceJson(device_model, platform, device_id, version, manufacturer, app_version));
+        return new Request.Builder()
+                .url(baseUrl + "device/save")
+                .addHeader("platform", "Android")
+                .addHeader("userId", userId)
+                .post(body)
+                .build();
+    }
+
+    private String saveDeviceJson(String device_model, String platform, String device_id, String version, String manufacturer, String app_version) {
+        return "{\"DeviceModel\":\"" + device_model + " \","
+                + "\"Platform\":\"" + platform + " \","
+                + "\"DeviceId\":\"" + device_id + " \","
+                + "\"Version\":\"" + version + " \","
+                + "\"Manufacturer\":\"" + manufacturer + " \","
+                + "\"AppVersion\":\"" + app_version + " \""
+                + "}";
+
+    }
+
+    /*request for reset password*/
+    public Call getResetPassword(String userId, String oldPassword, String newPassword) {
+        return this.client.newCall(this.postResetPassword(userId, oldPassword, newPassword));
+    }
+
+    private Request postResetPassword(String userId, String oldPassword, String newPassword) {
+        RequestBody body = RequestBody.create(JSON, resetPassword(userId, oldPassword, newPassword));
+        return new Request.Builder()
+                .url(baseUrl + "account/resetpassword")
+                .addHeader("platform", "Android")
+                .post(body)
+                .build();
+    }
+
+    private String resetPassword(String userId, String oldPassword, String newPassword) {
+        return "{\"UserId\":\"" + userId + " \","
+                + "\"OldPassword\":\"" + oldPassword + " \","
+                + "\"NewPassword\":\"" + newPassword + " \""
+                + "}";
+
+    }
+
+
+
 
 
     private Request getRequest(String pathSegment, String paramKey1, String paramValue1) {

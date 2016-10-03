@@ -4,13 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.developer.comivo.BuildConfig;
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.ServerResponseParsing;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class ThanksSandingActivity extends AppCompatActivity {
@@ -37,6 +48,14 @@ public class ThanksSandingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        final UserModel userModel = UserModel.getInstance();
+        final String userId = String.valueOf(userModel.getUserId());
+        final String device_id = userModel.getDeviceId();
+        final String device_model = android.os.Build.MODEL;;
+        final String platform = "Android";
+        final String version = android.os.Build.VERSION.RELEASE;;
+        final String manufacturer = android.os.Build.PRODUCT;
+        final String app_version = BuildConfig.VERSION_NAME;
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,9 +70,26 @@ public class ThanksSandingActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ThanksSandingActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+
+                BackendManager backendManager = BackendManager.getInstance();
+                backendManager.getDeviceSave(userId,device_model, platform, device_id,
+                        version, manufacturer, app_version).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                        serverResponseParsing.parseSimpleResponse(response.body().string());
+                        Log.e("response ======", response.body().string());
+
+                        Intent intent = new Intent(ThanksSandingActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
             }
         });
 

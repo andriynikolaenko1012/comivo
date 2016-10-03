@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.developer.comivo.models.UserModel;
 import com.example.developer.comivo.network.BackendManager;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.network.ServerResponseParsing;
@@ -55,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void initViews() {
 
+        final UserModel userModel = UserModel.getInstance();
+
         buyer_acc = (CheckBox) findViewById(R.id.buyer_acc);
         seller_acc = (CheckBox) findViewById(R.id.seller_acc);
         etFirstName = (EditText) findViewById(R.id.first_name);
@@ -65,12 +68,14 @@ public class SignUpActivity extends AppCompatActivity {
         etConfirmPass = (EditText) findViewById(R.id.confirm_pass);
         etCompany = (EditText) findViewById(R.id.company);
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
+        buyer_acc.setChecked(false);
 
         final CheckBox checkPrivacy = (CheckBox) findViewById(R.id.checked_privacy);
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-        final String accountType = spinner.getSelectedItem().toString();
+        final String account_type = spinner.getSelectedItem().toString();
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item) {
 
@@ -108,12 +113,18 @@ public class SignUpActivity extends AppCompatActivity {
                 if (spinner.getSelectedItem().toString().equals("Agency")){
                     buyer_acc.setChecked(true);
                     seller_acc.setChecked(false);
-                    String accountType = "1";
+                    String business_type = "1";
+                    /*String accountType = "1";
+                    String businessType = "1";*/
+                    userModel.setBusinessType(Integer.parseInt(business_type));
 
                 } else if (spinner.getSelectedItem().toString().equals("Distributor")){
                     seller_acc.setChecked(true);
                     buyer_acc.setChecked(false);
-                    String accountType = "2";
+                    String business_type = "2";
+                    userModel.setBusinessType(Integer.parseInt(business_type));
+                    /*String accountType = "2";
+                    String businessType = "2";*/
 
                 }
             }
@@ -125,13 +136,17 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
+
         buyer_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buyer_acc.setChecked(true);
                 seller_acc.setChecked(false);
                 spinner.setSelection(0);
-                String accountType = "1";
+                String business_type = "1";
+                userModel.setBusinessType(Integer.parseInt(business_type));
+                /*String accountType = "1";
+                String businessType = "1";*/
             }
         });
 
@@ -141,7 +156,10 @@ public class SignUpActivity extends AppCompatActivity {
                 buyer_acc.setChecked(false);
                 seller_acc.setChecked(true);
                 spinner.setSelection(1);
-                String accountType = "2";
+                String business_type = "2";
+                userModel.setBusinessType(Integer.parseInt(business_type));
+                /*String accountType = "2";
+                String businessType = "2";*/
             }
         });
 
@@ -153,16 +171,16 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Please, tap \"I agree to abide by Comivo LLC'S\"", Toast.LENGTH_SHORT).show();
                 } else {
                     if (isFieldsValidate()) {
-
-                        Log.e("LOG", "is field validate");
                         String firstName = etFirstName.getText().toString();
                         String lastName = etLastName.getText().toString();
                         String email = etEmail.getText().toString();
                         String password = etPass.getText().toString();
                         String company = etCompany.getText().toString();
+                        String business_type = String.valueOf(userModel.getBusinessType());
 
                         BackendManager backendManager = BackendManager.getInstance();
-                        backendManager.getAccountRegistration(firstName, lastName, password, email, company, accountType).enqueue(new Callback() {
+                        backendManager.getAccountRegistration(firstName, lastName,
+                                password, email, company, account_type, business_type).enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
                                 e.printStackTrace();
@@ -170,31 +188,26 @@ public class SignUpActivity extends AppCompatActivity {
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
-                                Log.e("LOGIN","---------------------------------------------\n" + response.body().string());
-                                /*String s = response.body().string();*/
-                                ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+
+                                final ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
                                 serverResponseParsing.parseSimpleResponse(response.body().string());
 
-                                if (serverResponseParsing.getStatus().equals("4") && !serverResponseParsing.getData().equals("0")) {
-                                    Intent intent = new Intent(SignUpActivity.this, ThanksSandingActivity.class);
-                                    startActivity(intent);
-                                }
-                                else if (serverResponseParsing.getData().equals("0")){
-                                    Log.e("test", serverResponseParsing.getData());
+                                if (serverResponseParsing.getStatus().equals("5")) {
                                     runOnUiThread(new Runnable() {
                                         public void run() {
-                                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                            startActivity(intent);
+                                            Toast.makeText(SignUpActivity.this, serverResponseParsing.getMessage(), Toast.LENGTH_LONG).show();                                        }
+                                    });
 
-                                            /*UserModel userModel = UserModel.getInstance();
-                                            if (userModel.isNewUser()){
-                                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                                startActivity(intent);
-                                            } else {
-                                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                                startActivity(intent);
-                                                Toast.makeText(SignUpActivity.this, "This email already exist", Toast.LENGTH_SHORT).show();
-                                            }*/
+                                } else if (serverResponseParsing.getStatus().equals("4") && !serverResponseParsing.getData().equals("0")) {
+                                    String userId = serverResponseParsing.getData();
+                                    Log.e("userId =========", userId);
+                                    userModel.setUserId(Integer.parseInt(userId));
+                                    Intent intent = new Intent(SignUpActivity.this, ThanksSandingActivity.class);
+                                    startActivity(intent);
+                                } else if (serverResponseParsing.getData().equals("0")){
+                                    runOnUiThread(new Runnable() {
+                                        public void run() {
+                                            Toast.makeText(SignUpActivity.this, "This email already exists", Toast.LENGTH_LONG).show();
 
                                         }
                                     });
@@ -205,7 +218,6 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         });
                     }
-
 
                 }
             }

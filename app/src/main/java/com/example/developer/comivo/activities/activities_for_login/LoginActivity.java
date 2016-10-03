@@ -144,14 +144,11 @@ public class LoginActivity extends Activity{
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
+
                             /*Log.e("LOGIN","---------------------------------------------\n" + response.body().string());*/
-/*
-                            String s = response.body().string();
-*/
+
                             ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
                             serverResponseParsing.parseLoginValidate(response.body().string());
-
-                           /* Log.e("status", serverResponseParsing.getStatus());*/
 
                             if (serverResponseParsing.getStatus().equals("1")||serverResponseParsing.getStatus().equals("3")){
                                 Log.e("test 1 3", serverResponseParsing.getData());

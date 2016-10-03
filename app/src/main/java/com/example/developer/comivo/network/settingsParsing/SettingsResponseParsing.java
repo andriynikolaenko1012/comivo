@@ -46,6 +46,11 @@ public class SettingsResponseParsing {
     private String FAQBoxId;
     private String FAQBoxTitle;
     private ArrayList<String> FAQJsonArray;
+
+   /* private ArrayList<String> FAQBoxModelListArray;
+    private ArrayList<String> FAQModelList;
+    private ArrayList<String> DataArray;*/
+
     private String notificationSettingsId;
     private String title;
     private String isEnabled;
@@ -117,6 +122,9 @@ public class SettingsResponseParsing {
     private String chineseLevelValue;
     private String spanishLevelId;
     private String spanishLevelValue;
+    private String fAQId;
+    private String question;
+    private String answer;
 
     /**
      * This method is parsing JSON that was received from route "userprofile/company"
@@ -188,10 +196,34 @@ public class SettingsResponseParsing {
                 for (int i = 0; i < FAQModelList.length(); i++) {
                     JSONObject jsonFAQ = FAQModelList.getJSONObject(i);
                     // Every three elements from ArrayList == one jsonFAQ object
+                    fAQId = jsonFAQ.getString("FAQId");
+                    question = jsonFAQ.getString("Question");
+                    answer = jsonFAQ.getString("Answer");
                     FAQJsonArray.add(jsonFAQ.getString("FAQId"));
                     FAQJsonArray.add(jsonFAQ.getString("Question"));
                     FAQJsonArray.add(jsonFAQ.getString("Answer"));
                 }
+
+                /*JSONArray jsonDataArray = jsonObject.getJSONArray(DATA);
+                for(int i=0;i<jsonDataArray.length();i++){
+                    JSONObject jsonData = jsonDataArray.getJSONObject(i);
+                    FAQSectionId = jsonData.getString("FAQSectionId");
+                    FAQSectionTitle = jsonData.getString("Title");
+                    JSONArray FAQBoxModelListArray = jsonData.getJSONArray("FAQBoxModelList");
+                    for(int j=0;j<FAQBoxModelListArray.length();j++){
+                        JSONObject jsonFAQBoxModelList = FAQBoxModelListArray.getJSONObject(j);
+                        FAQBoxId = jsonFAQBoxModelList.getString("FAQBoxId");
+                        FAQBoxTitle = jsonFAQBoxModelList.getString("Title");
+                        JSONArray FAQModelList = jsonFAQBoxModelList.getJSONArray("FAQModelList");
+                        for(int k=0;k<FAQModelList.length();k++){
+                            JSONObject jsonFAQ = FAQBoxModelListArray.getJSONObject(j);
+                            fAQId = jsonFAQ.getString("FAQId");
+                            question = jsonFAQ.getString("Question");
+                            answer = jsonFAQ.getString("Answer");
+
+                        }
+                    }
+                }*/
             }
             if (!jsonObject.isNull(MESSAGE)) {
                 message = jsonObject.getString(MESSAGE);
@@ -883,4 +915,28 @@ public class SettingsResponseParsing {
     public String getSpanishLevelValue() {
         return spanishLevelValue;
     }
+
+    public String getfAQId() {
+        return fAQId;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+   /* public ArrayList<String> getFAQBoxModelListArray() {
+        return FAQBoxModelListArray;
+    }
+
+    public ArrayList<String> getFAQModelList() {
+        return FAQModelList;
+    }
+
+    public ArrayList<String> getDataArray() {
+        return DataArray;
+    }*/
 }

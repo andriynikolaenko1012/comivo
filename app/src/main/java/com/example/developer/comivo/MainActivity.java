@@ -42,14 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         final UserModel userModel = UserModel.getInstance();
         userModel.setDeviceId(deviceId);
-
-        /*SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("DEVICE_ID", deviceId);
-        editor.apply();*/
-
-        /*String devId = sharedPreferences.getString("DEVICE_ID",deviceId);
-        Log.d("Id","++++++++++++++++++++++++++++4321"+devId);*/
+        userModel.setDevice_model(android.os.Build.MODEL);
+        userModel.setPlatform("Android");
+        userModel.setVersion(android.os.Build.VERSION.RELEASE);
+        userModel.setManufacturer(android.os.Build.PRODUCT);
+        userModel.setApp_version(BuildConfig.VERSION_NAME);
 
         // Testing JSON parsing
         /*String json = "{\n" +

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.network.BackendManager;
 import com.example.developer.comivo.network.ServerResponseParsing;
 import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
 
@@ -30,6 +31,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class QAActivity extends AppCompatActivity {
@@ -55,7 +60,31 @@ public class QAActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        new FaQ().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        BackendManager backendManager = BackendManager.getInstance();
+        backendManager.getUserQ_A().enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
+                settingsResponseParsing.parseFAQList(response.body().string());
+
+                String faqSectionId = settingsResponseParsing.getFAQSectionId();
+                String faqSectionTitle = settingsResponseParsing.getFAQBoxTitle();
+                String faqBoxId = settingsResponseParsing.getfAQId();
+                String faqBoxTitle = settingsResponseParsing.getFAQBoxTitle();
+                for (int i=0; i<settingsResponseParsing.getFAQJsonArray().size(); i++){
+                    String fAQId = settingsResponseParsing.getfAQId();
+                    String question = settingsResponseParsing.getQuestion();
+                    String answer = settingsResponseParsing.getAnswer();
+                }
+
+            }
+        });
+
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,86 +96,4 @@ public class QAActivity extends AppCompatActivity {
 
     }
 
-    private class FaQ extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            return getJSON("http://beta.comivo.com/mobileapi/faq/list", 5000);
-        }
-
-
-        @Override
-        protected void onPostExecute(String responseString) {
-            //super.onPostExecute(s);
-
-            if (QAActivity.this.isFinishing()) {
-                return;
-            }
-
-            SettingsResponseParsing settingsResponseParsing = SettingsResponseParsing.getInstance();
-            settingsResponseParsing.parseFAQList(responseString);
-
-            for (int i = 0; i < settingsResponseParsing.getFAQJsonArray().size(); i+=3) {
-                Log.e("test LOG", "Parsed string: status " + settingsResponseParsing.getStatus() +
-                        " FAQSectionId " + settingsResponseParsing.getFAQSectionId() +
-                        " FAQSectionTitle" + settingsResponseParsing.getFAQSectionTitle() +
-                        " FAQBoxId" + settingsResponseParsing.getFAQBoxId() +
-                        " FAQBoxTitle" + settingsResponseParsing.getFAQBoxTitle() +
-                        " FAQId " + settingsResponseParsing.getFAQJsonArray().get(i) +
-                        " question " + settingsResponseParsing.getFAQJsonArray().get(i + 1) +
-                        " answer " + settingsResponseParsing.getFAQJsonArray().get(i + 2) +
-                        " message" + settingsResponseParsing.getMessage() +
-                        " \n = " + responseString
-                );
-            }
-
-        }
-
-        public String getJSON(String url, int timeout) {
-            HttpURLConnection c = null;
-            try {
-                URL u = new URL(url);
-                c = (HttpURLConnection) u.openConnection();
-                c.setRequestMethod("GET");
-                c.setRequestProperty("Content-length", "0");
-                c.setRequestProperty("platform", "android");
-                c.setRequestProperty("version", "1.0.0");
-                c.setUseCaches(false);
-                c.setAllowUserInteraction(false);
-                c.setConnectTimeout(timeout);
-                c.setReadTimeout(timeout);
-                c.connect();
-                int status = c.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        return sb.toString();
-                }
-
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (c != null) {
-                    try {
-                        c.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            return null;
-        }
-    }
 }

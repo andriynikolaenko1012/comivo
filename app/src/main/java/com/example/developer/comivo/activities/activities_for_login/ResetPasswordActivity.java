@@ -11,6 +11,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.ServerResponseParsing;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class ResetPasswordActivity extends Activity {
@@ -28,15 +37,45 @@ public class ResetPasswordActivity extends Activity {
         newPass = (EditText) findViewById(R.id.new_pass);
         confirmPass = (EditText) findViewById(R.id.conf_pass);
 
+        final String new_pass = newPass.getText().toString();
+        final String confirm_pass = confirmPass.getText().toString();
 
+        final UserModel userModel = UserModel.getInstance();
+        final String userId = String.valueOf(userModel.getUserId());
         btnChangePass = (Button) findViewById(R.id.btn_change_pass);
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isFieldsValidate()){
-                    Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                    BackendManager backendManager = BackendManager.getInstance();
+                    backendManager.getResetPassword(userId, new_pass, confirm_pass).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                            serverResponseParsing.parseSimpleResponse(response.body().string());
+                            if (serverResponseParsing.getStatus().equals("4") && serverResponseParsing.getData().equals("0")){
+                                Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                                userModel.setPassword(new_pass);
+                                startActivity(intent);
+                                finish();
+                            } else if (serverResponseParsing.getStatus().equals("4") && serverResponseParsing.getData().equals("1")){
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(ResetPasswordActivity.this, "Invalid old password", Toast.LENGTH_LONG).show();                                        }
+                                });
+                            }
+
+
+                        }
+                    });
+
+
                 }
 
             }
