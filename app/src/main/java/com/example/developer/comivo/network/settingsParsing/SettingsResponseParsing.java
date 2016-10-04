@@ -151,9 +151,13 @@ public class SettingsResponseParsing {
                 description = jsonData.getString("Description");
                 imageURL = jsonData.getString("ImageUrl");
 
-                JSONArray photos = jsonData.getJSONArray("Photoes");
+                JSONArray a = jsonData.getJSONArray("Photoes");
+                for (int i = 0; i < a.length(); i++) {
+                    Log.d("photoes", a.getString(i));
+                }
+               /* JSONArray photos = jsonData.getJSONArray("Photoes");
                 photos1 = photos.getString(0);
-                photos2 = photos.getString(1);
+                photos2 = photos.getString(1);*/
             }
             if (!jsonObject.isNull(MESSAGE)) {
                 message = jsonObject.getString(MESSAGE);

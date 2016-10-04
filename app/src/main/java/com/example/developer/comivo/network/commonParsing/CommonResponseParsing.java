@@ -67,6 +67,14 @@ public class CommonResponseParsing {
                     countryName = jsonCountries.getString("Name");
                     countryPhoneCode = Integer.parseInt(jsonCountries.getString("TelephoneCode"));
                     isRequired = Boolean.parseBoolean(jsonCountries.getString("IsRequired"));
+
+
+                   /* countriesList.add(String.valueOf(countryId));
+                    countriesList.add(countryName);
+                    countriesList.add(String.valueOf(countryPhoneCode));
+                    countriesList.add(String.valueOf(isRequired));*/
+
+
                     /*JSONObject jsonCountries = jsonDataArray.getJSONObject(i);
                     countriesList.add(jsonCountries.getString("Id"));
                     countriesList.add(jsonCountries.getString("Name"));

@@ -145,6 +145,7 @@ public class LoginActivity extends Activity{
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
 
+
                             /*Log.e("LOGIN","---------------------------------------------\n" + response.body().string());*/
 
                             ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();

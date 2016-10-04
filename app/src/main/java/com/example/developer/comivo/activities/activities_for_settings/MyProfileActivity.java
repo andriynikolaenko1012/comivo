@@ -1,6 +1,8 @@
 package com.example.developer.comivo.activities.activities_for_settings;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,13 +18,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.cache.MemoryCache;
 import com.example.developer.comivo.R;
 import com.example.developer.comivo.models.UserModel;
 import com.example.developer.comivo.network.BackendManager;
 import com.example.developer.comivo.network.communityParsing.CommunityResponseParsing;
 import com.example.developer.comivo.network.settingsParsing.SettingsResponseParsing;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -132,6 +142,9 @@ public class MyProfileActivity extends AppCompatActivity {
                             Glide.with(MyProfileActivity.this).load(R.drawable.ic_user_icon_test).into(my_photo);
                         }
 
+                        /*Bitmap bitmap = loadImage(photo);
+                        my_photo.setImageBitmap(bitmap);*/
+
                         if (countryName !=null){
                             country_name_text_view.setText(countryName);
                             userModel.setCountryName(countryName);
@@ -212,4 +225,35 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+   /* protected Bitmap loadImage(String photo) {
+        // TODO Auto-generated method stub
+
+        URL imageURL = null;
+
+        Bitmap bitmap = null;
+        try {
+            imageURL = new URL(photo);
+        }
+
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            HttpURLConnection connection = (HttpURLConnection) imageURL.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream inputStream = connection.getInputStream();
+
+            bitmap = BitmapFactory.decodeStream(inputStream);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        return bitmap;
+    }*/
+
 }

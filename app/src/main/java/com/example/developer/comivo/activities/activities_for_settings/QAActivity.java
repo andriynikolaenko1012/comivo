@@ -61,7 +61,7 @@ public class QAActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         BackendManager backendManager = BackendManager.getInstance();
-        backendManager.getUserQ_A().enqueue(new Callback() {
+        backendManager.getFAQList().enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

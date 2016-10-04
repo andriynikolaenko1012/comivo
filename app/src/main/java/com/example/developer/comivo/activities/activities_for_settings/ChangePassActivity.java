@@ -22,7 +22,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developer.comivo.R;
+import com.example.developer.comivo.activities.activities_for_login.LoginActivity;
 import com.example.developer.comivo.models.UserModel;
+import com.example.developer.comivo.network.BackendManager;
+import com.example.developer.comivo.network.ServerResponseParsing;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class ChangePassActivity extends AppCompatActivity {
@@ -55,6 +64,10 @@ public class ChangePassActivity extends AppCompatActivity {
         etCurrentPass = (EditText) findViewById(R.id.etCurrentPass);
         etNewPass = (EditText) findViewById(R.id.etNewPass);
         etConfirmPass = (EditText) findViewById(R.id.etConfirmPass);
+        final UserModel userModel = UserModel.getInstance();
+        final String userId = String.valueOf(userModel.getUserId());
+        final String new_pass = etNewPass.getText().toString();
+        final String confirm_pass = etConfirmPass.getText().toString();
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +83,34 @@ public class ChangePassActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isFieldsValidate()){
 
-                    /*send post request change password*/
+                    BackendManager backendManager = BackendManager.getInstance();
+                    backendManager.getChangePassword(userId, new_pass, confirm_pass).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
 
-                    Toast.makeText(ChangePassActivity.this, "Options in development", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ServerResponseParsing serverResponseParsing = ServerResponseParsing.getInstance();
+                            serverResponseParsing.parseSimpleResponse(response.body().string());
+                            if (serverResponseParsing.getStatus().equals("4") && serverResponseParsing.getData().equals("0")){
+                                Intent intent = new Intent(ChangePassActivity.this, LoginActivity.class);
+                                userModel.setPassword(new_pass);
+                                startActivity(intent);
+                                finish();
+                            } else if (serverResponseParsing.getStatus().equals("4") && serverResponseParsing.getData().equals("1")){
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(ChangePassActivity.this, "Invalid old password", Toast.LENGTH_LONG).show();                                        }
+                                });
+                            }
+
+
+                        }
+                    });
+
+
                 }
 
             }
